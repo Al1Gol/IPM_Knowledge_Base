@@ -1,24 +1,20 @@
 from django.shortcuts import render
-from rest_framework.viewsets import GenericViewSet, mixins, ModelViewSet
-from mainapp.serializers import ServerReleaseSerializer, PlcReleaseSerializer, ReleaseChangesSerializer
-from mainapp.models import ServerReleases, PlcReleases, ReleaseChanges
+from rest_framework.viewsets import GenericViewSet, mixins 
+from mainapp.serializers import SrvReleaseSerializer, PlcReleaseSerializer, ReleaseChangesSerializer
 from rest_framework import mixins
 
+from mainapp.models import SrvReleases, PlcReleases, ReleaseChanges
+from mainapp.filters import ReleaseChangesFilter
 
-class ServerReleasesViewSet(ModelViewSet):
-    serializer_class = ServerReleaseSerializer
-
-    def get_queryset(self):
-        return ServerReleases.objects.all()
+class SrvReleasesViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin):
+    serializer_class = SrvReleaseSerializer
+    queryset = SrvReleases.objects.all()
     
-class PlcReleasesViewSet(ModelViewSet):
+class PlcReleasesViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin):
     serializer_class = PlcReleaseSerializer
+    queryset = PlcReleases.objects.all()
 
-    def get_queryset(self):
-        return PlcReleases.objects.all()
-    
-class ReleaseChangesViewSet(ModelViewSet):
+class ReleaseChangesViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin):
     serializer_class = ReleaseChangesSerializer
-
-    def get_queryset(self):
-        return ReleaseChanges.objects.all()
+    filterset_class = ReleaseChangesFilter
+    queryset = ReleaseChanges.objects.all()
