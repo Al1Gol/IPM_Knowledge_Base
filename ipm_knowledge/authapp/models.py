@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 class Roles(models.Model):
     name = models.CharField(verbose_name="наименование роли", max_length=50, unique=True)
+    is_active = models.BooleanField(verbose_name="Видимость", default=True)
 
     def __str__(self):
         return f'{self.name}'

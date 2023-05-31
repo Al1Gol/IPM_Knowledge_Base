@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 # Список релизов сервера
 class SrvReleases(models.Model):
     versions = models.CharField(verbose_name="версии сервера", max_length=20, unique=True)
+    is_active = models.BooleanField(verbose_name="Видимость", default=True)
 
     def __str__(self):
         return self.versions   
@@ -11,6 +12,7 @@ class SrvReleases(models.Model):
 # Список релизов КПЛ
 class PlcReleases(models.Model):
     versions = models.CharField(verbose_name="версии кпл", max_length=20, unique=True)
+    is_active = models.BooleanField(verbose_name="Видимость", default=True)
 
     def __str__(self):
         return self.versions
@@ -22,6 +24,7 @@ class ReleaseChanges(models.Model):
     plc_ver_id = models.ForeignKey("PlcReleases", on_delete=models.CASCADE, null=True, blank=True)
     short_desc = models.CharField(verbose_name="краткое описание", max_length=200)
     desc = models.TextField(verbose_name="Описание", max_length=10000)
+    is_active = models.BooleanField(verbose_name="Видимость", default=True)
 
     def __str__(self):
         return self.short_desc     
