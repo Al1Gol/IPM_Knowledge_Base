@@ -33,5 +33,6 @@ class ReleaseChanges(models.Model):
                  'plc_ver_id': "Укажите версию релиза КПЛ или сервера",
                  }   
                 )
-
+        
+        
 

@@ -1,0 +1,15 @@
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+
+class Roles(models.Model):
+    name = models.CharField(verbose_name="наименование роли", max_length=50, unique=True)
+
+    def __str__(self):
+        return f'{self.name}'
+
+# Create your models here.
+class Users(AbstractUser):
+    role_id = models.ForeignKey("Roles", verbose_name="роль пользоватея", on_delete=models.CASCADE, default=1)
+
+    def __str__(self):
+        return f'{self.username}'

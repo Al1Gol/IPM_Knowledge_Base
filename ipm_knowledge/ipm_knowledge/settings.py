@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_filters',
-    'mainapp'
+    'mainapp',
+    'authapp',
 ]
 
 MIDDLEWARE = [
@@ -88,6 +89,9 @@ DATABASES = {
     }
 }
 
+
+#Users model
+AUTH_USER_MODEL = 'authapp.Users'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

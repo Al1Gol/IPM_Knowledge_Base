@@ -18,8 +18,24 @@ class PlcReleaseSerializer(ModelSerializer):
 
 #Сериализация таблицы ReleaseChanges
 class ReleaseChangesSerializer(ModelSerializer):
-    ser_ver = serializers.CharField(source = 'srv_ver_id.versions')
-    plc_ver = serializers.CharField(source = 'plc_ver_id.versions')
+    srv_ver = serializers.SerializerMethodField()
+    plc_ver = serializers.SerializerMethodField()
     class Meta:
         model = ReleaseChanges
-        fields =  ['id', 'srv_ver_id', 'ser_ver', 'plc_ver_id', 'plc_ver', 'short_desc', 'desc']
+        fields =  ['id', 'srv_ver_id', 'srv_ver', 'plc_ver_id', 'plc_ver', 'short_desc', 'desc']
+
+    def get_srv_ver(self, obj):
+        if obj.srv_ver_id == None:
+            print('srv_ves is None')
+            return None
+        else:
+            srv_obj = SrvReleases.objects.get(id=obj.id).versions
+            return srv_obj
+        
+    def get_plc_ver(self, obj):
+        if obj.plc_ver_id == None:
+            print('plc_ver is None')
+            return None
+        else:
+            plc_obj = PlcReleases.objects.get(id=obj.id).versions
+            return plc_obj
