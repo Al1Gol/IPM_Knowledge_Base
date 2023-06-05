@@ -14,7 +14,7 @@ class RolesSerializer(ModelSerializer):
 class UsersSerializer(ModelSerializer):
     class Meta:
         model = Users
-        fields =  'username'
+        fields =  ['id', 'username', 'password']
 #        extra_kwargs = {'password': {'write_only': True}}
 
 
