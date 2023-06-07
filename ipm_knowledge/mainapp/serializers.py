@@ -9,12 +9,18 @@ class SrvReleaseSerializer(ModelSerializer):
     class Meta:
         model = SrvReleases
         fields =  '__all__'
+    
+    def create(self, validated_data):
+        return SrvReleases.objects.create(**validated_data)
 
 #Сериализация таблицы PlcReleases
 class PlcReleaseSerializer(ModelSerializer):
     class Meta:
         model = PlcReleases
         fields =  '__all__'
+
+    def create(self, validated_data):
+        return PlcReleases.objects.create(**validated_data)
 
 #Сериализация таблицы ReleaseChanges
 class ReleaseChangesSerializer(ModelSerializer):
@@ -39,3 +45,6 @@ class ReleaseChangesSerializer(ModelSerializer):
         else:
             plc_obj = PlcReleases.objects.get(id=obj.id).versions
             return plc_obj
+        
+    def create(self, validated_data):
+        return PlcReleases.objects.create(**validated_data)
