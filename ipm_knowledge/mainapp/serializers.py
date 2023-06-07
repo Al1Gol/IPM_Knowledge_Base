@@ -8,7 +8,7 @@ from mainapp.models import SrvReleases, PlcReleases, ReleaseChanges
 class SrvReleaseSerializer(ModelSerializer):
     class Meta:
         model = SrvReleases
-        fields =  '__all__'
+        fields =  'id, versions'
     
     def create(self, validated_data):
         return SrvReleases.objects.create(**validated_data)
@@ -17,7 +17,7 @@ class SrvReleaseSerializer(ModelSerializer):
 class PlcReleaseSerializer(ModelSerializer):
     class Meta:
         model = PlcReleases
-        fields =  '__all__'
+        fields =  'id, versions'
 
     def create(self, validated_data):
         return PlcReleases.objects.create(**validated_data)

@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
+
 from authapp.models import Roles, Users
 
 #Превращают данные модели в JSON
@@ -19,10 +20,10 @@ class UsersSerializer(ModelSerializer):
 
 
 
-#    def create(self, validated_data):
-#        password = validated_data.pop("password")
-#        users = Users(**validated_data)
-#        users.set_password(password)
-#        users.save()
-#        return users 
+    def create(self, validated_data):
+        password = validated_data.pop("password")
+        user = Users(**validated_data)
+        user.set_password(password)
+        user.save()
+        return user
 
