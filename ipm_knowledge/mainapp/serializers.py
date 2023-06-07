@@ -47,4 +47,4 @@ class ReleaseChangesSerializer(ModelSerializer):
             return plc_obj
         
     def create(self, validated_data):
-        return PlcReleases.objects.create(**validated_data)
+        return ReleaseChanges.objects.create(**validated_data)
