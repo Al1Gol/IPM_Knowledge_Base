@@ -9,7 +9,7 @@ from authapp.models import Roles, Users
 class RolesSerializer(ModelSerializer):
     class Meta:
         model = Roles
-        fields =  '__all__'
+        fields =  ['id', 'name']
 
 #Сериализация таблицы "Пользователи"
 class UsersSerializer(ModelSerializer):
