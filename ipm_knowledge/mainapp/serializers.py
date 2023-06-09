@@ -1,9 +1,10 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
-from mainapp.models import SrvReleases, PlcReleases, ReleaseChanges
+from mainapp.models import Menu, Sections, Articles #SrvReleases, PlcReleases, ReleaseChanges
 
 #Превращают данные модели в JSON
 
+'''
 #Сериализация таблицы ServerReleases
 class SrvReleaseSerializer(ModelSerializer):
     class Meta:
@@ -48,3 +49,27 @@ class ReleaseChangesSerializer(ModelSerializer):
         
     def create(self, validated_data):
         return ReleaseChanges.objects.create(**validated_data)
+'''
+class MenuSerializer(ModelSerializer):
+    class Meta:
+        model = Menu
+        fields = ['id', 'name', 'img']
+    
+    def create(self, validated_data):
+        return Menu.objects.create(**validated_data)
+    
+class SectionsSerializer(ModelSerializer):
+    class Meta:
+        model = Sections
+        fields = ['id', 'name', 'img']
+
+    def create(self, validated_data):
+        return Sections.objects.create(**validated_data)
+
+class ArticlesSerializer(ModelSerializer):
+    class Meta:
+        model = Articles
+        fields = ['id', 'section_id', 'text']
+    
+    def create(self, validated_data):
+        return Articles.objects.create(**validated_data)
