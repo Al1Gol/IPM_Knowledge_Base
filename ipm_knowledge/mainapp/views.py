@@ -23,12 +23,26 @@ class ReleaseChangesViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.Dest
 
 class MenuViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin):
     serializer_class = MenuSerializer
-    queryset = Menu.objects.all()
+    queryset = Menu.objects.all().filter(is_active=True)
+
+    def perform_destroy(self, instance):
+        instance.is_active = False
+        instance.save()
 
 class SectionsViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin):
     serializer_class = SectionsSerializer
-    queryset = Sections.objects.all()
+    queryset = Sections.objects.all().filter(is_active=True)
+
+    def perform_destroy(self, instance):
+        instance.is_active = False
+        instance.save()
+
+
 
 class ArticleViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin):
     serializer_class = ArticlesSerializer
-    queryset = Articles.objects.all()
+    queryset = Articles.objects.all().filter(is_active=True)
+
+    def perform_destroy(self, instance):
+        instance.is_active = False
+        instance.save()

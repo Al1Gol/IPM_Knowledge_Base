@@ -61,7 +61,7 @@ class MenuSerializer(ModelSerializer):
 class SectionsSerializer(ModelSerializer):
     class Meta:
         model = Sections
-        fields = ['id', 'name', 'img']
+        fields = ['id', 'menu_id', 'name', 'img']
 
     def create(self, validated_data):
         return Sections.objects.create(**validated_data)
