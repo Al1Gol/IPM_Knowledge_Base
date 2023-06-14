@@ -4,7 +4,7 @@ from mainapp.serializers import MenuSerializer, SectionsSerializer, ArticlesSeri
 from rest_framework import mixins
 
 from mainapp.models import Menu, Sections, Articles #SrvReleases, PlcReleases, ReleaseChanges
-from mainapp.filters import SectionsFilter #ReleaseChangesFilter
+from mainapp.filters import SectionsFilter, ArticlesFilter #ReleaseChangesFilter
 
 '''
 class SrvReleasesViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin):
@@ -43,6 +43,7 @@ class SectionsViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyMod
 class ArticleViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin):
     serializer_class = ArticlesSerializer
     queryset = Articles.objects.all().filter(is_active=True)
+    filterset_class = ArticlesFilter
 
     def perform_destroy(self, instance):
         instance.is_active = False
