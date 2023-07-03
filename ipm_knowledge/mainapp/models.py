@@ -55,7 +55,7 @@ class ReleaseChanges(models.Model):
 
 class Menu(models.Model):
     name = models.CharField(verbose_name="элементы меню", max_length=100, unique=True)
-    img = models.CharField(verbose_name="иконка", max_length=100, blank=True)
+    img = models.ImageField(verbose_name="иконка", max_length=100, blank=True)
     is_active = models.BooleanField(verbose_name="видимость", default=True)
 
     def __str__(self):
