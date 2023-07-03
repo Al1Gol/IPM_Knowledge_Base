@@ -64,7 +64,7 @@ class Menu(models.Model):
 class Sections(models.Model):
     menu_id = models.ForeignKey('Menu', verbose_name="id меню", on_delete=models.CASCADE)
     name = models.CharField(verbose_name="элементы меню", max_length=200, unique=True)
-    img = models.CharField(verbose_name="иконка", max_length=100, blank=True)
+    img = models.ImageField(verbose_name="иконка", max_length=100, blank=True)
     is_active = models.CharField(verbose_name="видимость", default=True)
 
     def __str__(self):
