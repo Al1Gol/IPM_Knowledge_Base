@@ -29,4 +29,8 @@ class Articles(models.Model):
     
 class Files(models.Model):
     articles_id = models.ManyToManyField('Articles')
-    file = models.FileField(upload_to=f'files/')
+    file = models.FileField(upload_to='files/', verbose_name='файлы')
+    is_active = models.BooleanField(verbose_name="видимость", default=True)
+
+    def __str__(self):
+        return self.file.name
