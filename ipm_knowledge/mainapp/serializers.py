@@ -31,3 +31,6 @@ class FilesSerializer(ModelSerializer):
     class Meta:
         model = Files
         fields = ['id', 'articles_id', 'file']
+
+#   def create(self, validated_data):
+#       return Files.objects.create(**validated_data)
