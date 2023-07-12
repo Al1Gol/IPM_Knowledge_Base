@@ -29,8 +29,9 @@ class Articles(models.Model):
     
 class Files(models.Model):
     articles_id = models.ForeignKey('Articles', on_delete=models.CASCADE )
+    name = models.CharField(verbose_name='название файла', max_length=200)
     file = models.FileField(upload_to='files/', verbose_name='файлы')
     is_active = models.BooleanField(verbose_name="видимость", default=True)
 
     def __str__(self):
-        return self.file.name
+        return self.name
