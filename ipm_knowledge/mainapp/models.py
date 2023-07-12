@@ -28,7 +28,7 @@ class Articles(models.Model):
         return self.text 
     
 class Files(models.Model):
-    articles_id = models.ManyToManyField('Articles')
+    articles_id = models.ForeignKey('Articles', on_delete=models.CASCADE )
     file = models.FileField(upload_to='files/', verbose_name='файлы')
     is_active = models.BooleanField(verbose_name="видимость", default=True)
 
