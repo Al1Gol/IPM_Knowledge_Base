@@ -1,5 +1,5 @@
 from django_filters import rest_framework as filters
-from mainapp.models import Sections, Articles #ReleaseChanges
+from mainapp.models import Sections, Articles, Files #ReleaseChanges
 
 '''
 class ReleaseChangesFilter(filters.FilterSet):
@@ -18,4 +18,9 @@ class ArticlesFilter(filters.FilterSet):
     class Meta:
         model = Articles
         fields = ['section_id']
+
+class FilesFilter(filters.FilterSet):
+    class Meta:
+        model = Files
+        fields = ['articles_id']
         

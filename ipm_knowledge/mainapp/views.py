@@ -4,7 +4,7 @@ from mainapp.serializers import MenuSerializer, SectionsSerializer, ArticlesSeri
 from rest_framework import mixins
 
 from mainapp.models import Menu, Sections, Articles, Files
-from mainapp.filters import SectionsFilter, ArticlesFilter
+from mainapp.filters import SectionsFilter, ArticlesFilter, FilesFilter
 
 
 class MenuViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin):
@@ -38,6 +38,7 @@ class ArticleViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyMode
 class FilesViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin):
     serializer_class = FilesSerializer
     queryset = Files.objects.all().filter(is_active=True)
+    filterset_class = FilesFilter
 
     def perform_destroy(self, instance):
         instance.is_active = False
