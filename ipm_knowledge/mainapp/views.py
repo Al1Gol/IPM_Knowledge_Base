@@ -8,10 +8,9 @@ from mainapp.models import Menu, Sections, Articles, Files
 from mainapp.filters import SectionsFilter, ArticlesFilter, FilesFilter
 
 
-LOG = logging.getLogger('main')
+#LOG = logging.getLogger('django.request')
 
 class MenuViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin):
-    LOG.critical('Menu')
     serializer_class = MenuSerializer
     queryset = Menu.objects.all().filter(is_active=True)
 

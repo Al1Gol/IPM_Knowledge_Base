@@ -14,6 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 import os
 import logging
+from django.utils.log import DEFAULT_LOGGING
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -65,7 +66,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'main_format': {
-            'format': '{asctime} - {levelname} - {message}',
+            'format': '[{asctime}]  [{levelname}]  [{module} - {filename} {message}]',
             'style': '{',
         },
     },
@@ -73,7 +74,7 @@ LOGGING = {
         'file': {
             'class': 'logging.FileHandler',
             'formatter': 'main_format',
-            'filename': 'information.log',
+            'filename': 'urls.log',
             'encoding': 'utf-8',
         },
     },
@@ -82,6 +83,10 @@ LOGGING = {
         'main': {
             'handlers': ['file'],
             'level': 'INFO',
+        },
+        'django.server': {
+            'level': 'INFO',
+            'handlers': ['file']
         },
     },
 }
@@ -92,6 +97,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:8000",
 ]
+
+DATA_UPLOAD_MAX_MEMORY = 2000000000
 
 ROOT_URLCONF = 'ipm_knowledge.urls'
 
