@@ -2,12 +2,16 @@ from django.shortcuts import render
 from rest_framework.viewsets import GenericViewSet, mixins 
 from mainapp.serializers import MenuSerializer, SectionsSerializer, ArticlesSerializer, FilesSerializer
 from rest_framework import mixins
+import logging
 
 from mainapp.models import Menu, Sections, Articles, Files
 from mainapp.filters import SectionsFilter, ArticlesFilter, FilesFilter
 
 
+LOG = logging.getLogger('main')
+
 class MenuViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin):
+    LOG.critical('Menu')
     serializer_class = MenuSerializer
     queryset = Menu.objects.all().filter(is_active=True)
 
