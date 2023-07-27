@@ -1,5 +1,5 @@
 """
-Middleware to log `*/api/*` requests and responses.
+Промежуточное логирование. Перехватывает request на момент 'перед' и 'после' запроса и передает в объект логгера
 """
 import socket
 import time
