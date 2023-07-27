@@ -57,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #request logger
+    'ipm_knowledge.middleware.request_log.RequestLogMiddleware'
 ]
 
 DJANGO_LOG_LEVEL=DEBUG
@@ -71,23 +73,30 @@ LOGGING = {
         },
     },
     'handlers': {
-        'file': {
+        'url': {
             'class': 'logging.FileHandler',
             'formatter': 'main_format',
             'filename': 'urls.log',
             'encoding': 'utf-8',
         },
+        'requests': {
+            'class': 'logging.FileHandler',
+            'formatter': 'main_format',
+            'filename': 'requests.log',
+            'encoding': 'utf-8',
+        },
     },
 
     'loggers': {
-        'main': {
-            'handlers': ['file'],
+        'ipm_knowledge.middleware.request_log': {
+            'handlers': ['requests'],
             'level': 'INFO',
         },
         'django.server': {
             'level': 'INFO',
-            'handlers': ['file']
+            'handlers': ['url']
         },
+        
     },
 }
 
