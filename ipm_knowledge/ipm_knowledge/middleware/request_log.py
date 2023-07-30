@@ -31,7 +31,7 @@ class RequestLogMiddleware:
         if "/api/" in str(request.get_full_path()) and "form-data" in str(request.headers) :
             req_body = parser.parse(request.POST.urlencode())
             log_data["request_body"] = req_body
-        elif "/api/" in str(request.get_full_path()) and "application / json" == str(request.headers) :
+        elif "/api/" in str(request.get_full_path()) and "application/json" in str(request.headers) :
             req_body = json.loads(request.body.decode("utf-8")) if request.body else {}
             log_data["request_body"] = req_body
 
@@ -39,7 +39,7 @@ class RequestLogMiddleware:
         response = self.get_response(request)
 
         # add runtime to our log_data
-        if response and response["content-type"] == "application/json":
+        if response and "application/json" in str(request.headers):
             response_body = json.loads(response.content.decode("utf-8"))
             log_data["response_body"] = response_body
         log_data["run_time"] = time.time() - start_time
@@ -47,7 +47,7 @@ class RequestLogMiddleware:
         request_logger.info(msg=log_data)
 
         return response
-
+"""
     # Log unhandled exceptions as well
     def process_exception(self, request, exception):
         try:
@@ -55,3 +55,4 @@ class RequestLogMiddleware:
         except Exception as e:
             request_logger.exception("Unhandled Exception: " + str(e))
         return exception
+"""

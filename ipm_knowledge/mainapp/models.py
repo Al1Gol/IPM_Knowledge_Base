@@ -1,10 +1,11 @@
 from django.db import models
 from django.conf import settings
 
+from .validators import validate_svg
 
 class Menu(models.Model):
     name = models.CharField(verbose_name="элементы меню", max_length=100)
-    img = models.ImageField(verbose_name="иконка", upload_to='icons/', max_length=100, blank=True)
+    img = models.FileField(verbose_name="иконка", validators=[validate_svg], upload_to='icons/', max_length=100, blank=True)
     is_active = models.BooleanField(verbose_name="видимость", default=True)
 
     def __str__(self):
@@ -35,3 +36,5 @@ class Files(models.Model):
 
     def __str__(self):
         return self.name
+
+

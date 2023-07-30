@@ -5,3 +5,896 @@
 [2023-07-30 21:54:18,042]  [INFO]  [request_log - request_log.py {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'SmDb2EMu0EbquNoQjyc7hrfNOpeR79qxj33f0yvxrNESbaz3GankMUY96VSkJj3u', 'name': 'fdsf', 'img': ''}, 'run_time': 0.05689740180969238}]
 [2023-07-30 21:54:58,595]  [INFO]  [request_log - request_log.py {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'bDoetW78jonLWvCHmM9rRyBDZTaBaiMyCkOirQQbKxQdDSNUJokEm1kZhpO4Mspv', 'name': 'fdsffhj'}, 'run_time': 0.09450578689575195}]
 [2023-07-30 22:01:10,087]  [INFO]  [request_log - \{'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'bDoetW78jonLWvCHmM9rRyBDZTaBaiMyCkOirQQbKxQdDSNUJokEm1kZhpO4Mspv', 'name': 'fdsffhj'}, 'run_time': 0.10609197616577148}]
+[2023-07-30 22:36:11,654]  [ERROR]  [request_log - Unhandled Exception: validate_svg() missing 1 required positional argument: 'valid']
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 54, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 426, in run_validation
+    value = self.to_internal_value(data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 483, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 548, in run_validation
+    self.run_validators(value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 562, in run_validators
+    validator(value)
+TypeError: validate_svg() missing 1 required positional argument: 'valid'
+[2023-07-30 22:36:18,455]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'GET', 'request_path': '/api/v1/menu/', 'run_time': 0.056020259857177734}]
+[2023-07-30 22:36:47,021]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'GET', 'request_path': '/api/v1/menu/', 'run_time': 0.056051015853881836}]
+[2023-07-30 22:36:59,282]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'DF3NQ0thMgpJOvsM613QmlJ9y8jek4ZQ4mtROUckdpSbvSDZtDe3ROsvQEXHWeCN', 'name': 'tesy'}, 'run_time': 0.08807969093322754}]
+[2023-07-30 22:38:02,690]  [ERROR]  [request_log - Unhandled Exception: validate_svg() missing 1 required positional argument: 'valid']
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 54, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 426, in run_validation
+    value = self.to_internal_value(data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 483, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 548, in run_validation
+    self.run_validators(value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 562, in run_validators
+    validator(value)
+TypeError: validate_svg() missing 1 required positional argument: 'valid'
+[2023-07-30 22:38:51,366]  [ERROR]  [request_log - Unhandled Exception: validate_svg() missing 1 required positional argument: 'valid']
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 56, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 426, in run_validation
+    value = self.to_internal_value(data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 483, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 548, in run_validation
+    self.run_validators(value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 562, in run_validators
+    validator(value)
+TypeError: validate_svg() missing 1 required positional argument: 'valid'
+[2023-07-30 22:41:01,807]  [ERROR]  [request_log - Unhandled Exception: validate_svg() missing 1 required positional argument: 'valid']
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 59, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 426, in run_validation
+    value = self.to_internal_value(data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 483, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 548, in run_validation
+    self.run_validators(value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 562, in run_validators
+    validator(value)
+TypeError: validate_svg() missing 1 required positional argument: 'valid'
+[2023-07-30 22:41:26,536]  [ERROR]  [request_log - Unhandled Exception: validate_svg() missing 1 required positional argument: 'valid']
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 62, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 426, in run_validation
+    value = self.to_internal_value(data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 483, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 548, in run_validation
+    self.run_validators(value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 562, in run_validators
+    validator(value)
+TypeError: validate_svg() missing 1 required positional argument: 'valid'
+[2023-07-30 22:41:41,127]  [ERROR]  [request_log - Unhandled Exception: validate_svg() missing 1 required positional argument: 'valid']
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 62, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 426, in run_validation
+    value = self.to_internal_value(data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 483, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 548, in run_validation
+    self.run_validators(value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 562, in run_validators
+    validator(value)
+TypeError: validate_svg() missing 1 required positional argument: 'valid'
+[2023-07-30 22:42:03,425]  [ERROR]  [request_log - Unhandled Exception: validate_svg() missing 1 required positional argument: 'valid']
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 62, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 426, in run_validation
+    value = self.to_internal_value(data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 483, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 548, in run_validation
+    self.run_validators(value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 562, in run_validators
+    validator(value)
+TypeError: validate_svg() missing 1 required positional argument: 'valid'
+[2023-07-30 22:42:37,734]  [ERROR]  [request_log - Unhandled Exception: validate_svg() missing 1 required positional argument: 'valid']
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 62, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 426, in run_validation
+    value = self.to_internal_value(data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 483, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 548, in run_validation
+    self.run_validators(value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 562, in run_validators
+    validator(value)
+TypeError: validate_svg() missing 1 required positional argument: 'valid'
+[2023-07-30 22:42:37,736]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'zC59Z0lPHCT8guRuf1UTmq5Ttwhpcnpb0jvdXU4S8LmAXR2HCD56RTOfL2VSOx28', 'name': 'tesy'}, 'run_time': 0.08609175682067871}]
+[2023-07-30 22:44:44,893]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'DF3NQ0thMgpJOvsM613QmlJ9y8jek4ZQ4mtROUckdpSbvSDZtDe3ROsvQEXHWeCN', 'name': 'tesy'}, 'run_time': 0.10773420333862305}]
+[2023-07-30 22:44:47,689]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': '3a6tpJtHlGP4Po23M67oInRGJnQUCaGAuRwxnDcKMPiwwLdg9IiBdQA21Tunekjx', 'name': 'tesy', 'img': ''}, 'run_time': 0.03799581527709961}]
+[2023-07-30 22:44:55,145]  [ERROR]  [request_log - Unhandled Exception: validate_svg() missing 1 required positional argument: 'valid']
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 54, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 426, in run_validation
+    value = self.to_internal_value(data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 483, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 548, in run_validation
+    self.run_validators(value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 562, in run_validators
+    validator(value)
+TypeError: validate_svg() missing 1 required positional argument: 'valid'
+[2023-07-30 22:47:48,027]  [ERROR]  [request_log - Unhandled Exception: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(tesy)" уже существует.
+]
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(tesy)" уже существует.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 54, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\mainapp\serializers.py", line 12, in create
+    return Menu.objects.create(**validated_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1820, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(tesy)" уже существует.
+
+[2023-07-30 22:47:48,030]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': '3a6tpJtHlGP4Po23M67oInRGJnQUCaGAuRwxnDcKMPiwwLdg9IiBdQA21Tunekjx', 'name': 'tesy', 'img': ''}, 'run_time': 0.04005837440490723}]
+[2023-07-30 22:49:09,716]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'DF3NQ0thMgpJOvsM613QmlJ9y8jek4ZQ4mtROUckdpSbvSDZtDe3ROsvQEXHWeCN', 'name': 'tesy'}, 'run_time': 0.1080620288848877}]
+[2023-07-30 22:49:34,768]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'DF3NQ0thMgpJOvsM613QmlJ9y8jek4ZQ4mtROUckdpSbvSDZtDe3ROsvQEXHWeCN', 'name': 'tesy'}}]
+[2023-07-30 22:49:39,660]  [ERROR]  [request_log - Unhandled Exception: validate_svg() missing 1 required positional argument: 'valid']
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 48, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 426, in run_validation
+    value = self.to_internal_value(data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 483, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 548, in run_validation
+    self.run_validators(value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 562, in run_validators
+    validator(value)
+TypeError: validate_svg() missing 1 required positional argument: 'valid'
+[2023-07-30 22:49:39,662]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'JiiHDCNMrW2HYS5LfrO2XJfZHwN9tVYHaZILBwwPS5v9FfgYC3ZfscYlZ2rC55BE', 'name': 'tesy'}}]
+[2023-07-30 22:49:59,593]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'JiiHDCNMrW2HYS5LfrO2XJfZHwN9tVYHaZILBwwPS5v9FfgYC3ZfscYlZ2rC55BE', 'name': 'tesy'}}]
+[2023-07-30 22:51:41,755]  [ERROR]  [request_log - Unhandled Exception: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(fdsffhj)" уже существует.
+]
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(fdsffhj)" уже существует.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 48, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\mainapp\serializers.py", line 12, in create
+    return Menu.objects.create(**validated_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1820, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(fdsffhj)" уже существует.
+
+[2023-07-30 22:51:41,758]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'dhmJ9aLXnaMjycEbp0uSBsXRj3mHQS1nEYMN74u0OjfLfzPoMCF56VGdBz0as2Ek', 'name': 'fdsffhj'}}]
+[2023-07-30 22:51:59,125]  [ERROR]  [request_log - Unhandled Exception: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(fdsffhj)" уже существует.
+]
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(fdsffhj)" уже существует.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 48, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\mainapp\serializers.py", line 12, in create
+    return Menu.objects.create(**validated_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1820, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(fdsffhj)" уже существует.
+
+[2023-07-30 22:51:59,126]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'bDoetW78jonLWvCHmM9rRyBDZTaBaiMyCkOirQQbKxQdDSNUJokEm1kZhpO4Mspv', 'name': 'fdsffhj'}}]
+[2023-07-30 22:52:15,155]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'GET', 'request_path': '/api/v1/menu/'}]
+[2023-07-30 22:52:21,928]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'XXeLdBXzAS3zudf6axNdjAsdjXAuRZeloEEPbvGC11w1bAqjx9YqO3bzBteXt9Ri', 'name': 'asd'}}]
+[2023-07-30 22:52:32,665]  [ERROR]  [request_log - Unhandled Exception: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(asd)" уже существует.
+]
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(asd)" уже существует.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 48, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\mainapp\serializers.py", line 12, in create
+    return Menu.objects.create(**validated_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1820, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(asd)" уже существует.
+
+[2023-07-30 22:52:32,667]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'URqOSr2DyhBYjUYKrlalNVx6wmwpRzHZlyQSQlLGZq4q0h9XOXlyiogsOSaStJkW', 'name': 'asd'}}]
+[2023-07-30 22:53:57,654]  [ERROR]  [request_log - Unhandled Exception: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(asd)" уже существует.
+]
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(asd)" уже существует.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 48, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\mainapp\serializers.py", line 12, in create
+    return Menu.objects.create(**validated_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1820, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(asd)" уже существует.
+
+[2023-07-30 22:53:57,657]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'URqOSr2DyhBYjUYKrlalNVx6wmwpRzHZlyQSQlLGZq4q0h9XOXlyiogsOSaStJkW', 'name': 'asd'}}]
+[2023-07-30 22:54:38,852]  [ERROR]  [request_log - Unhandled Exception: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(asd)" уже существует.
+]
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(asd)" уже существует.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 54, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\mainapp\serializers.py", line 12, in create
+    return Menu.objects.create(**validated_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1820, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(asd)" уже существует.
+
+[2023-07-30 22:55:50,718]  [ERROR]  [request_log - Unhandled Exception: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(asd)" уже существует.
+]
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(asd)" уже существует.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 54, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\mainapp\serializers.py", line 12, in create
+    return Menu.objects.create(**validated_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1820, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: ОШИБКА:  повторяющееся значение ключа нарушает ограничение уникальности "mainapp_menu_name_key"
+DETAIL:  Ключ "(name)=(asd)" уже существует.
+
+[2023-07-30 22:55:50,721]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'URqOSr2DyhBYjUYKrlalNVx6wmwpRzHZlyQSQlLGZq4q0h9XOXlyiogsOSaStJkW', 'name': 'asd'}, 'run_time': 0.0919492244720459}]
+[2023-07-30 22:59:23,085]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'URqOSr2DyhBYjUYKrlalNVx6wmwpRzHZlyQSQlLGZq4q0h9XOXlyiogsOSaStJkW', 'name': 'asd'}, 'run_time': 0.12691783905029297}]
+[2023-07-30 22:59:56,115]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'URqOSr2DyhBYjUYKrlalNVx6wmwpRzHZlyQSQlLGZq4q0h9XOXlyiogsOSaStJkW', 'name': 'asds'}, 'run_time': 0.05704331398010254}]
+[2023-07-30 22:59:59,228]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'ONJrLGbYhXioWDDLCjAfh4mbrhsMDdgGfu9vJAU1I6LQD0OYZVLsMx5xJN6ffnTD', 'name': 'asdsf', 'img': ''}, 'run_time': 0.059053897857666016}]
+[2023-07-30 23:01:05,672]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': '5uBnRvHNko2DJMYRDbQmeHJWtcBvlmJIwb1rPpqQLxv5q9940N1zJasiLIfYXwmF', 'name': 'asdsf'}, 'run_time': 0.10843586921691895}]
+[2023-07-30 23:01:12,073]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'gnhbRLTatI4pHY9oJ0POnmcdzRKzxNWRH4HfPFCdURxRolkB6C01SPVzRno29XzO', 'name': '123', 'img': ''}, 'run_time': 0.056051015853881836}]
+[2023-07-30 23:01:16,574]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'DuRV3XWGb2isspJ8YMpv6zZxpFIlLI134bhZ1RFJCbLU9MUlloAIB2ITHbmOnSE0', 'name': '123'}, 'run_time': 0.03903603553771973}]
+[2023-07-30 23:01:23,072]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'EutRctinnK46DdFbxRft77iGH6unLuCD5bTVan1qOTxykAQoUtqGCA12ZC8QnEfA', 'name': '123'}, 'run_time': 0.05403280258178711}]
+[2023-07-30 23:01:39,343]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'BkIWM6LFl0mTlWR9hyhp9CENF9f5NjM12180K0uIM9Pl2j2mEasCE5n9XFTyptpY', 'name': '123'}, 'run_time': 0.037033796310424805}]
+[2023-07-30 23:04:33,741]  [ERROR]  [request_log - Unhandled Exception: validate_svg() missing 1 required positional argument: 'valid']
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 54, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 426, in run_validation
+    value = self.to_internal_value(data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 483, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 548, in run_validation
+    self.run_validators(value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 562, in run_validators
+    validator(value)
+TypeError: validate_svg() missing 1 required positional argument: 'valid'
+[2023-07-30 23:04:33,742]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'JiiHDCNMrW2HYS5LfrO2XJfZHwN9tVYHaZILBwwPS5v9FfgYC3ZfscYlZ2rC55BE', 'name': 'tesy'}, 'run_time': 0.14844346046447754}]
+[2023-07-30 23:04:46,281]  [ERROR]  [request_log - Unhandled Exception: validate_svg() missing 1 required positional argument: 'valid']
+Traceback (most recent call last):
+  File "D:\PythonProjects\IPM_Knowledge_Base\ipm_knowledge\ipm_knowledge\middleware\request_log.py", line 54, in process_exception
+    raise exception
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 426, in run_validation
+    value = self.to_internal_value(data)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\serializers.py", line 483, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 548, in run_validation
+    self.run_validators(value)
+  File "D:\PythonProjects\IPM_Knowledge_Base\venv\lib\site-packages\rest_framework\fields.py", line 562, in run_validators
+    validator(value)
+TypeError: validate_svg() missing 1 required positional argument: 'valid'
+[2023-07-30 23:04:46,283]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'JiiHDCNMrW2HYS5LfrO2XJfZHwN9tVYHaZILBwwPS5v9FfgYC3ZfscYlZ2rC55BE', 'name': 'tesy'}, 'run_time': 0.036032676696777344}]
+[2023-07-30 23:05:54,909]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'JiiHDCNMrW2HYS5LfrO2XJfZHwN9tVYHaZILBwwPS5v9FfgYC3ZfscYlZ2rC55BE', 'name': 'tesy'}, 'run_time': 0.0639808177947998}]
+[2023-07-30 23:06:11,902]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'JiiHDCNMrW2HYS5LfrO2XJfZHwN9tVYHaZILBwwPS5v9FfgYC3ZfscYlZ2rC55BE', 'name': 'tesy'}, 'run_time': 0.06405854225158691}]
+[2023-07-30 23:11:22,778]  [INFO]  [request_log - {'remote_address': '127.0.0.1', 'server_hostname': 'DESKTOP-F47HKNK', 'request_method': 'POST', 'request_path': '/api/v1/menu/', 'request_body': {'csrfmiddlewaretoken': 'VvUw6NVOf1f9uR0h71wxg8zA02M5RLXnmckA4HERGaIBbebuuDHKLBiWiyqytVAk', 'name': '123'}, 'run_time': 0.06305718421936035}]
