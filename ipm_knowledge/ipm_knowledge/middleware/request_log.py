@@ -5,6 +5,8 @@ import socket
 import time
 import json
 import logging
+import urllib
+from querystring_parser import parser
 
 request_logger = logging.getLogger(__name__)
 print(__name__)
@@ -26,7 +28,10 @@ class RequestLogMiddleware:
         }
 
         # Only logging "*/api/*" patterns
-        if "/api/" in str(request.get_full_path()) and "application / json" == str(request.headers) :
+        if "/api/" in str(request.get_full_path()) and "form-data" in str(request.headers) :
+            req_body = parser.parse(request.POST.urlencode())
+            log_data["request_body"] = req_body
+        elif "/api/" in str(request.get_full_path()) and "application / json" == str(request.headers) :
             req_body = json.loads(request.body.decode("utf-8")) if request.body else {}
             log_data["request_body"] = req_body
 
