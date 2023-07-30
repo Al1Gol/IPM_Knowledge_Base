@@ -3,7 +3,7 @@ from django.conf import settings
 
 
 class Menu(models.Model):
-    name = models.CharField(verbose_name="элементы меню", max_length=100, unique=True)
+    name = models.CharField(verbose_name="элементы меню", max_length=100)
     img = models.ImageField(verbose_name="иконка", upload_to='icons/', max_length=100, blank=True)
     is_active = models.BooleanField(verbose_name="видимость", default=True)
 
@@ -12,7 +12,7 @@ class Menu(models.Model):
 
 class Sections(models.Model):
     menu_id = models.ForeignKey('Menu', verbose_name="id меню", on_delete=models.CASCADE)
-    name = models.CharField(verbose_name="элементы меню", max_length=200, unique=True)
+    name = models.CharField(verbose_name="элементы меню", max_length=200)
     img = models.ImageField(verbose_name="иконка", upload_to='icons/', max_length=100, blank=True)
     is_active = models.CharField(verbose_name="видимость", default=True)
 
