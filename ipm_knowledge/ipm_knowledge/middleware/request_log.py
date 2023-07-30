@@ -26,7 +26,7 @@ class RequestLogMiddleware:
         }
 
         # Only logging "*/api/*" patterns
-        if "/api/" in str(request.get_full_path()):
+        if "/api/" in str(request.get_full_path()) and "application / json" == str(request.headers) :
             req_body = json.loads(request.body.decode("utf-8")) if request.body else {}
             log_data["request_body"] = req_body
 

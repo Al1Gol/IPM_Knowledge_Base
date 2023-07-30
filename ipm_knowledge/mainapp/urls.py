@@ -2,12 +2,12 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework import routers
 from mainapp.views import MenuViewSet, SectionsViewSet, ArticleViewSet, FilesViewSet
-from authapp.views import RolesViewSet, UsersViewSet
+from authapp.views import UsersViewSet
 from rest_framework.authtoken import views
 from rest_framework_simplejwt import views as jwt_views
 
 router = routers.DefaultRouter()
-router.register('roles', RolesViewSet, basename='roles')
+#router.register('roles', RolesViewSet, basename='roles')
 router.register('users', UsersViewSet, basename='users')
 router.register('menu', MenuViewSet, basename='menu')
 router.register('sections', SectionsViewSet, basename='sections')

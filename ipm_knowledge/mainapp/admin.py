@@ -1,9 +1,9 @@
 from django.contrib import admin
 from mainapp.models import Menu, Sections, Articles, Files#SrvReleases, PlcReleases, ReleaseChanges
-from authapp.models import Roles, Users
+from authapp.models import Users
 # Register your models here.
 
-admin.site.register(Roles)
+#admin.site.register(Roles)
 admin.site.register(Users)
 admin.site.register(Menu)
 admin.site.register(Sections)
