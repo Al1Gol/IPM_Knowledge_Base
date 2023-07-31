@@ -47,7 +47,7 @@ class RequestLogMiddleware:
         request_logger.info(msg=log_data)
 
         return response
-"""
+
     # Логироание ошибок(блочит некоторые ошибки)
     def process_exception(self, request, exception):
         try:
@@ -55,4 +55,3 @@ class RequestLogMiddleware:
         except Exception as e:
             request_logger.exception("Unhandled Exception: " + str(e))
         return exception
-"""

@@ -1,5 +1,5 @@
 from django.core.exceptions import ValidationError
-#import xml.etree.cElementTree as et
+import xml.etree.cElementTree as et
 import os
 
 #Более точный валидатор svg. Не работает из-за with open
@@ -18,7 +18,7 @@ def is_svg(filename):
 
 def validate_svg(file):
     if not is_svg(file):
-        raise ValidationError("File not svg")
+        raise ValidationError("Файл не является svg")
 
 
 #Рабочий валидатор. Проверяет только расширение файла

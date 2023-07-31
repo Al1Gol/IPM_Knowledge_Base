@@ -5,7 +5,7 @@ from .validators import validate_file_extension
 
 class Menu(models.Model):
     name = models.CharField(verbose_name="элементы меню", max_length=100)
-    img = models.FileField(verbose_name="иконка", validators=[validate_file_extension], upload_to='icons/', max_length=100, blank=True)
+    img = models.FileField(verbose_name="иконка", validators=[validate_file_extension], upload_to='icons/menu/', max_length=100, blank=True)
     is_active = models.BooleanField(verbose_name="видимость", default=True)
 
     def __str__(self):
@@ -14,7 +14,7 @@ class Menu(models.Model):
 class Sections(models.Model):
     menu_id = models.ForeignKey('Menu', verbose_name="id меню", on_delete=models.CASCADE)
     name = models.CharField(verbose_name="элементы меню", max_length=200)
-    img = models.ImageField(verbose_name="иконка", upload_to='icons/', max_length=100, blank=True)
+    img = models.FileField(verbose_name="иконка", upload_to='icons/sections/', validators=[validate_file_extension], max_length=100, blank=True)
     is_active = models.CharField(verbose_name="видимость", default=True)
 
     def __str__(self):
