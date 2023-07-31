@@ -48,7 +48,7 @@ class RequestLogMiddleware:
 
         return response
 """
-    # Log unhandled exceptions as well
+    # Логироание ошибок(блочит некоторые ошибки)
     def process_exception(self, request, exception):
         try:
             raise exception
