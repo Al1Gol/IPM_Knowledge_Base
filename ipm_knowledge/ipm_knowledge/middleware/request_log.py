@@ -5,11 +5,10 @@ import socket
 import time
 import json
 import logging
-import urllib
 from querystring_parser import parser
+import os
 
 request_logger = logging.getLogger(__name__)
-print(__name__)
 
 class RequestLogMiddleware:
     """Request Logging Middleware."""

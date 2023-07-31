@@ -63,43 +63,6 @@ MIDDLEWARE = [
 
 DJANGO_LOG_LEVEL=DEBUG
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'main_format': {
-            'format': '[{asctime}]  [{levelname}]  [{module} - {message}]',
-            'style': '{',
-        },
-    },
-    'handlers': {
-        'url': {
-            'class': 'logging.FileHandler',
-            'formatter': 'main_format',
-            'filename': 'urls.log',
-            'encoding': 'utf-8',
-        },
-        'requests': {
-            'class': 'logging.FileHandler',
-            'formatter': 'main_format',
-            'filename': 'requests.log',
-            'encoding': 'utf-8',
-        },
-    },
-
-    'loggers': {
-        'ipm_knowledge.middleware.request_log': {
-            'handlers': ['requests'],
-            'level': 'INFO',
-        },
-        'django.server': {
-            'level': 'INFO',
-            'handlers': ['url']
-        },
-        
-    },
-}
-
 CORS_ALLOWED_ORIGINS = [
     "http://192.168.10.222:8000",
     "http://192.168.10.222:3000",
@@ -227,3 +190,57 @@ MEDIA_ROOT = f'{BASE_DIR}/../media'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Создание директорий и файлов для логирования
+LOG_DIR = os.path.join(BASE_DIR, '../logs')
+LOG_FILES = []
+
+LOG_FILES.append('/requests.log')
+LOG_FILES.append('/urls.log')
+
+if not os.path.exists(LOG_DIR):
+    os.mkdir(LOG_DIR)
+
+for FILE in LOG_FILES:
+    if not os.path.exists(LOG_DIR + FILE):
+        f = open(LOG_DIR + FILE, 'a').close() #create empty log file
+    else:
+        f = open(LOG_DIR + FILE,"w").close() #clear log file
+
+#Настройки логирования
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'main_format': {
+            'format': '[{asctime}]  [{levelname}]  [{module} - {message}]',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'urls': {
+            'class': 'logging.FileHandler',
+            'formatter': 'main_format',
+            'filename': '../logs/urls.log',
+            'encoding': 'utf-8',
+        },
+        'requests': {
+            'class': 'logging.FileHandler',
+            'formatter': 'main_format',
+            'filename': '../logs/requests.log',
+            'encoding': 'utf-8',
+        },
+    },
+
+    'loggers': {
+        'ipm_knowledge.middleware.request_log': {
+            'handlers': ['requests'],
+            'level': 'INFO',
+        },
+        'django.server': {
+            'level': 'INFO',
+            'handlers': ['urls']
+        },
+        
+    },
+}
