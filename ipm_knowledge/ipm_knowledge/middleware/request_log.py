@@ -1,14 +1,16 @@
 """
 Промежуточное логирование. Перехватывает request на момент 'перед' и 'после' запроса и передает в объект логгера
 """
-import socket
-import time
 import json
 import logging
-from querystring_parser import parser
 import os
+import socket
+import time
+
+from querystring_parser import parser
 
 request_logger = logging.getLogger(__name__)
+
 
 class RequestLogMiddleware:
     """Request Logging Middleware."""
@@ -27,11 +29,11 @@ class RequestLogMiddleware:
         }
 
         # Only logging "*/api/*" patterns
-        if "/api/" in str(request.get_full_path()) and "form-data" in str(request.headers) :
+        if "/api/" in str(request.get_full_path()) and "form-data" in str(request.headers):
             req_body = parser.parse(request.POST.urlencode())
             log_data["request_body"] = req_body
-        elif "/api/" in str(request.get_full_path()) and "application/json" in str(request.headers) :
-            req_body = json.loads(request.body.decode("utf-8")) if request.body else {}
+        elif "/api/" in str(request.get_full_path()) and "application/json" in str(request.headers):
+            req_body = parser.parse(request.POST.urlencode()) if request.body else {}
             log_data["request_body"] = req_body
 
         # request passes on to controller

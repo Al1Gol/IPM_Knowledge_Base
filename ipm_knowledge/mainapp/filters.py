@@ -15,5 +15,5 @@ class ArticlesFilter(filters.FilterSet):
 class FilesFilter(filters.FilterSet):
     class Meta:
         model = Files
-        fields = ['articles_id']
+        fields = ['article_id']
         

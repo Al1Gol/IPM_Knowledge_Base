@@ -29,7 +29,7 @@ class Articles(models.Model):
         return self.text 
     
 class Files(models.Model):
-    articles_id = models.ForeignKey('Articles', on_delete=models.CASCADE )
+    article_id = models.ForeignKey('Articles', on_delete=models.CASCADE )
     name = models.CharField(verbose_name='название файла', max_length=200)
     file = models.FileField(upload_to='files/', verbose_name='файлы')
     is_active = models.BooleanField(verbose_name="видимость", default=True)
@@ -37,4 +37,8 @@ class Files(models.Model):
     def __str__(self):
         return self.name
 
+class Images(models.Model):
+    img =  models.ImageField(verbose_name="изображения", max_length=100)
 
+    def __str__(self):
+        return self.name

@@ -30,7 +30,7 @@ class ArticlesSerializer(ModelSerializer):
 class FilesSerializer(ModelSerializer):
     class Meta:
         model = Files
-        fields = ['id', 'articles_id', 'name', 'file']
+        fields = ['id', 'article_id', 'name', 'file']
 
 #   def create(self, validated_data):
 #       return Files.objects.create(**validated_data)
