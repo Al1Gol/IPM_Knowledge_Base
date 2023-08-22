@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
-from mainapp.models import Menu, Sections, Articles, Files
+from mainapp.models import Menu, Sections, Articles, Files, Images
 
 
 class MenuSerializer(ModelSerializer):
@@ -34,3 +34,8 @@ class FilesSerializer(ModelSerializer):
 
 #   def create(self, validated_data):
 #       return Files.objects.create(**validated_data)
+
+class ImagesSerializer(ModelSerializer):
+    class Meta:
+        model = Images
+        fields = ['img']

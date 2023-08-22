@@ -38,7 +38,7 @@ class Files(models.Model):
         return self.name
 
 class Images(models.Model):
-    img =  models.ImageField(verbose_name="изображения", max_length=100)
+    img =  models.ImageField(verbose_name="изображения", upload_to = 'files/img/',max_length=100)
 
     def __str__(self):
-        return self.name
+        return self.img

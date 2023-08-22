@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from rest_framework.viewsets import GenericViewSet, mixins 
-from mainapp.serializers import MenuSerializer, SectionsSerializer, ArticlesSerializer, FilesSerializer
+from mainapp.serializers import MenuSerializer, SectionsSerializer, ArticlesSerializer, FilesSerializer, ImagesSerializer
 from rest_framework import mixins
 import logging
 
-from mainapp.models import Menu, Sections, Articles, Files
+from mainapp.models import Menu, Sections, Articles, Files, Images
 from mainapp.filters import SectionsFilter, ArticlesFilter, FilesFilter
 
 
@@ -46,3 +46,7 @@ class FilesViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelM
     def perform_destroy(self, instance):
         instance.is_active = False
         instance.save()
+
+class ImagesViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin):
+    serializer_class = ImagesSerializer
+    queryset = Images.objects.all()
