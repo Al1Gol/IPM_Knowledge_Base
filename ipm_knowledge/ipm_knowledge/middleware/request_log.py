@@ -39,11 +39,11 @@ class RequestLogMiddleware:
         # request passes on to controller
         response = self.get_response(request)
 
-        # add runtime to our log_data
-        if response and "application/json" in str(request.headers):
-            response_body = json.loads(response.content.decode("utf-8"))
-            log_data["response_body"] = response_body
-        log_data["run_time"] = time.time() - start_time
+#        # add runtime to our log_data
+#        if response and "application/json" in str(request.headers):
+#            response_body = json.loads(response.content.decode("utf-8"))
+#            log_data["response_body"] = response_body
+#        log_data["run_time"] = time.time() - start_time
 
         request_logger.info(msg=log_data)
 
