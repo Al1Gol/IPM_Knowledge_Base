@@ -206,10 +206,10 @@ if not os.path.exists(LOG_DIR):
 for FILE in LOG_FILES:
     #Проверка наличия папки для хэндлера
     if not os.path.exists(f'{LOG_DIR}/{FILE}/'):  
-        print(f'{LOG_DIR}/{FILE}/')
         os.mkdir(f'{LOG_DIR}/{FILE}/')
 
 #Настройки логирования
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
