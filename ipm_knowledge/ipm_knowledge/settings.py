@@ -175,10 +175,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # In common case STATIC_ROOT can not be in STATICFILES_DIRS
-if DEBUG:
-    STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+#if DEBUG:
+#    STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+#else:
+#    STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
 # Media files
@@ -192,25 +192,22 @@ MEDIA_ROOT = f'{BASE_DIR}/../media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Создание директорий и файлов для логирования
-#LOG_DIR = os.path.join(BASE_DIR, '../logs')
+LOG_DIR = os.path.join(BASE_DIR, '../logs')
 
-#LOG_FILES = []
+LOG_FILES = []
 
-#LOG_FILES.append('requests.log')
-#LOG_FILES.append('urls.log')
+#Имена логеров
+LOG_FILES.append('requests')
+LOG_FILES.append('urls')
 
-#if not os.path.exists(LOG_DIR):
-#    os.mkdir(LOG_DIR)
-#if not os.path.exists(LOG_DIR + '/requests/'):
-#    os.mkdir(LOG_DIR + '/requests/')
-#if not os.path.exists(LOG_DIR + '/urls/'):
-#    os.mkdir(LOG_DIR + '/urls/')
-
-#for FILE in LOG_FILES:
-#    if not os.path.exists(LOG_DIR + FILE):
-#        f = open(LOG_DIR + FILE, 'a').close() #create empty log file
-#    else:
-#        f = open(LOG_DIR + FILE,"w").close() #clear log file
+#Проверка наличия папок и файлов логирования
+if not os.path.exists(LOG_DIR):
+    os.mkdir(LOG_DIR)
+for FILE in LOG_FILES:
+    #Проверка наличия папки для хэндлера
+    if not os.path.exists(f'{LOG_DIR}/{FILE}/'):  
+        print(f'{LOG_DIR}/{FILE}/')
+        os.mkdir(f'{LOG_DIR}/{FILE}/')
 
 #Настройки логирования
 LOGGING = {
@@ -227,8 +224,7 @@ LOGGING = {
             'class': 'logging.handlers.TimedRotatingFileHandler',
             'formatter': 'main_format',
             'filename': '../logs/urls/urls.log',
-            'when': 'M',
-            'interval': 1,
+            'when': 'midnight',
             'backupCount': 10,
             'delay': True,
             'encoding': 'utf-8',
@@ -237,8 +233,7 @@ LOGGING = {
             'class': 'logging.handlers.TimedRotatingFileHandler',
             'formatter': 'main_format',
             'filename': '../logs/requests/requests.log',
-            'when': 'M',
-            'interval': 1,
+            'when': 'midnight',
             'backupCount': 10,
             'delay': True,
             'encoding': 'utf-8',
