@@ -192,20 +192,25 @@ MEDIA_ROOT = f'{BASE_DIR}/../media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Создание директорий и файлов для логирования
-LOG_DIR = os.path.join(BASE_DIR, '../logs')
-LOG_FILES = []
+#LOG_DIR = os.path.join(BASE_DIR, '../logs')
 
-LOG_FILES.append('/requests.log')
-LOG_FILES.append('/urls.log')
+#LOG_FILES = []
 
-if not os.path.exists(LOG_DIR):
-    os.mkdir(LOG_DIR)
+#LOG_FILES.append('requests.log')
+#LOG_FILES.append('urls.log')
 
-for FILE in LOG_FILES:
-    if not os.path.exists(LOG_DIR + FILE):
-        f = open(LOG_DIR + FILE, 'a').close() #create empty log file
-    else:
-        f = open(LOG_DIR + FILE,"w").close() #clear log file
+#if not os.path.exists(LOG_DIR):
+#    os.mkdir(LOG_DIR)
+#if not os.path.exists(LOG_DIR + '/requests/'):
+#    os.mkdir(LOG_DIR + '/requests/')
+#if not os.path.exists(LOG_DIR + '/urls/'):
+#    os.mkdir(LOG_DIR + '/urls/')
+
+#for FILE in LOG_FILES:
+#    if not os.path.exists(LOG_DIR + FILE):
+#        f = open(LOG_DIR + FILE, 'a').close() #create empty log file
+#    else:
+#        f = open(LOG_DIR + FILE,"w").close() #clear log file
 
 #Настройки логирования
 LOGGING = {
@@ -219,15 +224,23 @@ LOGGING = {
     },
     'handlers': {
         'urls': {
-            'class': 'logging.FileHandler',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
             'formatter': 'main_format',
-            'filename': '../logs/urls.log',
+            'filename': '../logs/urls/urls.log',
+            'when': 'M',
+            'interval': 1,
+            'backupCount': 10,
+            'delay': True,
             'encoding': 'utf-8',
         },
         'requests': {
-            'class': 'logging.FileHandler',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
             'formatter': 'main_format',
-            'filename': '../logs/requests.log',
+            'filename': '../logs/requests/requests.log',
+            'when': 'M',
+            'interval': 1,
+            'backupCount': 10,
+            'delay': True,
             'encoding': 'utf-8',
         },
     },
