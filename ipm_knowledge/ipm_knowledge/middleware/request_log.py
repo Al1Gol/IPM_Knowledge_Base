@@ -29,21 +29,25 @@ class RequestLogMiddleware:
         }
 
         # Only logging "*/api/*" patterns
-        if "/api/" in str(request.get_full_path()) and "form-data" in str(request.headers):
+        if "/api/" in str(request.get_full_path()) and "form-data" in str(
+            request.headers
+        ):
             req_body = parser.parse(request.POST.urlencode())
             log_data["request_body"] = req_body
-        elif "/api/" in str(request.get_full_path()) and "application/json" in str(request.headers):
+        elif "/api/" in str(request.get_full_path()) and "application/json" in str(
+            request.headers
+        ):
             req_body = parser.parse(request.POST.urlencode()) if request.body else {}
             log_data["request_body"] = req_body
 
         # request passes on to controller
         response = self.get_response(request)
 
-#        # add runtime to our log_data
-#        if response and "application/json" in str(request.headers):
-#            response_body = json.loads(response.content.decode("utf-8"))
-#            log_data["response_body"] = response_body
-#        log_data["run_time"] = time.time() - start_time
+        #        # add runtime to our log_data
+        #        if response and "application/json" in str(request.headers):
+        #            response_body = json.loads(response.content.decode("utf-8"))
+        #            log_data["response_body"] = response_body
+        #        log_data["run_time"] = time.time() - start_time
 
         request_logger.info(msg=log_data)
 

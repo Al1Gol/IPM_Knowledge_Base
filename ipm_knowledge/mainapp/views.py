@@ -1,16 +1,29 @@
-from django.shortcuts import render
-from rest_framework.viewsets import GenericViewSet, mixins 
-from mainapp.serializers import MenuSerializer, SectionsSerializer, ArticlesSerializer, FilesSerializer, ImagesSerializer
-from rest_framework import mixins
 import logging
 
-from mainapp.models import Menu, Sections, Articles, Files, Images
-from mainapp.filters import SectionsFilter, ArticlesFilter, FilesFilter
+from django.shortcuts import render
+from mainapp.filters import ArticlesFilter, FilesFilter, SectionsFilter
+from mainapp.models import Articles, Files, Images, Menu, Sections
+from mainapp.serializers import (
+    ArticlesSerializer,
+    FilesSerializer,
+    ImagesSerializer,
+    MenuSerializer,
+    SectionsSerializer,
+)
+from rest_framework import mixins
+from rest_framework.viewsets import GenericViewSet, mixins
+
+# LOG = logging.getLogger('django.request')
 
 
-#LOG = logging.getLogger('django.request')
-
-class MenuViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin):
+class MenuViewSet(
+    GenericViewSet,
+    mixins.CreateModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.ListModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+):
     serializer_class = MenuSerializer
     queryset = Menu.objects.all().filter(is_active=True)
 
@@ -18,7 +31,15 @@ class MenuViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMi
         instance.is_active = False
         instance.save()
 
-class SectionsViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin):
+
+class SectionsViewSet(
+    GenericViewSet,
+    mixins.CreateModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.ListModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+):
     serializer_class = SectionsSerializer
     queryset = Sections.objects.all().filter(is_active=True)
     filterset_class = SectionsFilter
@@ -28,8 +49,14 @@ class SectionsViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyMod
         instance.save()
 
 
-
-class ArticleViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin):
+class ArticleViewSet(
+    GenericViewSet,
+    mixins.CreateModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.ListModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+):
     serializer_class = ArticlesSerializer
     queryset = Articles.objects.all().filter(is_active=True)
     filterset_class = ArticlesFilter
@@ -38,7 +65,15 @@ class ArticleViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyMode
         instance.is_active = False
         instance.save()
 
-class FilesViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin):
+
+class FilesViewSet(
+    GenericViewSet,
+    mixins.CreateModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.ListModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+):
     serializer_class = FilesSerializer
     queryset = Files.objects.all().filter(is_active=True)
     filterset_class = FilesFilter
@@ -47,6 +82,14 @@ class FilesViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelM
         instance.is_active = False
         instance.save()
 
-class ImagesViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin):
+
+class ImagesViewSet(
+    GenericViewSet,
+    mixins.CreateModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.ListModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+):
     serializer_class = ImagesSerializer
     queryset = Images.objects.all()
