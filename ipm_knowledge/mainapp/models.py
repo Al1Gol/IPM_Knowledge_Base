@@ -13,6 +13,12 @@ class Menu(models.Model):
         max_length=100,
         blank=True,
     )
+    depart_id = models.ForeignKey(
+        "authapp.Departament",
+        verbose_name="Отдел",
+        on_delete=models.CASCADE,
+        default=1,
+    )
     is_active = models.BooleanField(verbose_name="видимость", default=True)
 
     def __str__(self):
