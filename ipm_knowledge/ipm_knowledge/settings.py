@@ -189,13 +189,9 @@ MEDIA_ROOT = f"{BASE_DIR}/../media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Создание директорий и файлов для логирования
-LOG_DIR = "/"
+LOG_DIR = f"{BASE_DIR}/../logs/"
 
-LOG_FILES = []
-
-# Имена логеров
-LOG_FILES.append("requests")
-LOG_FILES.append("urls")
+LOG_FILES = ["requests", "urls"]
 
 # Проверка наличия папок и файлов логирования
 if not os.path.exists(LOG_DIR):
@@ -217,24 +213,24 @@ LOGGING = {
         },
     },
     "handlers": {
-        "urls": {
-            "class": "logging.handlers.TimedRotatingFileHandler",
-            "formatter": "main_format",
-            "filename": "../logs/urls/urls.log",
-            "when": "midnight",
-            "backupCount": 10,
-            "delay": True,
-            "encoding": "utf-8",
-        },
-        "requests": {
-            "class": "logging.handlers.TimedRotatingFileHandler",
-            "formatter": "main_format",
-            "filename": "../logs/requests/requests.log",
-            "when": "midnight",
-            "backupCount": 10,
-            "delay": True,
-            "encoding": "utf-8",
-        },
+        #        "urls": {
+        #            "class": "logging.handlers.TimedRotatingFileHandler",
+        #            "formatter": "main_format",
+        #           "filename": f"{LOG_DIR}{FILE}/{FILE}.log",
+        #           "when": "midnight",
+        #            "backupCount": 10,
+        #            "delay": True,
+        #            "encoding": "utf-8",
+        #        },
+        #        "requests": {
+        #            "class": "logging.handlers.TimedRotatingFileHandler",
+        #            "formatter": "main_format",
+        #            "filename": f"{LOG_DIR}{FILE}/{FILE}.log",
+        #            "when": "midnight",
+        #            "backupCount": 10,
+        #            "delay": True,
+        #            "encoding": "utf-8",
+        #        },
     },
     "loggers": {
         "ipm_knowledge.middleware.request_log": {
@@ -244,3 +240,14 @@ LOGGING = {
         "django.server": {"level": "INFO", "handlers": ["urls"]},
     },
 }
+
+for el in LOG_FILES:
+    LOGGING["handlers"][f"{el}"] = {
+        "class": "logging.handlers.TimedRotatingFileHandler",
+        "formatter": "main_format",
+        "filename": f"{LOG_DIR}{el}/{el}.log",
+        "when": "midnight",
+        "backupCount": 10,
+        "delay": True,
+        "encoding": "utf-8",
+    }
