@@ -1,4 +1,4 @@
-from authapp.models import Users
+from authapp.models import Departament, Users
 from django.contrib import admin
 from mainapp.models import (  # SrvReleases, PlcReleases, ReleaseChanges
     Articles,
@@ -11,6 +11,7 @@ from mainapp.models import (  # SrvReleases, PlcReleases, ReleaseChanges
 
 # admin.site.register(Roles)
 admin.site.register(Users)
+admin.site.register(Departament)
 admin.site.register(Menu)
 admin.site.register(Sections)
 admin.site.register(Articles)

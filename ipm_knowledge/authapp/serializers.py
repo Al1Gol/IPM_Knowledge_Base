@@ -11,6 +11,9 @@ class DepartamentSerializer(ModelSerializer):
         model = Departament
         fields = ["id", "name"]
 
+    def create(self, validated_data):
+        return Departament.objects.create(**validated_data)
+
 
 # Сериализация таблицы "Пользователи"
 class UsersSerializer(ModelSerializer):
