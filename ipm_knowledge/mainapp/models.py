@@ -14,7 +14,7 @@ class Menu(models.Model):
         blank=True,
     )
     depart_id = models.ForeignKey(
-        "authapp.Departament",
+        "authapp.Departments",
         verbose_name="Отдел",
         on_delete=models.CASCADE,
         default=1,

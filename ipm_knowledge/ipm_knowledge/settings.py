@@ -189,7 +189,7 @@ MEDIA_ROOT = f"{BASE_DIR}/../media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Создание директорий и файлов для логирования
-LOG_DIR = os.path.join(BASE_DIR, "../logs")
+LOG_DIR = "/"
 
 LOG_FILES = []
 
@@ -202,8 +202,8 @@ if not os.path.exists(LOG_DIR):
     os.mkdir(LOG_DIR)
 for FILE in LOG_FILES:
     # Проверка наличия папки для хэндлера
-    if not os.path.exists(f"{LOG_DIR}/{FILE}/"):
-        os.mkdir(f"{LOG_DIR}/{FILE}/")
+    if not os.path.exists(f"{LOG_DIR}{FILE}/"):
+        os.mkdir(f"{LOG_DIR}{FILE}/")
 
 # Настройки логирования
 

@@ -1,4 +1,4 @@
-from authapp.views import DepartamentViewSet, UsersViewSet
+from authapp.views import DepartmentsViewSet, UsersViewSet
 from django.contrib import admin
 from django.urls import include, path, re_path
 from mainapp.views import (
@@ -13,7 +13,7 @@ from rest_framework.authtoken import views
 from rest_framework_simplejwt import views as jwt_views
 
 router = routers.DefaultRouter()
-router.register("roles", DepartamentViewSet, basename="roles")
+router.register("roles", DepartmentsViewSet, basename="roles")
 router.register("users", UsersViewSet, basename="users")
 router.register("menu", MenuViewSet, basename="menu")
 router.register("sections", SectionsViewSet, basename="sections")

@@ -2,10 +2,8 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-class Departament(models.Model):
-    name = models.CharField(
-        verbose_name="наименование отдела", max_length=50, unique=True
-    )
+class Departments(models.Model):
+    name = models.CharField(verbose_name="наименование отдела", max_length=50, unique=True)
     is_active = models.BooleanField(verbose_name="Видимость", default=True)
 
     def __str__(self):
@@ -15,7 +13,7 @@ class Departament(models.Model):
 # Create your models here.
 class Users(AbstractUser):
     depart_id = models.ForeignKey(
-        "Departament",
+        "Departments",
         verbose_name="Отдел",
         on_delete=models.CASCADE,
         default=1,

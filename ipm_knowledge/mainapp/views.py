@@ -1,6 +1,6 @@
 import logging
 
-from authapp.models import Departament
+from authapp.models import Departments
 from django.db.models import Q
 from django.shortcuts import render
 from mainapp.filters import ArticlesFilter, FilesFilter, SectionsFilter
@@ -30,7 +30,7 @@ class MenuViewSet(
     queryset = Menu.objects.all().filter(is_active=True)
 
     def list(self, request, *args, **kwargs):
-        user_depart = Departament.objects.get(name="Общее")
+        user_depart = Departments.objects.get(name="Общее")
         if str(user_depart.name) == str(request.user.depart_id):
             queryset = self.filter_queryset(self.get_queryset()).order_by("-depart_id")
         else:

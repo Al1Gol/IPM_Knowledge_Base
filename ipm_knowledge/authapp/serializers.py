@@ -1,4 +1,4 @@
-from authapp.models import Departament, Users
+from authapp.models import Departments, Users
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
@@ -6,13 +6,13 @@ from rest_framework.serializers import ModelSerializer
 
 
 # Сериализация таблицы "Роли пользователя"
-class DepartamentSerializer(ModelSerializer):
+class DepartmentsSerializer(ModelSerializer):
     class Meta:
-        model = Departament
+        model = Departments
         fields = ["id", "name"]
 
     def create(self, validated_data):
-        return Departament.objects.create(**validated_data)
+        return Departments.objects.create(**validated_data)
 
 
 # Сериализация таблицы "Пользователи"

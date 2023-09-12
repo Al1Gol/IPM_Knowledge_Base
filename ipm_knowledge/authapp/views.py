@@ -1,20 +1,20 @@
 import logging
 
-from authapp.models import Departament, Users
-from authapp.serializers import DepartamentSerializer, UsersSerializer
+from authapp.models import Departments, Users
+from authapp.serializers import DepartmentsSerializer, UsersSerializer
 from rest_framework import mixins
 from rest_framework.viewsets import GenericViewSet, mixins
 
 
-class DepartamentViewSet(
+class DepartmentsViewSet(
     GenericViewSet,
     mixins.CreateModelMixin,
     mixins.DestroyModelMixin,
     mixins.ListModelMixin,
     mixins.UpdateModelMixin,
 ):
-    serializer_class = DepartamentSerializer
-    queryset = Departament.objects.all()
+    serializer_class = DepartmentsSerializer
+    queryset = Departments.objects.all()
 
 
 class UsersViewSet(
