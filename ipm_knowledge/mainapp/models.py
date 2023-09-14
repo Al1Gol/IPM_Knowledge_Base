@@ -34,8 +34,9 @@ class Sections(models.Model):
         validators=[validate_file_extension],
         max_length=100,
         blank=True,
+        null=True,
     )
-    is_active = models.CharField(verbose_name="видимость", default=True)
+    is_active = models.BooleanField(verbose_name="видимость", default=True)
 
     def __str__(self):
         return self.name
@@ -43,7 +44,7 @@ class Sections(models.Model):
 
 class Articles(models.Model):
     section_id = models.ForeignKey("Sections", verbose_name="id раздела", on_delete=models.CASCADE)
-    text = models.TextField(verbose_name="Описание", max_length=10000)
+    text = models.TextField(verbose_name="Описание", max_length=40000)
     is_active = models.BooleanField(verbose_name="видимость", default=True)
 
     def __str__(self):
