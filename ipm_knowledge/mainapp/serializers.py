@@ -13,20 +13,25 @@ class MenuSerializer(ModelSerializer):
 
 
 class SectionsSerializer(ModelSerializer):
+    depart_id = serializers.ReadOnlyField(source="menu_id.depart_id.id")
+
     class Meta:
         model = Sections
-        fields = ["id", "menu_id", "name", "img"]
+        fields = ["id", "menu_id", "name", "img", "depart_id"]
 
     def create(self, validated_data):
         return Sections.objects.create(**validated_data)
 
 
 class ArticlesSerializer(ModelSerializer):
+    depart_id = serializers.ReadOnlyField(source="section_id.menu_id.depart_id.id")
+
     class Meta:
         model = Articles
-        fields = ["id", "section_id", "text"]
+        fields = ["id", "section_id", "text", "depart_id"]
 
     def create(self, validated_data):
+        depart_id = serializers.IntegerField(source="section_id.menu_id.depart_id.id")
         return Articles.objects.create(**validated_data)
 
 

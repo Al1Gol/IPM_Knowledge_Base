@@ -12,6 +12,7 @@ class DepartmentsViewSet(
     mixins.DestroyModelMixin,
     mixins.ListModelMixin,
     mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
 ):
     serializer_class = DepartmentsSerializer
     queryset = Departments.objects.all()
@@ -23,6 +24,7 @@ class UsersViewSet(
     mixins.DestroyModelMixin,
     mixins.ListModelMixin,
     mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
 ):
     serializer_class = UsersSerializer
     queryset = Users.objects.all()

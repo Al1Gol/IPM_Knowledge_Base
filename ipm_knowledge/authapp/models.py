@@ -14,10 +14,9 @@ class Departments(models.Model):
 class Users(AbstractUser):
     depart_id = models.ForeignKey(
         "Departments",
+        related_name="depart_id",
         verbose_name="Отдел",
         on_delete=models.CASCADE,
         default=1,
     )
-
-    def __str__(self):
-        return f"{self.username}"
+    is_moderate = models.BooleanField(verbose_name="Модератор", default=False)
