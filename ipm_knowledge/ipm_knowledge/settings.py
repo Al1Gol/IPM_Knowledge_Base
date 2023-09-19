@@ -212,32 +212,14 @@ LOGGING = {
             "style": "{",
         },
     },
-    "handlers": {
-        #        "urls": {
-        #            "class": "logging.handlers.TimedRotatingFileHandler",
-        #            "formatter": "main_format",
-        #           "filename": f"{LOG_DIR}{FILE}/{FILE}.log",
-        #           "when": "midnight",
-        #            "backupCount": 10,
-        #            "delay": True,
-        #            "encoding": "utf-8",
-        #        },
-        #        "requests": {
-        #            "class": "logging.handlers.TimedRotatingFileHandler",
-        #            "formatter": "main_format",
-        #            "filename": f"{LOG_DIR}{FILE}/{FILE}.log",
-        #            "when": "midnight",
-        #            "backupCount": 10,
-        #            "delay": True,
-        #            "encoding": "utf-8",
-        #        },
-    },
+    "handlers": {},
     "loggers": {
         "ipm_knowledge.middleware.request_log": {
             "handlers": ["requests"],
             "level": "INFO",
         },
         "django.server": {"level": "INFO", "handlers": ["urls"]},
+        "django.request": {"level": "DEBUG", "handlers": ["requests"]},
     },
 }
 

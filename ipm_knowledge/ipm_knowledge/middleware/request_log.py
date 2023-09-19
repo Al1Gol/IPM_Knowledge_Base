@@ -8,6 +8,8 @@ import socket
 import time
 
 from querystring_parser import parser
+from rest_framework.exceptions import APIException
+from rest_framework.views import exception_handler
 
 request_logger = logging.getLogger(__name__)
 
@@ -47,3 +49,18 @@ class RequestLogMiddleware:
         request_logger.info(msg=log_data)
 
         return response
+
+    # Обработка ошибок Django
+    def process_exception(self, request, exception):
+        log_data = {
+            "remote_address": request.META["REMOTE_ADDR"],
+            "server_hostname": socket.gethostname(),
+            "request_method": request.method,
+            "request_path": request.get_full_path(),
+        }
+        log_data["error_reason"] = f"{exception.__class__.__name__}"
+        log_data["error_body"] = f"{exception}"
+
+        request_logger.critical(msg=log_data)
+
+        return None
