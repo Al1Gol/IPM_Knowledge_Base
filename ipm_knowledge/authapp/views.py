@@ -18,7 +18,7 @@ class DepartmentsViewSet(
     mixins.RetrieveModelMixin,
 ):
     serializer_class = DepartmentsSerializer
-    queryset = Departments.objects.all()
+    queryset = Departments.objects.all().filter(is_active=True)
     permission_classes = [AdminUserOrAuthReadOnly]
 
     def perform_destroy(self, instance):
@@ -35,7 +35,7 @@ class UsersViewSet(
     mixins.RetrieveModelMixin,
 ):
     serializer_class = UsersSerializer
-    queryset = Users.objects.all()
+    queryset = Users.objects.all().filter(is_active=True)
     permission_classes = [AdminUserOrAuthReadOnly]
 
     def perform_destroy(self, instance):
