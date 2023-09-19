@@ -19,13 +19,5 @@ class DepartmentsSerializer(ModelSerializer):
 class UsersSerializer(ModelSerializer):
     class Meta:
         model = Users
-        fields = ["id", "username", "password"]
-
-    #        extra_kwargs = {'password': {'write_only': True}}
-
-    def create(self, validated_data):
-        password = validated_data.pop("password")
-        user = Users(**validated_data)
-        user.set_password(password)
-        user.save()
-        return user
+        fields = ["id", "username", "password", "depart_id", "is_staff", "is_moderate"]
+        extra_kwargs = {"password": {"write_only": True}}

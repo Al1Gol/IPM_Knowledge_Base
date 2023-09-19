@@ -2,6 +2,7 @@ import logging
 
 from authapp.models import Departments, Users
 from authapp.serializers import DepartmentsSerializer, UsersSerializer
+from django.contrib.auth.hashers import make_password
 from rest_framework import mixins
 from rest_framework.viewsets import GenericViewSet, mixins
 
@@ -40,3 +41,19 @@ class UsersViewSet(
     def perform_destroy(self, instance):
         instance.is_active = False
         instance.save()
+
+    def perform_create(self, serializer):
+        # Hash password but passwords are not required
+        if "password" in self.request.data:
+            password = make_password(self.request.data["password"])
+            serializer.save(password=password)
+        else:
+            serializer.save()
+
+    def perform_update(self, serializer):
+        # Hash password but passwords are not required
+        if "password" in self.request.data:
+            password = make_password(self.request.data["password"])
+            serializer.save(password=password)
+        else:
+            serializer.save()
