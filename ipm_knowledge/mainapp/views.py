@@ -103,6 +103,7 @@ class FilesViewSet(
     serializer_class = FilesSerializer
     queryset = Files.objects.all().filter(is_active=True)
     filterset_class = FilesFilter
+    permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
 
     def perform_destroy(self, instance):
         instance.is_active = False
@@ -119,3 +120,4 @@ class ImagesViewSet(
 ):
     serializer_class = ImagesSerializer
     queryset = Images.objects.all()
+    permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]

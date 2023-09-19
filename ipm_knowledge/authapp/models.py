@@ -20,3 +20,4 @@ class Users(AbstractUser):
         default=1,
     )
     is_moderate = models.BooleanField(verbose_name="Модератор", default=False)
+    is_active = models.BooleanField(verbose_name="Вдимиость", default=False)
