@@ -42,8 +42,25 @@ class Sections(models.Model):
         return self.name
 
 
+class Subsections(models.Model):
+    menu_id = models.ForeignKey("Sections", verbose_name="id подраздела", on_delete=models.CASCADE)
+    name = models.CharField(verbose_name="элементы меню", max_length=200)
+    img = models.FileField(
+        verbose_name="иконка",
+        upload_to="icons/sections/",
+        validators=[validate_file_extension],
+        max_length=100,
+        blank=True,
+        null=True,
+    )
+    is_active = models.BooleanField(verbose_name="видимость", default=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Articles(models.Model):
-    section_id = models.ForeignKey("Sections", verbose_name="id раздела", on_delete=models.CASCADE)
+    section_id = models.ForeignKey("Subsections", verbose_name="id раздела", on_delete=models.CASCADE)
     text = models.TextField(verbose_name="Описание", max_length=40000)
     is_active = models.BooleanField(verbose_name="видимость", default=True)
 

@@ -1,9 +1,14 @@
 import logging
 
 from authapp.models import Departments, Users
-from authapp.serializers import DepartmentsSerializer, UsersSerializer
+from authapp.serializers import (
+    DepartmentsSerializer,
+    ProfileSerializer,
+    UsersSerializer,
+)
 from django.contrib.auth.hashers import make_password
 from rest_framework import mixins
+from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, mixins
 
 from ipm_knowledge.permissions import AdminUserOrAuthReadOnly
@@ -57,3 +62,15 @@ class UsersViewSet(
             serializer.save(password=password)
         else:
             serializer.save()
+
+
+class ProfileViewSet(
+    GenericViewSet,
+    mixins.ListModelMixin,
+):
+    serializer_class = ProfileSerializer
+
+    def list(self, request, *args, **kwargs):
+        queryset = Users.objects.get(id=request.user.id)
+        serializer = self.get_serializer(queryset)
+        return Response(serializer.data)
