@@ -8,7 +8,7 @@ class ModerateCreateAndUpdateOrAdminOrAuthReadOnly(permissions.BasePermission):
         elif (
             request.user.is_authenticated
             and request.user
-            and request.method in ["PUT", "PUTCH", "CREATE", "POST"]
+            and request.method in ["PUT", "PUTCH", "CREATE"]
             and request.user.is_moderate
         ):
             return True

@@ -3,6 +3,7 @@ import logging
 from authapp.models import Departments, Users
 from authapp.serializers import (
     DepartmentsSerializer,
+    PasswordChangeSerializer,
     ProfileSerializer,
     UsersSerializer,
 )
@@ -64,11 +65,18 @@ class UsersViewSet(
             serializer.save()
 
 
-class ProfileViewSet(
-    GenericViewSet,
-    mixins.ListModelMixin,
-):
+class ProfileViewSet(GenericViewSet, mixins.ListModelMixin):
+    queryset = Users.objects.all().filter(is_active=True)
     serializer_class = ProfileSerializer
+
+    def list(self, request, *args, **kwargs):
+        queryset = Users.objects.get(id=request.user.id)
+        serializer = self.get_serializer(queryset)
+        return Response(serializer.data)
+
+
+class PasswordChangeViewSet(GenericViewSet, mixins.ListModelMixin):
+    serializer_class = PasswordChangeSerializer
 
     def list(self, request, *args, **kwargs):
         queryset = Users.objects.get(id=request.user.id)

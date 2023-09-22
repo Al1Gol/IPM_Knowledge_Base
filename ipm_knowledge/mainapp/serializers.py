@@ -1,4 +1,4 @@
-from mainapp.models import Articles, Files, Images, Menu, Sections
+from mainapp.models import Articles, Files, Images, Menu, Sections, Subsections
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
@@ -6,7 +6,8 @@ from rest_framework.serializers import ModelSerializer
 class MenuSerializer(ModelSerializer):
     class Meta:
         model = Menu
-        fields = ["id", "name", "img"]
+        fields = ["id", "name", "img", "depart_id"]
+        extra_kwargs = {"depart_id": {"read_only": True}}
 
     def create(self, validated_data):
         return Menu.objects.create(**validated_data)
@@ -23,15 +24,26 @@ class SectionsSerializer(ModelSerializer):
         return Sections.objects.create(**validated_data)
 
 
-class ArticlesSerializer(ModelSerializer):
+class SubsectionsSerializer(ModelSerializer):
     depart_id = serializers.ReadOnlyField(source="section_id.menu_id.depart_id.id")
 
     class Meta:
-        model = Articles
-        fields = ["id", "section_id", "text", "depart_id"]
+        model = Subsections
+        fields = ["id", "section_id", "name", "img", "depart_id"]
 
     def create(self, validated_data):
-        depart_id = serializers.IntegerField(source="section_id.menu_id.depart_id.id")
+        return Subsections.objects.create(**validated_data)
+
+
+class ArticlesSerializer(ModelSerializer):
+    depart_id = serializers.ReadOnlyField(source="subsection_id.section_id.menu_id.depart_id.id")
+
+    class Meta:
+        model = Articles
+        fields = ["id", "subsection_id", "text", "depart_id"]
+
+    def create(self, validated_data):
+        depart_id = serializers.IntegerField(source="subsection_id.section_id.menu_id.depart_id.id")
         return Articles.objects.create(**validated_data)
 
 

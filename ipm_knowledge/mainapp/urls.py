@@ -7,6 +7,7 @@ from mainapp.views import (
     ImagesViewSet,
     MenuViewSet,
     SectionsViewSet,
+    SubsectionsViewSet,
 )
 from rest_framework import routers
 from rest_framework.authtoken import views
@@ -18,6 +19,7 @@ router.register("users", UsersViewSet, basename="users")
 router.register("profile", ProfileViewSet, basename="profile")
 router.register("menu", MenuViewSet, basename="menu")
 router.register("sections", SectionsViewSet, basename="sections")
+router.register("subsections", SubsectionsViewSet, basename="subsections")
 router.register("articles", ArticleViewSet, basename="articles")
 router.register("files", FilesViewSet, basename="files")
 router.register("images", ImagesViewSet, basename="images")

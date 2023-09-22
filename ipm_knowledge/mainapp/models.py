@@ -43,7 +43,7 @@ class Sections(models.Model):
 
 
 class Subsections(models.Model):
-    menu_id = models.ForeignKey("Sections", verbose_name="id подраздела", on_delete=models.CASCADE)
+    section_id = models.ForeignKey("Sections", verbose_name="id подраздела", on_delete=models.CASCADE)
     name = models.CharField(verbose_name="элементы меню", max_length=200)
     img = models.FileField(
         verbose_name="иконка",
@@ -60,7 +60,7 @@ class Subsections(models.Model):
 
 
 class Articles(models.Model):
-    section_id = models.ForeignKey("Subsections", verbose_name="id раздела", on_delete=models.CASCADE)
+    subsection_id = models.OneToOneField("Subsections", verbose_name="id раздела", on_delete=models.CASCADE)
     text = models.TextField(verbose_name="Описание", max_length=40000)
     is_active = models.BooleanField(verbose_name="видимость", default=True)
 
