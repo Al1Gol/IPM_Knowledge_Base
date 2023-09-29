@@ -1,7 +1,12 @@
 from authapp.models import Departments
 from django.conf import settings
 from django.shortcuts import render
-from mainapp.filters import FilesFilter, SectionsFilter, SubsectionsFilter
+from mainapp.filters import (
+    ArticlesFilter,
+    FilesFilter,
+    SectionsFilter,
+    SubsectionsFilter,
+)
 from mainapp.models import Articles, Files, Images, Menu, Sections, Subsections
 from mainapp.serializers import (
     ArticlesSerializer,
@@ -101,6 +106,7 @@ class ArticleViewSet(
 ):
     serializer_class = ArticlesSerializer
     queryset = Articles.objects.all().filter(is_active=True)
+    filterset_class = FilesFilter
     permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
 
     # Вместо удаления объектов, скрываем их, убрав галочку в поле is_active

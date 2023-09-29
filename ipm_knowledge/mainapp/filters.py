@@ -1,5 +1,5 @@
 from django_filters import rest_framework as filters
-from mainapp.models import Files, Sections, Subsections
+from mainapp.models import Articles, Files, Sections, Subsections
 
 
 # Фильтрация Разделов по родительскому Меню
@@ -14,6 +14,12 @@ class SubsectionsFilter(filters.FilterSet):
     class Meta:
         model = Subsections
         fields = ["section_id"]
+
+
+class ArticlesFilter(filters.FilterSet):
+    class Meta:
+        model = Articles
+        field = ["subsection_id"]
 
 
 # Фильтрация Файлов по родительской Статье
