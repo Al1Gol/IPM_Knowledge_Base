@@ -9,6 +9,9 @@ from mainapp.models import (  # SrvReleases, PlcReleases, ReleaseChanges
 )
 
 # Register your models here.
+
+# Таблицы доступные в базовой админке
+# Не нужны в итоговом приложении, так как будет реализована своя админка, средствами React
 """
 # admin.site.register(Roles)
 admin.site.register(Users)

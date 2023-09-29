@@ -15,6 +15,7 @@ from rest_framework.viewsets import GenericViewSet, mixins
 from ipm_knowledge.permissions import AdminUserOrAuthReadOnly
 
 
+# Список подразделений
 class DepartmentsViewSet(
     GenericViewSet,
     mixins.CreateModelMixin,
@@ -32,6 +33,7 @@ class DepartmentsViewSet(
         instance.save()
 
 
+# Контрллер обработки списка пользоваетелей
 class UsersViewSet(
     GenericViewSet,
     mixins.CreateModelMixin,
@@ -65,6 +67,7 @@ class UsersViewSet(
             serializer.save()
 
 
+# Обработка профиля текущего пользователя
 class ProfileViewSet(GenericViewSet, mixins.ListModelMixin):
     queryset = Users.objects.all().filter(is_active=True)
     serializer_class = ProfileSerializer
@@ -75,6 +78,7 @@ class ProfileViewSet(GenericViewSet, mixins.ListModelMixin):
         return Response(serializer.data)
 
 
+# Изменение пароля текущего пользователя
 class PasswordChangeViewSet(GenericViewSet, mixins.ListModelMixin):
     serializer_class = PasswordChangeSerializer
 

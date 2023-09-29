@@ -223,11 +223,11 @@ LOGGING = {
     },
 }
 
-for el in LOG_FILES:
-    LOGGING["handlers"][f"{el}"] = {
+for LOG_FILE in LOG_FILES:
+    LOGGING["handlers"][f"{LOG_FILE}"] = {
         "class": "logging.handlers.TimedRotatingFileHandler",
         "formatter": "main_format",
-        "filename": f"{LOG_DIR}{el}/{el}.log",
+        "filename": f"{LOG_DIR}{LOG_FILE}/{LOG_FILE}.log",
         "when": "midnight",
         "backupCount": 10,
         "delay": True,

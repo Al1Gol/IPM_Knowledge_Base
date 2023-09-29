@@ -22,6 +22,7 @@ class UsersSerializer(ModelSerializer):
         fields = ["id", "username", "depart_id", "is_staff", "is_moderate"]
 
 
+# Сериализация для смены пароля
 class PasswordChangeSerializer(ModelSerializer):
     class Meta:
         model = Users
@@ -37,6 +38,7 @@ class PasswordChangeSerializer(ModelSerializer):
         }
 
 
+# JSON сериализация профиля пользователя
 class ProfileSerializer(ModelSerializer):
     class Meta:
         model = Users

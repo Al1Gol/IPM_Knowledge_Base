@@ -3,6 +3,8 @@ import xml.etree.cElementTree as et
 
 from django.core.exceptions import ValidationError
 
+# Валидатор для проверки наличия расширения .svg для иконок в Меню,Разделах и Подразделах
+
 
 # Более точный валидатор svg. Не работает из-за with open
 # Проверка на SVG

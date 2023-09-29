@@ -20,6 +20,7 @@ from ipm_knowledge.permissions import ModerateCreateAndUpdateOrAdminOrAuthReadOn
 # LOG = logging.getLogger('django.request')
 
 
+# Контроллер для обработки Меню
 class MenuViewSet(
     GenericViewSet,
     mixins.ListModelMixin,
@@ -43,11 +44,13 @@ class MenuViewSet(
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
 
+    # Вместо удаления объектов, скрываем их, убрав галочку в поле is_active
     def perform_destroy(self, instance):
         instance.is_active = False
         instance.save()
 
 
+# Контроллер для обработки Разделов
 class SectionsViewSet(
     GenericViewSet,
     mixins.CreateModelMixin,
@@ -61,11 +64,13 @@ class SectionsViewSet(
     permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
     filterset_class = SectionsFilter
 
+    # Вместо удаления объектов, скрываем их, убрав галочку в поле is_active
     def perform_destroy(self, instance):
         instance.is_active = False
         instance.save()
 
 
+# Контроллер для обработки Подразделов
 class SubsectionsViewSet(
     GenericViewSet,
     mixins.CreateModelMixin,
@@ -79,11 +84,13 @@ class SubsectionsViewSet(
     permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
     filterset_class = SubsectionsFilter
 
+    # Вместо удаления объектов, скрываем их, убрав галочку в поле is_active
     def perform_destroy(self, instance):
         instance.is_active = False
         instance.save()
 
 
+# Контроллер для обработки Статей
 class ArticleViewSet(
     GenericViewSet,
     mixins.CreateModelMixin,
@@ -96,11 +103,13 @@ class ArticleViewSet(
     queryset = Articles.objects.all().filter(is_active=True)
     permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
 
+    # Вместо удаления объектов, скрываем их, убрав галочку в поле is_active
     def perform_destroy(self, instance):
         instance.is_active = False
         instance.save()
 
 
+# Контроллер для обработки Файлов статьи
 class FilesViewSet(
     GenericViewSet,
     mixins.CreateModelMixin,
@@ -114,11 +123,13 @@ class FilesViewSet(
     filterset_class = FilesFilter
     permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
 
+    # Вместо удаления объектов, скрываем их, убрав галочку в поле is_active
     def perform_destroy(self, instance):
         instance.is_active = False
         instance.save()
 
 
+# Контроллер для обработки Изображений внутри Статей
 class ImagesViewSet(
     GenericViewSet,
     mixins.CreateModelMixin,
