@@ -4,7 +4,6 @@ from django.db import models
 from .validators import validate_file_extension
 
 
-# Таблица для элементов меню
 class Menu(models.Model):
     name = models.CharField(verbose_name="элементы меню", max_length=100)
     img = models.FileField(
@@ -27,9 +26,10 @@ class Menu(models.Model):
         return self.name
 
 
-# Таблица для элементов разделов
 class Sections(models.Model):
-    menu_id = models.ForeignKey("Menu", verbose_name="id меню", on_delete=models.CASCADE)
+    menu_id = models.ForeignKey(
+        "Menu", verbose_name="id меню", on_delete=models.CASCADE
+    )
     name = models.CharField(verbose_name="элементы меню", max_length=200)
     img = models.FileField(
         verbose_name="иконка",
@@ -45,9 +45,10 @@ class Sections(models.Model):
         return self.name
 
 
-# таблица для элементов подразделов
 class Subsections(models.Model):
-    section_id = models.ForeignKey("Sections", verbose_name="id подраздела", on_delete=models.CASCADE)
+    section_id = models.ForeignKey(
+        "Sections", verbose_name="id подраздела", on_delete=models.CASCADE
+    )
     name = models.CharField(verbose_name="элементы меню", max_length=200)
     img = models.FileField(
         verbose_name="иконка",
@@ -63,19 +64,21 @@ class Subsections(models.Model):
         return self.name
 
 
-# Таблица для статей
 class Articles(models.Model):
-    subsection_id = models.OneToOneField("Subsections", verbose_name="id раздела", on_delete=models.CASCADE)
-    text = models.TextField(verbose_name="Описание", max_length=40000, blank=True)
+    subsection_id = models.OneToOneField(
+        "Subsections", verbose_name="id раздела", on_delete=models.CASCADE
+    )
+    text = models.TextField(verbose_name="Описание", max_length=40000)
     is_active = models.BooleanField(verbose_name="видимость", default=True)
 
     def __str__(self):
         return self.text
 
 
-# Таблица с файлами для статей
 class Files(models.Model):
-    article_id = models.ForeignKey("Articles", on_delete=models.CASCADE)
+    article_id = models.ForeignKey(
+        "Articles", related_name="files", on_delete=models.CASCADE
+    )
     name = models.CharField(verbose_name="название файла", max_length=200)
     file = models.FileField(upload_to="files/", verbose_name="файлы")
     is_active = models.BooleanField(verbose_name="видимость", default=True)
@@ -84,9 +87,10 @@ class Files(models.Model):
         return self.name
 
 
-# Табилца для изображений интегрированных в текст статей
 class Images(models.Model):
-    img = models.ImageField(verbose_name="изображения", upload_to="files/img/", max_length=100)
+    img = models.ImageField(
+        verbose_name="изображения", upload_to="files/img/", max_length=100
+    )
 
     def __str__(self):
         return self.img

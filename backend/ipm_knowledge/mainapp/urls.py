@@ -14,15 +14,15 @@ from rest_framework.authtoken import views
 from rest_framework_simplejwt import views as jwt_views
 
 router = routers.DefaultRouter()
-router.register("roles", DepartmentsViewSet, basename="roles")  # Эндпойнт списка подразделений
-router.register("users", UsersViewSet, basename="users")  # Эндпойнт вывода списка пользователей
-router.register("profile", ProfileViewSet, basename="profile")  # Эндопойнт вывода прфоиля текущего пользователя
-router.register("menu", MenuViewSet, basename="menu")  # Эндпойнт списка меню
-router.register("sections", SectionsViewSet, basename="sections")  # Эндпойнт списка разделов
-router.register("subsections", SubsectionsViewSet, basename="subsections")  # Эндпойнт списка подразделов
-router.register("articles", ArticleViewSet, basename="articles")  # Эндпойнт списка статей
-router.register("files", FilesViewSet, basename="files")  # Эндпойнт списка файлов статей
-router.register("images", ImagesViewSet, basename="images")  # Эндпйонт для отображения изображений
+router.register("departmens", DepartmentsViewSet, basename="departmens")
+router.register("users", UsersViewSet, basename="users")
+router.register("profile", ProfileViewSet, basename="profile")
+router.register("menu", MenuViewSet, basename="menu")
+router.register("sections", SectionsViewSet, basename="sections")
+router.register("subsections", SubsectionsViewSet, basename="subsections")
+router.register("articles", ArticleViewSet, basename="articles")
+router.register("files", FilesViewSet, basename="files")
+router.register("images", ImagesViewSet, basename="images")
 
 
 urlpatterns = [

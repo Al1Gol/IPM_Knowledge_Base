@@ -30,7 +30,7 @@ SECRET_KEY = "django-insecure-h@ik9e0(lv3+j#@uz+*rt*c6ysz!zd)wftn!-ji620h-=^bn@!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*", "http://127.0.0.1:8000", "http://127.0.0.1:3000"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -149,8 +149,8 @@ REST_FRAMEWORK = {
 
 # Время жизни токенов JWT
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(hours=24),
-    "REFRESH_TOKEN_LIFETIME": timedelta(hours=24),
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=12),
+    "REFRESH_TOKEN_LIFETIME": timedelta(hours=12),
 }
 
 
@@ -223,11 +223,11 @@ LOGGING = {
     },
 }
 
-for LOG_FILE in LOG_FILES:
-    LOGGING["handlers"][f"{LOG_FILE}"] = {
+for el in LOG_FILES:
+    LOGGING["handlers"][f"{el}"] = {
         "class": "logging.handlers.TimedRotatingFileHandler",
         "formatter": "main_format",
-        "filename": f"{LOG_DIR}{LOG_FILE}/{LOG_FILE}.log",
+        "filename": f"{LOG_DIR}{el}/{el}.log",
         "when": "midnight",
         "backupCount": 10,
         "delay": True,

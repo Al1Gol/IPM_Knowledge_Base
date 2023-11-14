@@ -3,7 +3,6 @@ import logging
 from authapp.models import Departments, Users
 from authapp.serializers import (
     DepartmentsSerializer,
-    PasswordChangeSerializer,
     ProfileSerializer,
     UsersSerializer,
 )
@@ -15,7 +14,6 @@ from rest_framework.viewsets import GenericViewSet, mixins
 from ipm_knowledge.permissions import AdminUserOrAuthReadOnly
 
 
-# Список подразделений
 class DepartmentsViewSet(
     GenericViewSet,
     mixins.CreateModelMixin,
@@ -28,12 +26,7 @@ class DepartmentsViewSet(
     queryset = Departments.objects.all().filter(is_active=True)
     permission_classes = [AdminUserOrAuthReadOnly]
 
-    def perform_destroy(self, instance):
-        instance.is_active = False
-        instance.save()
 
-
-# Контрллер обработки списка пользоваетелей
 class UsersViewSet(
     GenericViewSet,
     mixins.CreateModelMixin,
@@ -63,19 +56,11 @@ class UsersViewSet(
             serializer.save()
 
 
-# Обработка профиля текущего пользователя
-class ProfileViewSet(GenericViewSet, mixins.ListModelMixin):
+class ProfileViewSet(
+    GenericViewSet,
+    mixins.ListModelMixin,
+):
     serializer_class = ProfileSerializer
-
-    def list(self, request, *args, **kwargs):
-        queryset = Users.objects.all().filter(id=request.user.id)
-        serializer = self.get_serializer(queryset)
-        return Response(serializer.data)
-
-
-# Изменение пароля текущего пользователя
-class PasswordChangeViewSet(GenericViewSet, mixins.ListModelMixin):
-    serializer_class = PasswordChangeSerializer
 
     def list(self, request, *args, **kwargs):
         queryset = Users.objects.get(id=request.user.id)

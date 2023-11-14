@@ -19,26 +19,10 @@ class DepartmentsSerializer(ModelSerializer):
 class UsersSerializer(ModelSerializer):
     class Meta:
         model = Users
-        fields = ["id", "username", "depart_id", "is_staff", "is_moderate"]
+        fields = ["id", "username", "password", "depart_id", "is_staff", "is_moderate"]
+        extra_kwargs = {"password": {"write_only": True}}
 
 
-# Сериализация для смены пароля
-class PasswordChangeSerializer(ModelSerializer):
-    class Meta:
-        model = Users
-        old_password = serializers.CharField()
-        new_password = serializers.CharField()
-        new_password_repeat = serializers.CharField()
-        fields = ["old_password", "new_password", "new_password_repeat"]
-
-        extra_kwargs = {
-            "old_password": {"write_only": True},
-            "new_password": {"write_only": True},
-            "new_password_repeat": {"write_only": True},
-        }
-
-
-# JSON сериализация профиля пользователя
 class ProfileSerializer(ModelSerializer):
     class Meta:
         model = Users
