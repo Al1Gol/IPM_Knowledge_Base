@@ -32,7 +32,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -50,7 +49,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -60,16 +58,20 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     # request logger
     "ipm_knowledge.middleware.request_log.RequestLogMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 DJANGO_LOG_LEVEL = DEBUG
 
 CORS_ALLOWED_ORIGINS = [
-    "http://192.168.10.222:8000",
-    "http://192.168.10.222:3000",
+    "http://192.168.10.172:8000",
+    "http://192.168.10.172:3000",
     "http://localhost:3000",
     "http://localhost:8000",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:8000",
 ]
+
 
 DATA_UPLOAD_MAX_MEMORY = 2000000000
 
