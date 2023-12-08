@@ -60,9 +60,11 @@ class ProfileViewSet(
     GenericViewSet,
     mixins.ListModelMixin,
 ):
+    queryset = Users.objects.all()
     serializer_class = ProfileSerializer
 
-    def list(self, request, *args, **kwargs):
-        queryset = Users.objects.get(id=request.user.id)
-        serializer = self.get_serializer(queryset)
-        return Response(serializer.data)
+    def get_queryset(self):
+        if self.action == "list":
+            print(self.request.user)
+            return self.queryset.filter(username=self.request.user)
+        return self.request
