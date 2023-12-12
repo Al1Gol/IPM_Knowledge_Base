@@ -65,8 +65,26 @@ class Subsections(models.Model):
 
 
 class Articles(models.Model):
+    menu_id = models.OneToOneField(
+        "Menu",
+        verbose_name="ID Меню",
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+    )
+    section_id = models.OneToOneField(
+        "Sections",
+        verbose_name="ID Раздела",
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+    )
     subsection_id = models.OneToOneField(
-        "Subsections", verbose_name="id раздела", on_delete=models.CASCADE
+        "Subsections",
+        verbose_name="ID Подраздела",
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
     )
     text = models.TextField(verbose_name="Описание", max_length=40000)
     is_active = models.BooleanField(verbose_name="видимость", default=True)
