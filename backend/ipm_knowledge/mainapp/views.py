@@ -1,7 +1,12 @@
 from authapp.models import Departments
 from django.conf import settings
 from django.shortcuts import render
-from mainapp.filters import FilesFilter, SectionsFilter, SubsectionsFilter, ArticlesFilter
+from mainapp.filters import (
+    ArticlesFilter,
+    FilesFilter,
+    SectionsFilter,
+    SubsectionsFilter,
+)
 from mainapp.models import Articles, Files, Images, Menu, Sections, Subsections
 from mainapp.serializers import (
     ArticlesSerializer,
@@ -29,11 +34,11 @@ class MenuViewSet(
     mixins.RetrieveModelMixin,
 ):
     serializer_class = MenuSerializer
-    queryset = Menu.objects.all().filter(is_active=True)
+    queryset = Menu.objects.all()
     permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
 
     def list(self, request, *args, **kwargs):
-        queryset = Menu.objects.all().filter(is_active=True).filter(depart_id=request.user.depart_id)
+        queryset = Menu.objects.all().filter(depart_id=request.user.depart_id)
 
         page = self.paginate_queryset(queryset)
         if page is not None:
@@ -53,7 +58,7 @@ class SectionsViewSet(
     mixins.RetrieveModelMixin,
 ):
     serializer_class = SectionsSerializer
-    queryset = Sections.objects.all().filter(is_active=True)
+    queryset = Sections.objects.all()
     permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
     filterset_class = SectionsFilter
 
@@ -67,7 +72,7 @@ class SubsectionsViewSet(
     mixins.RetrieveModelMixin,
 ):
     serializer_class = SubsectionsSerializer
-    queryset = Subsections.objects.all().filter(is_active=True)
+    queryset = Subsections.objects.all()
     permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
     filterset_class = SubsectionsFilter
 
@@ -81,13 +86,23 @@ class ArticleViewSet(
     mixins.RetrieveModelMixin,
 ):
     serializer_class = ArticlesSerializer
-    queryset = Articles.objects.all().filter(is_active=True)
+    queryset = Articles.objects.all()
     permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
     filterset_class = ArticlesFilter
 
-    def perform_destroy(self, instance):
-        instance.is_active = False
-        instance.save()
+    def perform_create(self, serializer):
+        if self.request.data["menu_id"]:
+            parent = Menu.objects.get(id=self.request.data["menu_id"])
+            parent.is_article = True
+            parent.save()
+        elif self.request.data["section_id"]:
+            parent = Sections.objects.get(id=self.request.data["section_id"])
+            parent.is_article = True
+            parent.save()
+        elif self.request.data["subsection_id"]:
+            parent = Subsections.objects.get(id=self.request.data["subsection_id"])
+            parent.is_article = True
+            parent.save()
 
 
 class FilesViewSet(
@@ -99,7 +114,7 @@ class FilesViewSet(
     mixins.RetrieveModelMixin,
 ):
     serializer_class = FilesSerializer
-    queryset = Files.objects.all().filter(is_active=True)
+    queryset = Files.objects.all()
     filterset_class = FilesFilter
     permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
 

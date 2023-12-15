@@ -3,8 +3,9 @@ from django.db import models
 
 
 class Departments(models.Model):
-    name = models.CharField(verbose_name="наименование отдела", max_length=50, unique=True)
-    is_active = models.BooleanField(verbose_name="Видимость", default=True)
+    name = models.CharField(
+        verbose_name="наименование отдела", max_length=50, unique=True
+    )
 
     def __str__(self):
         return f"{self.name}"

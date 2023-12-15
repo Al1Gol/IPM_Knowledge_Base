@@ -6,7 +6,7 @@ from rest_framework.serializers import ModelSerializer
 class MenuSerializer(ModelSerializer):
     class Meta:
         model = Menu
-        fields = ["id", "name", "img"]
+        fields = ["id", "name", "img", "is_article"]
 
     def create(self, validated_data):
         return Menu.objects.create(**validated_data)
@@ -17,7 +17,7 @@ class SectionsSerializer(ModelSerializer):
 
     class Meta:
         model = Sections
-        fields = ["id", "menu_id", "name", "img", "depart_id"]
+        fields = ["id", "menu_id", "name", "img", "depart_id", "is_article"]
 
     def create(self, validated_data):
         return Sections.objects.create(**validated_data)
@@ -28,7 +28,7 @@ class SubsectionsSerializer(ModelSerializer):
 
     class Meta:
         model = Subsections
-        fields = ["id", "section_id", "name", "img", "depart_id"]
+        fields = ["id", "section_id", "name", "img", "depart_id", "is_article"]
 
     def create(self, validated_data):
         return Subsections.objects.create(**validated_data)
@@ -53,7 +53,15 @@ class ArticlesSerializer(ModelSerializer):
     class Meta:
         model = Articles
 
-        fields = ["id", "subsection_id", "text", "depart_id", "files"]
+        fields = [
+            "id",
+            "menu_id",
+            "section_id",
+            "subsection_id",
+            "text",
+            "depart_id",
+            "files",
+        ]
 
     def create(self, validated_data):
         depart_id = serializers.IntegerField(

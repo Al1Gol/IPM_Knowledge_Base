@@ -17,10 +17,10 @@ class Menu(models.Model):
     depart_id = models.ForeignKey(
         "authapp.Departments",
         verbose_name="Отдел",
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         default=1,
     )
-    is_active = models.BooleanField(verbose_name="видимость", default=True)
+    is_article = models.BooleanField(verbose_name="видимость", default=False)
 
     def __str__(self):
         return self.name
@@ -39,7 +39,7 @@ class Sections(models.Model):
         blank=True,
         null=True,
     )
-    is_active = models.BooleanField(verbose_name="видимость", default=True)
+    is_article = models.BooleanField(verbose_name="видимость", default=False)
 
     def __str__(self):
         return self.name
@@ -58,7 +58,7 @@ class Subsections(models.Model):
         blank=True,
         null=True,
     )
-    is_active = models.BooleanField(verbose_name="видимость", default=True)
+    is_article = models.BooleanField(verbose_name="видимость", default=False)
 
     def __str__(self):
         return self.name
@@ -68,26 +68,26 @@ class Articles(models.Model):
     menu_id = models.OneToOneField(
         "Menu",
         verbose_name="ID Меню",
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         blank=True,
         null=True,
     )
     section_id = models.OneToOneField(
         "Sections",
         verbose_name="ID Раздела",
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         blank=True,
         null=True,
     )
     subsection_id = models.OneToOneField(
         "Subsections",
         verbose_name="ID Подраздела",
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         blank=True,
         null=True,
     )
     text = models.TextField(verbose_name="Описание", max_length=40000)
-    is_active = models.BooleanField(verbose_name="видимость", default=True)
+    is_article = models.BooleanField(verbose_name="видимость", default=False)
 
     def __str__(self):
         return self.text
@@ -95,11 +95,11 @@ class Articles(models.Model):
 
 class Files(models.Model):
     article_id = models.ForeignKey(
-        "Articles", related_name="files", on_delete=models.CASCADE
+        "Articles", related_name="files", on_delete=models.PROTECT
     )
     name = models.CharField(verbose_name="название файла", max_length=200)
     file = models.FileField(upload_to="files/", verbose_name="файлы")
-    is_active = models.BooleanField(verbose_name="видимость", default=True)
+    is_article = models.BooleanField(verbose_name="видимость", default=False)
 
     def __str__(self):
         return self.name
