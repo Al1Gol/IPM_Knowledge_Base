@@ -1,5 +1,6 @@
 from authapp.models import Departments
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.shortcuts import render
 from mainapp.filters import (
     ArticlesFilter,
@@ -91,18 +92,24 @@ class ArticleViewSet(
     filterset_class = ArticlesFilter
 
     def perform_create(self, serializer):
+        count_parent = 0
         if self.request.data["menu_id"]:
+            count_parent += 1
             parent = Menu.objects.get(id=self.request.data["menu_id"])
             parent.is_article = True
-            parent.save()
-        elif self.request.data["section_id"]:
+        if self.request.data["section_id"]:
+            count_parent += 1
             parent = Sections.objects.get(id=self.request.data["section_id"])
             parent.is_article = True
-            parent.save()
-        elif self.request.data["subsection_id"]:
+        if self.request.data["subsection_id"]:
+            count_parent += 1
             parent = Subsections.objects.get(id=self.request.data["subsection_id"])
             parent.is_article = True
-            parent.save()
+        if (count_parent > 1) or (count_parent == 0):
+            raise ValidationError(
+                f"Статья может иметь привязку к одному родительскому элементу. Текущее количество родительских элементов - {count_parent}"
+            )
+        parent.save()
 
 
 class FilesViewSet(

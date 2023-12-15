@@ -29,3 +29,17 @@ def validate_file_extension(value):
     valid_extensions = [".svg"]
     if not ext.lower() in valid_extensions:
         raise ValidationError("Поддеживается загрузка только svg файлов")
+
+
+# Валидации родителя статьи
+def validate(data):
+    errors = []
+    if "contact_phone" not in data:
+        errors.append("Contact phone field is required.")
+
+    if "ticket_type" not in data:
+        errors.append("Ticket type field is required.")
+    # TODO check if ticket_type is one of available choices
+
+    if errors:
+        raise ValidationError(errors)
