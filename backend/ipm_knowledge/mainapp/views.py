@@ -69,6 +69,7 @@ class SectionsViewSet(
             raise ValidationError(
                 "Данный родитель уже используется для хранения статьи"
             )
+        serializer.save()
 
 
 class SubsectionsViewSet(
@@ -90,6 +91,7 @@ class SubsectionsViewSet(
             raise ValidationError(
                 "Данный родитель уже используется для хранения статьи"
             )
+        serializer.save()
 
 
 class ArticleViewSet(
@@ -108,15 +110,15 @@ class ArticleViewSet(
     # Валидация количества родителей и выставление отметки is_article для родителя
     def perform_create(self, serializer):
         count_parent = 0
-        if self.request.data["menu_id"]:
+        if self.request.GET.get("menu_id"):
             count_parent += 1
             parent = Menu.objects.get(id=self.request.data["menu_id"])
             parent.is_article = True
-        if self.request.data["section_id"]:
+        if self.request.GET.get("section_id"):
             count_parent += 1
             parent = Sections.objects.get(id=self.request.data["section_id"])
             parent.is_article = True
-        if self.request.data["subsection_id"]:
+        if self.request.GET.get("subsection_id"):
             count_parent += 1
             parent = Subsections.objects.get(id=self.request.data["subsection_id"])
             parent.is_article = True
