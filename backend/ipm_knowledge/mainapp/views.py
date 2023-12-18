@@ -63,6 +63,13 @@ class SectionsViewSet(
     permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
     filterset_class = SectionsFilter
 
+    def perform_create(self, serializer):
+        parent = Menu.objects.get(id=self.request.data["menu_id"])
+        if parent.is_article == True:
+            raise ValidationError(
+                "Данный родитель уже используется для хранения статьи"
+            )
+
 
 class SubsectionsViewSet(
     GenericViewSet,
@@ -76,6 +83,13 @@ class SubsectionsViewSet(
     queryset = Subsections.objects.all()
     permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
     filterset_class = SubsectionsFilter
+
+    def perform_create(self, serializer):
+        parent = Sections.objects.get(id=self.request.data["section_id"])
+        if parent.is_article == True:
+            raise ValidationError(
+                "Данный родитель уже используется для хранения статьи"
+            )
 
 
 class ArticleViewSet(
@@ -91,6 +105,7 @@ class ArticleViewSet(
     permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
     filterset_class = ArticlesFilter
 
+    # Валидация количества родителей и выставление отметки is_article для родителя
     def perform_create(self, serializer):
         count_parent = 0
         if self.request.data["menu_id"]:
@@ -110,6 +125,21 @@ class ArticleViewSet(
                 f"Статья может иметь привязку к одному родительскому элементу. Текущее количество родительских элементов - {count_parent}"
             )
         parent.save()
+        serializer.save()
+
+    # Необходимо дописать снятие галочки is_article при удалении статьи
+    def perform_destroy(self, instance):
+        if instance.menu_id:
+            parent = Menu.objects.get(id=instance.menu_id.id)
+            parent.is_article = False
+        elif instance.section_id:
+            parent = Sections.objects.get(id=instance.section_id.id)
+            parent.is_article = False
+        elif instance.subsection_id:
+            parent = Subsections.objects.get(id=instance.subsection_id.id)
+            parent.is_article = False
+        parent.save()
+        instance.delete()
 
 
 class FilesViewSet(
