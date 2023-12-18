@@ -1,3 +1,9 @@
 .hidden{
   display: hidden;
 }
+
+@font-face {
+  font-family: 'gothampro'!important;
+  src: local(gothampro), url(./fonts/gothampro_medium.ttf) format('truetype');
+  font-weight: normal;
+}

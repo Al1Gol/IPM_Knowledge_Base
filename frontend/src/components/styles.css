@@ -1,0 +1,80 @@
+/*Базовое оформление*/
+.container {
+  display: flex;
+  flex-direction: initial;
+}
+
+
+p{
+  margin: 0; 
+}
+
+.left {
+  display: flex;
+  padding-right: 5px;
+  flex-direction: column;
+  flex: 1;
+}
+
+.right {
+  display: flex;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.ql, .quill {
+  overflow-wrap: anywhere;
+}
+
+.ql-editor p, .quill, .ql-editor ol, .ql-editor ul, .ql-editor pre, .ql-editor blockquote, .ql-editor h1, .ql-editor h2, .ql-editor h3, .ql-editor h4, .ql-editor h5, .ql-editor h6 {
+  word-break: break-all;
+}
+
+
+/* Оформление страницы авторизации */
+.LoginPage {
+  background-image: url('../img/bgLoginPage.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Logo{
+  margin-top: 50px;
+  width: 315px;
+}
+
+
+.LoginForm {
+  margin-top: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 380px;
+  top: 389px;
+  left: 770px;
+  border-radius: 15px;
+  background-color: #FFFFFF;
+  padding: 40px 60px 45px 60px;
+}
+
+.LoginForm>input {
+  width: 257px;
+  height: 45px;
+  border: 0cap;
+  background-color: #DDF0FC;
+}
+
+.LoginForm>p {
+  font: 'Gotham Pro';
+  margin-bottom: 58px;
+  font-size: 20px;
+  line-height: 19px;
+}
