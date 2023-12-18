@@ -1,23 +1,22 @@
 import React from 'react'
 
-// Элемент меню
-function MenuItem () {
+const MenuItem = ({menu, getSections}) => {
     return (
         <div>
-            <button> <img src='' alt=''></img> Меню </button>
+            <button onClick = {() => getSections(menu.id)}> <img src={menu.img ? menu.img : ''} alt=''></img> {menu.name} </button>
             <button>edit</button>
         </div>
     )
 }
-// Список меню
-export default function MenuList () {
+// временная заглушка на onClick
+const MenuList = ({ menu_list, getSections, onFormDisplay}) => {
     return (
         <div>
-            <MenuItem/>
-            <MenuItem/>
-            <MenuItem/>
-            <MenuItem/>
+            {menu_list.map((el_menu) => <MenuItem menu={el_menu} getSections={getSections} />)}
+            <button onClick = {() => onFormDisplay()}> <img src='' alt='+' ></img>Добавить меню </button>
             <hr></hr>
         </div>
     )
 }
+
+export default MenuList;

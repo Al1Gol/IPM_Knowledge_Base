@@ -1,5 +1,10 @@
 import React from 'react';
 import { Navigate } from "react-router-dom"
+import Logo from '../img/logo.png'
+import './styles.css';
+import '../index.css';
+import '../App.css';
+import '../fonts/gothampro-black.css'
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -10,7 +15,6 @@ class LoginForm extends React.Component {
     }
 
 }
-
 
 //Присваивает параметру value значение из параметра name
 //позволяет передавать содержимое поля в value
@@ -30,11 +34,15 @@ handleSubmit(event) {
     // логину и паролю присваиваем value равное стэйту, в этом случае значение поля будет передаваться в сам стэйт и подтягиваться из него
     render () {
         return (
-            <form onSubmit={(event) => this.handleSubmit(event) }>
-                <input type="text" name="login" placeholder="login" value={this.state.login}  onChange={(event) => this.handleChange(event)} /> 
-                <input type="password" name="password" placeholder="password" value={this.state.password}  onChange={(event) => this.handleChange(event)} />
-                <input type="submit" value="Вход" />
-            </form>
+            <div className='LoginPage'>
+                <img className="Logo" src={Logo}></img>
+                <form className='LoginForm' onSubmit={(event) => this.handleSubmit(event) }>
+                    <p>Авторизация</p>
+                    <input type="text" name="login" placeholder="Логин" value={this.state.login}  onChange={(event) => this.handleChange(event)} /> 
+                    <input type="password" name="password" placeholder="Пароль" value={this.state.password}  onChange={(event) => this.handleChange(event)} />
+                    <input type="submit" value="Вход" />
+                </form>
+            </div>
         )
         }
 }
