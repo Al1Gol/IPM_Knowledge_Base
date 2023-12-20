@@ -29,15 +29,19 @@ class RequestLogMiddleware:
             "request_path": request.get_full_path(),
         }
 
-        # Only logging "*/api/*" patterns
-        if "/api/" in str(request.get_full_path()) and "form-data" in str(request.headers):
+        # Обработка только "*/api/*" шаблонов
+        if "/api/" in str(request.get_full_path()) and "form-data" in str(
+            request.headers
+        ):
             req_body = parser.parse(request.POST.urlencode())
             log_data["request_body"] = req_body
-        elif "/api/" in str(request.get_full_path()) and "application/json" in str(request.headers):
+        elif "/api/" in str(request.get_full_path()) and "application/json" in str(
+            request.headers
+        ):
             req_body = parser.parse(request.POST.urlencode()) if request.body else {}
             log_data["request_body"] = req_body
 
-        # request passes on to controller
+        # request передается обработчику
         response = self.get_response(request)
 
         request_logger.info(msg=log_data)
