@@ -60,7 +60,9 @@ class Articles(models.Model):
         blank=True,
         null=True,
     )
-    name = models.CharField(verbose_name="Наименование статьи", max_length=200)
+    name = models.CharField(
+        verbose_name="Наименование статьи", max_length=200, unique=True
+    )
     text = models.TextField(verbose_name="Описание", max_length=40000)
     is_article = models.BooleanField(verbose_name="видимость", default=False)
 
