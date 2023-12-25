@@ -1,17 +1,11 @@
 from django_filters import rest_framework as filters
-from mainapp.models import Files, Sections, Subsections, Articles
+from mainapp.models import Articles, Files, Sections
 
 
 class SectionsFilter(filters.FilterSet):
     class Meta:
         model = Sections
         fields = ["menu_id"]
-
-
-class SubsectionsFilter(filters.FilterSet):
-    class Meta:
-        model = Subsections
-        fields = ["section_id"]
 
 
 class FilesFilter(filters.FilterSet):
@@ -23,4 +17,4 @@ class FilesFilter(filters.FilterSet):
 class ArticlesFilter(filters.FilterSet):
     class Meta:
         model = Articles
-        fields = ["subsection_id"]
+        fields = ["menu_id", "section_id"]

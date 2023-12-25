@@ -2,20 +2,14 @@ from authapp.models import Departments
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.shortcuts import render
-from mainapp.filters import (
-    ArticlesFilter,
-    FilesFilter,
-    SectionsFilter,
-    SubsectionsFilter,
-)
-from mainapp.models import Articles, Files, Images, Menu, Sections, Subsections
+from mainapp.filters import ArticlesFilter, FilesFilter, SectionsFilter
+from mainapp.models import Articles, Files, Images, Menu, Sections,
 from mainapp.serializers import (
     ArticlesSerializer,
     FilesSerializer,
     ImagesSerializer,
     MenuSerializer,
     SectionsSerializer,
-    SubsectionsSerializer,
 )
 from rest_framework import mixins
 from rest_framework.response import Response
@@ -72,28 +66,6 @@ class SectionsViewSet(
         serializer.save()
 
 
-class SubsectionsViewSet(
-    GenericViewSet,
-    mixins.CreateModelMixin,
-    mixins.DestroyModelMixin,
-    mixins.ListModelMixin,
-    mixins.UpdateModelMixin,
-    mixins.RetrieveModelMixin,
-):
-    serializer_class = SubsectionsSerializer
-    queryset = Subsections.objects.all()
-    permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
-    filterset_class = SubsectionsFilter
-
-    def perform_create(self, serializer):
-        parent = Sections.objects.get(id=self.request.data["section_id"])
-        if parent.is_article == True:
-            raise ValidationError(
-                "Данный родитель уже используется для хранения статьи"
-            )
-        serializer.save()
-
-
 class ArticleViewSet(
     GenericViewSet,
     mixins.CreateModelMixin,
@@ -118,10 +90,6 @@ class ArticleViewSet(
             count_parent += 1
             parent = Sections.objects.get(id=self.request.data["section_id"])
             parent.is_article = True
-        if self.request.POST.get("subsection_id"):
-            count_parent += 1
-            parent = Subsections.objects.get(id=self.request.data["subsection_id"])
-            parent.is_article = True
         if (count_parent > 1) or (count_parent == 0):
             raise ValidationError(
                 f"Статья может иметь привязку к одному родительскому элементу. Текущее количество родительских элементов - {count_parent}"
@@ -136,9 +104,6 @@ class ArticleViewSet(
             parent.is_article = False
         elif instance.section_id:
             parent = Sections.objects.get(id=instance.section_id.id)
-            parent.is_article = False
-        elif instance.subsection_id:
-            parent = Subsections.objects.get(id=instance.subsection_id.id)
             parent.is_article = False
         parent.save()
         instance.delete()
