@@ -42,6 +42,7 @@ class ArticlesSerializer(ModelSerializer):
 
         fields = [
             "id",
+            "name",
             "menu_id",
             "section_id",
             "text",
