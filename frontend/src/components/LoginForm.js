@@ -38,9 +38,9 @@ handleSubmit(event) {
                 <img className="Logo" src={Logo}></img>
                 <form className='LoginForm' onSubmit={(event) => this.handleSubmit(event) }>
                     <p>Авторизация</p>
-                    <input type="text" name="login" placeholder="Логин" value={this.state.login}  onChange={(event) => this.handleChange(event)} /> 
-                    <input type="password" name="password" placeholder="Пароль" value={this.state.password}  onChange={(event) => this.handleChange(event)} />
-                    <input type="submit" value="Вход" />
+                    <input class="login-input" type="text" name="login" placeholder="Логин" value={this.state.login}  onChange={(event) => this.handleChange(event)} /> 
+                    <input class="login-input" type="password" name="password" placeholder="Пароль" value={this.state.password}  onChange={(event) => this.handleChange(event)} />
+                    <input class="login-btn" type="submit" value="Вход" />
                 </form>
             </div>
         )

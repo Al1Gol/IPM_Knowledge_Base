@@ -40,6 +40,7 @@ html, body {
   background-repeat: no-repeat;
   background-position: center;
   background-size:cover;
+  background-attachment: fixed;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -57,9 +58,6 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 380px;
-  top: 389px;
-  left: 770px;
   border-radius: 15px;
   background-color: #FFFFFF;
   padding: 40px 60px 45px 60px;
@@ -77,4 +75,17 @@ html, body {
   margin-bottom: 58px;
   font-size: 20px;
   line-height: 19px;
+}
+
+.login-input{
+  margin-bottom: 36px;
+  border-radius: 5px;
+  padding-left: 15px;
+}
+
+.login-btn{
+  margin-top: 24px;
+  background-color: #4A7BAB !important;
+  border-radius: 5px;
+  color: #ffffff;
 }
