@@ -7,6 +7,7 @@ import CreateMenu from './components/CreateMenu';
 import {BrowserRouter, Route, Routes, useLocation,} from 'react-router-dom'
 import './App.css';
 import './fonts/gothampro-black.css'
+import Logo from './img/icons/LogoMain.png'
 
 
 // Отрисовка ошибки 404
@@ -20,13 +21,14 @@ const NotFound = () => {
     )
 }
 
+//Текущий адрес сервера
+const backend_addr = 'http://127.0.0.1:8000/api/v1'
 
 // Главное приложение
 class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            'backend_addr' : 'http://127.0.0.1:8000/api/v1', //Текущий адрес сервера
             'token': '', // Токен
             'refresh_token': [], // Токен обновления
             'menu': [], // Список меню
@@ -98,7 +100,7 @@ class App extends React.Component {
     // Получаем токен для работы с токеном
     // Требуется логин и пароль для получения
     getAuthToken(username, password){
-      axios.post(`${this.state.backend_addr}/token/`, {"username":username, "password":password})
+      axios.post(`${backend_addr}/token/`, {"username":username, "password":password})
         .then(response => {
             let token = response.data.access
             this.setState({
@@ -117,7 +119,7 @@ class App extends React.Component {
     getMenu() {
         let headers = this.getHeadears()
         axios
-        .get(`${this.state.backend_addr}/menu/`, {headers})
+        .get(`${backend_addr}/menu/`, {headers})
         .then(response => {
             let menu_list = response.data
             this.setState({
@@ -143,7 +145,7 @@ class App extends React.Component {
         if (this.state.current_menu.length === 0 || this.state.current_menu.id !== id) {
             let headers = this.getHeadears()
             axios
-            .get(`${this.state.backend_addr}/sections/?menu_id=${id}`, {headers})
+            .get(`${backend_addr}/sections/?menu_id=${id}`, {headers})
             .then(response => {
                 let sections = response.data
                 this.setState({
@@ -175,9 +177,10 @@ class App extends React.Component {
       let body = {}
    
         body = new FormData();
-        body.append('img', img);
         body.append('name', name);
-      
+        if (img) {
+            body.append('img', img);          
+        } 
       return body
   }
 
@@ -185,7 +188,7 @@ class App extends React.Component {
   addMenu(name, img) {
       let headers = this.getHeadears()
       axios
-      .post(`${this.state.backend_addr}/menu/`, this.iconsFormData(name, img), {headers})
+      .post(`${backend_addr}/menu/`, this.iconsFormData(name, img), {headers})
       .then(response => {
         this.getMenu()
         console.log(response)
@@ -215,19 +218,22 @@ editMenu(id) {
     render () {
       if (this.isAuth()) {
           return (
-            <div>
+            <div className="MainPage">
+            <header>
+                <img className="Logo" src={Logo} alt='logo'></img>
+                <div className='logoutBtn' onClick={() => this.logOut()} >
+                    { this.isAuth() ? <p>Выход</p> : '' }
+                </div>
+            </header>
             <BrowserRouter>
-              <nav>
-                <li>
-                  { this.isAuth() ? <button onClick={() => this.logOut()} >Выход</button> : '' }
-                </li>
-              </nav>
-              <hr></hr>
               <Routes>
                   <Route exact path='/' element= 
                     {this.isAuth() ? 
                       <MenuList menu_list={this.state.menu} getSections = {(id) => this.getSections(id)} onFormDisplay = {() => this.onFormDisplay()} /> : 
-                      <LoginForm getAuthToken={(username, password) => this.getAuthToken(username, password)} />} />
+                      <LoginForm getAuthToken={(username, password) => this.getAuthToken(username, password)} />
+                    } 
+                  />
+
                   <Route exact path='/main' element= {<MenuList menu_list={this.state.menu} />} />
                   <Route path='*' element = {<NotFound />} />
               </Routes>
@@ -250,37 +256,6 @@ editMenu(id) {
           </BrowserRouter>
         )
       }
-        
-      /*
-        return (
-            <div>
-            <BrowserRouter>
-              <nav>
-                <li>
-                  { this.isAuth() ? <button onClick={() => this.logOut()} >Выход</button> : '' }
-                </li>
-              </nav>
-              <hr></hr>
-              <Routes>
-                  <Route exact path='/' element= 
-                    {this.isAuth() ? 
-                      <MenuList menu_list={this.state.menu} getSections = {(id) => this.getSections(id)} onFormDisplay = {() => this.onFormDisplay()} /> : 
-                      <LoginForm getAuthToken={(username, password) => this.getAuthToken(username, password)} />} />
-                  <Route exact path='/main' element= {<MenuList menu_list={this.state.menu} />} />
-                  <Route path='*' element = {<NotFound />} />
-              </Routes>
-                  <>
-                     <Sections sections={this.state.sections}/> 
-                  </>
-                  <>
-                      <CreateMenu hidden_edit_menu = {this.hidden_edit_menu} addMenu = {(name, img) => this.addMenu(name, img)} onFormDisplay = {() => this.onFormDisplay()} /> 
-                  </>   
-                  <Editor/> 
-            </BrowserRouter>
-
-            </div>
-        )
-      */
     }
 }
 export default App;

@@ -1,10 +1,19 @@
 import React from 'react'
+import classNames from 'classnames';
+
+import EditImg from '../img/icons/edit.svg'
 
 const MenuItem = ({menu, getSections}) => {
     return (
-        <div>
-            <button onClick = {() => getSections(menu.id)}> <img src={menu.img ? menu.img : ''} alt=''></img> {menu.name} </button>
-            <button>edit</button>
+        <div className='menuBtn' onClick = {() => getSections(menu.id)}> 
+            <div>
+                <div className='sidebar'></div>
+                {menu.img ? <img src= {menu.img}  className="menuIcon" alt=''></img>: ''}
+                <div className='sidebar'>
+                    <img src={EditImg} className='editBtn' alt=''></img>
+                </div>
+            </div>
+            <p>{menu.name}</p>
         </div>
     )
 }
@@ -13,8 +22,10 @@ const MenuList = ({ menu_list, getSections, onFormDisplay}) => {
     return (
         <div>
             {menu_list.map((el_menu) => <MenuItem menu={el_menu} getSections={getSections} />)}
-            <button onClick = {() => onFormDisplay()}> <img src='' alt='+' ></img>Добавить меню </button>
-            <hr></hr>
+            <div className={classNames('menuBtn', 'createMenuBtn')}  onClick = {() => onFormDisplay()}>
+                <img src='' alt='' ></img>
+                <p>Добавить меню </p>
+            </div>
         </div>
     )
 }

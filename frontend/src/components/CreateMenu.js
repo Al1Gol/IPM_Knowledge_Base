@@ -6,7 +6,7 @@ class CreateMenu extends React.Component {
         super(props)
         this.state = {
             'name' : null, //Имя
-            'img': null, // Иконка, необходимо реализовать использование только svg файла
+            'img': null, //Иконка
         }   
     }   
 
@@ -29,7 +29,7 @@ handleSubmit(event) {
 // Перехватываем загруженный файл
 onFileChange(event) {
     // Обновляем стейт
-    this.setState({ img: event.target.files[0] });
+    this.setState({ 'img': event.target.files[0] });
 };
 
 
@@ -41,7 +41,7 @@ onFileChange(event) {
                 Добавить меню
                 <form onSubmit={(event) => this.handleSubmit(event) }>
                     <input type="button" value="Удалить" onClick = {() => this.props.onFormDisplay()}/>
-                    <input type="file" onChange={this.onFileChange}/> 
+                    <input type="file" onChange={(event) => this.onFileChange(event)}/> 
                     <input type="text" placeholder="name" name="name" value={this.state.name} onChange={(event) => this.handleChange(event)} />
                     <input type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/>
                     <input type="submit" value="Сохранить" />

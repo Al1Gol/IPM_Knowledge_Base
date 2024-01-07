@@ -1,5 +1,4 @@
 import React from 'react';
-import { Navigate } from "react-router-dom"
 import Logo from '../img/logo.png'
 import './styles.css';
 import '../index.css';
@@ -35,12 +34,12 @@ handleSubmit(event) {
     render () {
         return (
             <div className='LoginPage'>
-                <img className="Logo" src={Logo}></img>
+                <img className="LogoLogin" src={Logo} alt='logo'></img>
                 <form className='LoginForm' onSubmit={(event) => this.handleSubmit(event) }>
                     <p>Авторизация</p>
-                    <input class="login-input" type="text" name="login" placeholder="Логин" value={this.state.login}  onChange={(event) => this.handleChange(event)} /> 
-                    <input class="login-input" type="password" name="password" placeholder="Пароль" value={this.state.password}  onChange={(event) => this.handleChange(event)} />
-                    <input class="login-btn" type="submit" value="Вход" />
+                    <input className="login-input" type="text" name="login" placeholder="Логин" value={this.state.login}  onChange={(event) => this.handleChange(event)} /> 
+                    <input className="login-input" type="password" name="password" placeholder="Пароль" value={this.state.password}  onChange={(event) => this.handleChange(event)} />
+                    <input className="login-btn" type="submit" value="Вход" />
                 </form>
             </div>
         )
