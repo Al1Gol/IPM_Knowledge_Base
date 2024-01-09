@@ -241,3 +241,19 @@ header{
   width: 1029px;
   font-size: 16px;
 }
+
+.createIcon{
+  margin-bottom: 50px;
+}
+
+.confirmGroup{
+  display: flex;
+  justify-content: space-between;
+}
+
+.confirmBtn{
+  background: #79A0CC;
+  padding: 14px;
+  border: 0;
+  font-size: 20px;
+}

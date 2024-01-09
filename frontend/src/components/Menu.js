@@ -1,5 +1,4 @@
 import React from 'react'
-import classNames from 'classnames';
 
 import EditImg from '../img/icons/edit.svg'
 
@@ -22,7 +21,7 @@ const MenuList = ({ menu_list, getSections, onFormDisplay}) => {
     return (
         <div>
             {menu_list.map((el_menu) => <MenuItem menu={el_menu} getSections={getSections} />)}
-            <div className={classNames('menuBtn', 'createMenuBtn')}  onClick = {() => onFormDisplay()}>
+            <div className={'menuBtn'}  onClick = {() => onFormDisplay()}>
                 <img src='' alt='' ></img>
                 <p>Добавить меню </p>
             </div>

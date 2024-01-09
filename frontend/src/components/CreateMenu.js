@@ -43,9 +43,11 @@ onFileChange(event) {
                             <p>Название</p>
                             <input type="text" className="nameInput" placeholder="Наименование пункта" name="name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
                             <p>Добавить иконку</p>
-                            <input className ="createIcon" type="file" title=" " onChange={(event) => this.onFileChange(event)}/> <br/>
-                            <input type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/><br/>
-                            <input type="submit" value="Создать" />
+                            <input id="file"className ="createIcon" type="file" title=" " onChange={(event) => this.onFileChange(event)}/> <br/>
+                            <div className="confirmGroup">
+                                <input className="confirmBtn" type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/>
+                                <input className="confirmBtn" type="submit" value="Сохранить" />
+                            </div>
                         </form>
                 </div>
             )
