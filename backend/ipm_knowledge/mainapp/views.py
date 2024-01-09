@@ -3,7 +3,7 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.shortcuts import render
 from mainapp.filters import ArticlesFilter, FilesFilter, SectionsFilter
-from mainapp.models import Articles, Files, Images, Menu, Sections,
+from mainapp.models import Articles, Files, Images, Menu, Sections
 from mainapp.serializers import (
     ArticlesSerializer,
     FilesSerializer,
@@ -82,11 +82,11 @@ class ArticleViewSet(
     # Валидация количества родителей и выставление отметки is_article для родителя
     def perform_create(self, serializer):
         count_parent = 0
-        if self.request.POST.get("menu_id"):
+        if self.request.POST.get("menu_id") or self.request.data.get("menu_id"):
             count_parent += 1
             parent = Menu.objects.get(id=self.request.data["menu_id"])
             parent.is_article = True
-        if self.request.POST.get("section_id"):
+        if self.request.POST.get("section_id") or self.request.data.get("section_id"):
             count_parent += 1
             parent = Sections.objects.get(id=self.request.data["section_id"])
             parent.is_article = True
