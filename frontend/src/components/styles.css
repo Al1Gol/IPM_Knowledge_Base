@@ -197,3 +197,47 @@ header{
     #355E8B 20%
     );
 }
+
+.modal{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.createForm {
+  position: fixed;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 15px 16px 26px 12px;
+  z-index: 9999;
+  margin: auto;
+  width: 1058px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.createForm>h3{
+    margin: 0 0 35px 0;
+    font-size: 30px;
+    font-weight: normal 
+}
+
+.createForm>p{
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.nameInput{
+  border: 1px solid #777676;
+  margin-bottom: 37px;
+  border-radius: 5px;
+  height: 45px;
+  width: 1029px;
+  font-size: 16px;
+}

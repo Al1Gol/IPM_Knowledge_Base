@@ -36,18 +36,19 @@ onFileChange(event) {
     // Рендер формы
     // логину и паролю присваиваем value равное стэйту, в этом случае значение поля будет передаваться в сам стэйт и подтягиваться из него
     render () {
-        return (
-            <div id ="panel" className={ this.props.hidden_edit_menu ? "hidden" :  " "}>
-                Добавить меню
-                <form onSubmit={(event) => this.handleSubmit(event) }>
-                    <input type="button" value="Удалить" onClick = {() => this.props.onFormDisplay()}/>
-                    <input type="file" onChange={(event) => this.onFileChange(event)}/> 
-                    <input type="text" placeholder="name" name="name" value={this.state.name} onChange={(event) => this.handleChange(event)} />
-                    <input type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/>
-                    <input type="submit" value="Сохранить" />
-                </form>
-            </div>
-        )
+            return (
+                <div class="modal">
+                        <form className ="createForm" onSubmit={(event) => this.handleSubmit(event) }>
+                            <h3>Создание пункта меню</h3>
+                            <p>Название</p>
+                            <input type="text" className="nameInput" placeholder="Наименование пункта" name="name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
+                            <p>Добавить иконку</p>
+                            <input className ="createIcon" type="file" title=" " onChange={(event) => this.onFileChange(event)}/> <br/>
+                            <input type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/><br/>
+                            <input type="submit" value="Создать" />
+                        </form>
+                </div>
+            )
         }
 }
 

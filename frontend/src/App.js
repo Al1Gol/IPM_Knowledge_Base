@@ -218,7 +218,7 @@ editMenu(id) {
     render () {
       if (this.isAuth()) {
           return (
-            <div className="MainPage">
+            <div className="MainPage bkg_blur">
             <header>
                 <img className="Logo" src={Logo} alt='logo'></img>
                 <div className='logoutBtn' onClick={() => this.logOut()} >
