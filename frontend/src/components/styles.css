@@ -208,7 +208,7 @@ header{
   transform: translate(-50%, -50%);
 }
 
-.createForm {
+.modalForm {
   position: fixed;
   background-color: #FFFFFF;
   border-radius: 5px;
@@ -222,13 +222,13 @@ header{
   transform: translate(-50%, -50%);
 }
 
-.createForm>h3{
+.modalForm>h3{
     margin: 0 0 35px 0;
     font-size: 30px;
     font-weight: normal 
 }
 
-.createForm>p{
+.modalForm>p{
   font-size: 16px;
   margin-bottom: 12px;
 }
@@ -256,4 +256,11 @@ header{
   padding: 14px;
   border: 0;
   font-size: 20px;
+}
+
+#menuAdd{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }

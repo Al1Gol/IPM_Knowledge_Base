@@ -39,7 +39,7 @@ class App extends React.Component {
             'current_subsection': [], //Текущие подразделы
             'article': [], //Статья
             'files': [], //Файлы статьи 
-            'hidden_edit_menu' : false //Оторажение модального окна создания меню
+            'hidden_modal' : false //Оторажение модального окна создания меню
         }
     }
 
@@ -207,9 +207,11 @@ editMenu(id) {
 
 
   //Отображение и скрытие формы редактирования и создания
-  onFormDisplay() {
+  onFormDisplay(target) {
+    console.log('target')
+    console.log(target)
     this.setState ({
-      'hidden_edit_menu': !this.state.hidden_edit_menu
+      'hidden_modal': !this.state.hidden_modal
     })
   }   
     // Рендер главного меню
@@ -229,7 +231,7 @@ editMenu(id) {
               <Routes>
                   <Route exact path='/' element= 
                     {this.isAuth() ? 
-                      <MenuList menu_list={this.state.menu} getSections = {(id) => this.getSections(id)} onFormDisplay = {() => this.onFormDisplay()} /> : 
+                      <MenuList menu_list={this.state.menu} getSections = {(id) => this.getSections(id)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : 
                       <LoginForm getAuthToken={(username, password) => this.getAuthToken(username, password)} />
                     } 
                   />
@@ -241,9 +243,13 @@ editMenu(id) {
                      <Sections sections={this.state.sections}/> 
                   </>
                   <>
-                      {this.state.hidden_edit_menu? 
-                        <CreateMenu addMenu = {(name, img) => this.addMenu(name, img)} onFormDisplay = {() => this.onFormDisplay()} /> : ''
-                      } 
+                      {this.state.hidden_modal? 
+                        <div className="modal">
+                          <form className ="modalForm" onSubmit={(event) => this.handleSubmit(event) }>
+                        <CreateMenu addMenu = {(name, img) => this.addMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> 
+                          </form>
+                        </div>
+                      : ''} 
                   </>   
             </BrowserRouter>
 
