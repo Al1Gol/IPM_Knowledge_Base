@@ -25,7 +25,7 @@ p{
 }
 
 html, body {
-  overflow: hidden;
+  overflow: auto;
 }
 
 .ql, .quill {
@@ -146,7 +146,7 @@ header{
 
 .menuBtn>div{
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-content: center;
   align-items: self-start;
 }

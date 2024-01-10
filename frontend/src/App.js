@@ -39,7 +39,7 @@ class App extends React.Component {
             'current_subsection': [], //Текущие подразделы
             'article': [], //Статья
             'files': [], //Файлы статьи 
-            'hidden_edit_menu' : true
+            'hidden_edit_menu' : false //Оторажение модального окна создания меню
         }
     }
 
@@ -195,7 +195,7 @@ class App extends React.Component {
       })
       .catch( error =>{ 
         // Очищаем данные, если аутентификация не прошла
-        //this.NotAuthError(error)
+          this.NotAuthError(error)
           console.log(error)
       })
       
@@ -241,7 +241,9 @@ editMenu(id) {
                      <Sections sections={this.state.sections}/> 
                   </>
                   <>
-                      <CreateMenu hidden_edit_menu = {this.hidden_edit_menu} addMenu = {(name, img) => this.addMenu(name, img)} onFormDisplay = {() => this.onFormDisplay()} /> 
+                      {this.state.hidden_edit_menu? 
+                        <CreateMenu addMenu = {(name, img) => this.addMenu(name, img)} onFormDisplay = {() => this.onFormDisplay()} /> : ''
+                      } 
                   </>   
             </BrowserRouter>
 

@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import EditImg from '../img/icons/edit.svg'
+
 
 const MenuItem = ({menu, getSections}) => {
     return (
@@ -21,7 +22,7 @@ const MenuList = ({ menu_list, getSections, onFormDisplay}) => {
     return (
         <div>
             {menu_list.map((el_menu) => <MenuItem menu={el_menu} getSections={getSections} />)}
-            <div className={'menuBtn'}  onClick = {() => onFormDisplay()}>
+            <div id="menu-add" className={'menuBtn'}  onClick = {() => onFormDisplay()}>
                 <img src='' alt='' ></img>
                 <p>Добавить меню </p>
             </div>
