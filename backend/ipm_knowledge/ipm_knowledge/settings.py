@@ -64,6 +64,9 @@ MIDDLEWARE = [
 DJANGO_LOG_LEVEL = DEBUG
 
 CORS_ALLOWED_ORIGINS = [
+    "http://192.168.10.140:8000",
+    "http://192.168.10.140:3000",
+    "http://192.168.10.140:5554",
     "http://192.168.10.172:8000",
     "http://192.168.10.172:3000",
     "http://localhost:3000",
