@@ -209,14 +209,15 @@ class App extends React.Component {
     }
 
     //DELETE MENU
-    deleteMenu(id) {
+    deleteMenu() {
         let headers = this.getHeadears()
         axios
-        .delete(`${backend_addr}/menu/${id}/`, {headers})
+        .delete(`${backend_addr}/menu/${this.state.current_menu.id}/`, {headers})
         .then(response => {
             this.getMenu()
             this.setState({
-                'current_menu': []
+                'current_menu': [],
+                'hidden_modal': !this.state.hidden_modal,
             })
             console.log(response)
         })
@@ -304,7 +305,7 @@ class App extends React.Component {
                         {this.state.hidden_modal ? '' :
                             <div className="modal">
                                 {this.state.current_target === 'menuAdd' ? <CreateMenu addMenu = {(name, img) => this.addMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
-                                {this.state.current_target === 'menuEdit' ? <EditMenu addMenu = {(name, img) => this.editMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_menu={this.state.current_menu}/> : ''}
+                                {this.state.current_target === 'menuEdit' ? <EditMenu addMenu = {(name, img) => this.editMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_menu={this.state.current_menu} deleteMenu={() => this.deleteMenu()} /> : ''}
                             </div>
                         } 
                     </>   

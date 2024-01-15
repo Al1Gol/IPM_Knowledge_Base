@@ -46,20 +46,22 @@ class EditMenu extends React.Component {
     /*-----------------------------------*/
     render () {
         return (
-            <form className ="modalForm" onSubmit={(event) => this.handleSubmit(event) }>
-                <div className='editHeader'>
-                    <h3>Редактирование пункта меню</h3>
-                    <button className='deleteBtn' >Удалить</button>
-                </div>
-                <p>Название</p>
-                <input type="text" required className="nameInput" placeholder="Наименование пункта" name="menu_name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
-                <p>Добавить/Изменить иконку</p>
-                <input id="file"className ="createIcon" type="file" title=" " onChange={(event) => this.onFileChange(event)}/> <br/>
-                <div className="confirmGroup">
-                    <input className="confirmBtn" type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/>
-                    <input className="confirmBtn" type="submit" value="Сохранить" />
-                </div>
-            </form>
+            <div>
+                <button className='deleteBtn' onClick={this.props.deleteMenu}>Удалить</button>
+                <form className ="modalForm" onSubmit={(event) => this.handleSubmit(event) }>
+                    <div className='editHeader'>
+                        <h3>Редактирование пункта меню</h3>
+                    </div>
+                    <p>Название</p>
+                    <input type="text" required className="nameInput" placeholder="Наименование пункта" name="menu_name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
+                    <p>Добавить/Изменить иконку</p>
+                    <input id="file"className ="createIcon" type="file" title=" " onChange={(event) => this.onFileChange(event)}/> <br/>
+                    <div className="confirmGroup">
+                        <input className="confirmBtn" type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/>
+                        <input className="confirmBtn" type="submit" value="Сохранить" />
+                    </div>
+                </form>
+            </div>
         )
     }
 }
