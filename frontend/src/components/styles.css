@@ -1,4 +1,10 @@
-/*Базовое оформление*/
+/*
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+НАСТРОЙКА ДЕФОЛТНЫХ СТИЛЕЙ
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+*/
 .container {
   display: flex;
   flex-direction: initial;
@@ -36,8 +42,14 @@ html, body {
   word-break: break-all;
 }
 
+/*
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+ОФОРМЛЕНИЕ СТРАНИЦЫ АВТОРИЗАЦИИ
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+*/
 
-/* Оформление страницы авторизации */
 .LoginPage {
   background-image: url('../img/bgLoginPage.png');
   background-repeat: no-repeat;
@@ -54,22 +66,6 @@ html, body {
   margin-top: 50px;
 }
 
-.Logo{
-  -moz-user-select: none; 
-  -webkit-user-select: none; 
-  -ms-user-select: none; 
-  user-select: none;
-  pointer-events: none;
-  width: 315px;
-}
-
-.MainPage{
-  background-color: #F0F9FF;
-  width: 100%;
-  height: 100vh;
-}
-
-
 .LoginForm {
   margin-top: 180px;
   display: flex;
@@ -80,13 +76,6 @@ html, body {
   padding: 40px 60px 45px 60px;
 }
 
-.LoginForm>input {
-  width: 257px;
-  height: 45px;
-  border: 0cap;
-  background-color: #DDF0FC;
-}
-
 .LoginForm>p {
   font: 'Gotham Pro';
   margin-bottom: 58px;
@@ -94,23 +83,17 @@ html, body {
   line-height: 19px;
 }
 
+.LoginForm>input {
+  width: 257px;
+  height: 45px;
+  border: 0cap;
+  background-color: #DDF0FC;
+}
+
 .login-input{
   margin-bottom: 36px;
   border-radius: 5px;
   padding-left: 15px;
-}
-
-.login-btn{
-  margin-top: 24px;
-  background-color: #4A7BAB !important;
-  border-radius: 5px;
-  color: #ffffff;
-}
-
-header{
-  display: flex;
-  justify-content: space-between;
-  padding: 50px;
 }
 
 .logoutBtn{
@@ -124,7 +107,6 @@ header{
   user-select: none;
 }
 
-
 .logoutBtn>p{
   position: absolute;               
   top: 50%;                        
@@ -132,8 +114,48 @@ header{
   width: 100%;
 }
 
+.login-btn{
+  margin-top: 24px;
+  background-color: #4A7BAB !important;
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+/*
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+ОФОРМЛЕНИЕ ГЛАВНОЕ СТРАНИЦЫ
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+*/
+
+.MainPage{
+  background-color: #F0F9FF;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:cover;
+  width: 100%;
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+}
+
+.Logo{
+  -moz-user-select: none; 
+  -webkit-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none;
+  pointer-events: none;
+  width: 315px;
+}
+
 .menuBtn{
-  display: relative;
+  display: flex;
+  flex-direction: column;
   font-size: 16px;
   width: 240px;
   height: 88px;
@@ -151,11 +173,6 @@ header{
   align-items: self-start;
 }
 
-.sidebar{
-  width: 24px;
-  height: 100%;
-}
-
 .menuIcon{
   padding-top: 5px;
   align-self: left;
@@ -164,23 +181,17 @@ header{
 }
 
 .editBtn{
-  left: 262px;
+  position: absolute;
+  top: 5px;
+  left: 272px;
   height: 24px;
   align-self: flex-start;
 }
 
 .menuBtn>p{
   text-align: center;
-  margin-bottom: 5px;
-}
-
-.menuBtn:hover{
-  backdrop-filter: blur(4px);
-  background-image: linear-gradient(
-    to bottom, 
-    rgba(0, 0, 0, 0.25) 0%,
-    #355E8B 20%
-    );
+  align-self: center;
+  margin: auto;
 }
 
 .createMenuBtn{
@@ -189,14 +200,28 @@ header{
   align-items: center;
 }
 
-.logoutBtn:hover{
-  backdrop-filter: blur(4px);
-  background-image: linear-gradient(
-    to bottom, 
-    rgba(0, 0, 0, 0.25) 0%,
-    #355E8B 20%
-    );
+
+.createIcon{
+  margin-bottom: 50px;
 }
+
+#menuAdd{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menuItem{
+  position: relative;
+}
+
+/*
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+Модальные окна
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+*/
 
 .modal{
   position: fixed;
@@ -223,14 +248,20 @@ header{
 }
 
 .modalForm>h3{
-    margin: 0 0 35px 0;
-    font-size: 30px;
-    font-weight: normal 
+  margin: 0 0 35px 0;
+  font-size: 30px;
+  font-weight: normal 
 }
 
 .modalForm>p{
   font-size: 16px;
   margin-bottom: 12px;
+}
+
+.editHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .nameInput{
@@ -242,13 +273,11 @@ header{
   font-size: 16px;
 }
 
-.createIcon{
-  margin-bottom: 50px;
-}
-
-.confirmGroup{
-  display: flex;
-  justify-content: space-between;
+.deleteBtn{
+  border: 0px;
+  background: #FA9191;
+  height: 39px;
+  padding: 11px 11px 9px 10px;
 }
 
 .confirmBtn{
@@ -258,9 +287,55 @@ header{
   font-size: 20px;
 }
 
-#menuAdd{
+.confirmGroup{
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
 }
+
+/*
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+Группа стилей срабатывающих при наведении
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+*/
+
+.deleteBtn:hover{
+  backdrop-filter: blur(4px);
+  background-image: linear-gradient(
+    to bottom, 
+    rgba(0, 0, 0, 0.25) 0%,
+    #FA9191 20%
+    );
+}
+
+.confirmBtn:hover{
+  background-image: linear-gradient(
+    to bottom, 
+    rgba(0, 0, 0, 0.25) 0%,
+    #79A0CC 20%
+    );
+}
+
+.logoutBtn:hover{
+  backdrop-filter: blur(4px);
+  background-image: linear-gradient(
+    to bottom, 
+    rgba(0, 0, 0, 0.25) 0%,
+    #355E8B 20%
+    );
+}
+
+.menuBtn:hover{
+  backdrop-filter: blur(4px);
+  background-image: linear-gradient(
+    to bottom, 
+    rgba(0, 0, 0, 0.25) 0%,
+    #355E8B 20%
+    );
+}
+
+/*
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+*/

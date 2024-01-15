@@ -38,7 +38,7 @@ onFileChange(event) {
     // логину и паролю присваиваем value равное стэйту, в этом случае значение поля будет передаваться в сам стэйт и подтягиваться из него
     render () {
             return (
-                <div>
+                <form className ="modalForm" onSubmit={(event) => this.handleSubmit(event) }>
                     <h3>Создание пункта меню</h3>
                     <p>Название</p>
                     <input type="text" required className="nameInput" placeholder="Наименование пункта" name="menu_name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
@@ -47,9 +47,8 @@ onFileChange(event) {
                     <div className="confirmGroup">
                         <input className="confirmBtn" type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/>
                         <input className="confirmBtn" type="submit" value="Сохранить" />
-
                     </div>
-                </div>
+                </form>
             )
         }
 }

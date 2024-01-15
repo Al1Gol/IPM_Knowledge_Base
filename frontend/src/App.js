@@ -4,6 +4,7 @@ import MenuList from './components/Menu';
 import Sections from './components/Sections';
 import LoginForm from './components/LoginForm';
 import CreateMenu from './components/CreateMenu';
+import EditMenu from './components/EditMenu';
 import {BrowserRouter, Route, Routes, useLocation,} from 'react-router-dom'
 import './App.css';
 import './fonts/gothampro-black.css'
@@ -39,7 +40,8 @@ class App extends React.Component {
             'current_subsection': [], //Текущие подразделы
             'article': [], //Статья
             'files': [], //Файлы статьи 
-            'hidden_modal' : false //Оторажение модального окна создания меню
+            'hidden_modal' : true, //Оторажение модального окна создания меню
+            'current_target': '' // ID текущей кнопки по открытию модального окна
         }
     }
 
@@ -68,7 +70,6 @@ class App extends React.Component {
               'current_menu': [],
               'sections': [],
               'current_section': [],
-              'subsections': [],
               'current_subsection': [],
               'article': [],
               'files': []
@@ -132,7 +133,36 @@ class App extends React.Component {
         })
     }
 
+  // Создание нового элемента меню
+  addMenu(name, img) {
+    let headers = this.getHeadears()
+    axios
+    .post(`${backend_addr}/menu/`, this.iconsFormData(name, img), {headers})
+    .then(response => {
+      this.getMenu()
+      console.log(response)
+    })
+    .catch( error =>{ 
+      // Очищаем данные, если аутентификация не прошла
+        this.NotAuthError(error)
+        console.log(error)
+    })
+}
 
+editMenu(id, name, img) {
+      let headers = this.getHeadears()
+      axios
+      .patch(`${backend_addr}/menu/`, this.iconsFormData(name, img), {headers})
+      .then(response => {
+        this.getMenu()
+        console.log(response)
+      })
+      .catch( error =>{ 
+        // Очищаем данные, если аутентификация не прошла
+          this.NotAuthError(error)
+          console.log(error)
+      })
+  }
 
     //Получение списка разделов
     getSections(id) {
@@ -184,36 +214,14 @@ class App extends React.Component {
       return body
   }
 
-  // Создание нового элемента меню
-  addMenu(name, img) {
-      let headers = this.getHeadears()
-      axios
-      .post(`${backend_addr}/menu/`, this.iconsFormData(name, img), {headers})
-      .then(response => {
-        this.getMenu()
-        console.log(response)
-      })
-      .catch( error =>{ 
-        // Очищаем данные, если аутентификация не прошла
-          this.NotAuthError(error)
-          console.log(error)
-      })
-      
-  }
-
-editMenu(id) {
-
-  }
-
-
   //Отображение и скрытие формы редактирования и создания
-  onFormDisplay(target) {
-    console.log('target')
-    console.log(target)
+  onFormDisplay(obj) {
     this.setState ({
-      'hidden_modal': !this.state.hidden_modal
+      'hidden_modal': !this.state.hidden_modal,
+      'current_target': obj
     })
   }   
+
     // Рендер главного меню
     // В element передаем значение стэйтов и функции
     // для возможности работы с ними из компонентов
@@ -243,13 +251,12 @@ editMenu(id) {
                      <Sections sections={this.state.sections}/> 
                   </>
                   <>
-                      {this.state.hidden_modal? 
+                      {this.state.hidden_modal ? '' :
                         <div className="modal">
-                          <form className ="modalForm" onSubmit={(event) => this.handleSubmit(event) }>
-                        <CreateMenu addMenu = {(name, img) => this.addMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> 
-                          </form>
+                             {this.state.current_target === 'menuAdd' ? <CreateMenu addMenu = {(name, img) => this.addMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
+                             {this.state.current_target === 'menuEdit' ? <EditMenu addMenu = {(name, img) => this.editMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
                         </div>
-                      : ''} 
+                      } 
                   </>   
             </BrowserRouter>
 
