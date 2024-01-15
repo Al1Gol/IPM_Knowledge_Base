@@ -3,6 +3,12 @@ import React from 'react'
 import EditImg from '../img/icons/edit.svg'
 
 
+/*-----------------------------------*/
+/*-----------------------------------*/
+// RENDER ЭЛЕМЕНТА MENU
+// ВЛОЖЕН В РЕНДЕР СПИСКА MENU
+/*-----------------------------------*/
+/*-----------------------------------*/
 const MenuItem = ({menu, getSections, onFormDisplay}) => {
     return (
         <div className="menuItem">
@@ -16,7 +22,12 @@ const MenuItem = ({menu, getSections, onFormDisplay}) => {
         </div>
     )
 }
-// временная заглушка на onClick
+
+/*-----------------------------------*/
+/*-----------------------------------*/
+// RENDER СПИСКА MENU
+/*-----------------------------------*/
+/*-----------------------------------*/
 const MenuList = ({ menu_list, getSections, onFormDisplay}) => {
     return (
         <div>
@@ -28,5 +39,6 @@ const MenuList = ({ menu_list, getSections, onFormDisplay}) => {
         </div>
     )
 }
+
 
 export default MenuList;

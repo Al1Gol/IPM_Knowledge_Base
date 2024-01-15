@@ -1,31 +1,30 @@
 import React from 'react';
 import axios from 'axios';
+import {BrowserRouter, Route, Routes, useLocation,} from 'react-router-dom'
+
 import MenuList from './components/Menu';
 import Sections from './components/Sections';
 import LoginForm from './components/LoginForm';
 import CreateMenu from './components/CreateMenu';
 import EditMenu from './components/EditMenu';
-import {BrowserRouter, Route, Routes, useLocation,} from 'react-router-dom'
-import './App.css';
-import './fonts/gothampro-black.css'
 import Logo from './img/icons/LogoMain.png'
 
 
-// Отрисовка ошибки 404
+// ОТРИСОВКА ОШИБКИ 404
 const NotFound = () => {
     var location = useLocation()
 
     return (
         <div>
-          Page "{location.pathname}" not found
+            Page "{location.pathname}" not found
         </div>
     )
 }
 
-//Текущий адрес сервера
+//ТЕКУЩИЙ АДРЕС СЕРВЕРА
 const backend_addr = 'http://127.0.0.1:8000/api/v1'
 
-// Главное приложение
+// ГЛАВНОЕ ПРИЛОЖЕНИЕ
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -45,10 +44,16 @@ class App extends React.Component {
         }
     }
 
+/***********************************************************************************************/
+/***********************************************************************************************/
+//ФУНКЦИИ ПРИЛОЖЕНИЯ
+/***********************************************************************************************/
+/***********************************************************************************************/
+
     // Проверка на авторизацию 
     isAuth() {
-      return !!this.state.token
-  }
+        return !!this.state.token
+    }
 
     // Очистка токенов, выход их системы
     logOut() {
@@ -83,20 +88,47 @@ class App extends React.Component {
         if (this.isAuth()){
             return {
                     'Authorization': 'Bearer ' + this.state.token
-                }
             }
+        }
         return {}
     }
 
     // Выполняется сразу после монтирования компонента
     componentDidMount() {
-      
-      // Получение токен из локального хранилища и передаем в стэйт
-      let token = localStorage.getItem('token')
-      this.setState({
-          'token': token
-      }, this.getMenu)
+        // Получение токен из локального хранилища и передаем в стэйт
+        let token = localStorage.getItem('token')
+        this.setState({
+            'token': token
+        }, this.getMenu)
     }
+
+    // Составление  тела запроса при отправки FormData c иконками
+    iconsFormData (name, img) {
+        name = name.trim()
+        let body = {}
+        body = new FormData();
+        body.append('name', name);
+        if (img) {
+            body.append('img', img);          
+        } 
+        return body
+    }
+  
+      //Отображение и скрытие формы редактирования и создания
+      onFormDisplay(obj) {
+          this.setState ({
+              'hidden_modal': !this.state.hidden_modal,
+              'current_target': obj
+          })
+      }
+
+
+
+/***********************************************************************************************/
+/***********************************************************************************************/
+//ОБРАЩЕНИЯ ПО АПИ
+/***********************************************************************************************/
+/***********************************************************************************************/
 
     // Получаем токен для работы с токеном
     // Требуется логин и пароль для получения
@@ -105,7 +137,7 @@ class App extends React.Component {
         .then(response => {
             let token = response.data.access
             this.setState({
-              'token': token,
+                'token': token,
             }, this.getMenu)
             localStorage.setItem('token', token)
         }).catch( error =>{
@@ -115,8 +147,13 @@ class App extends React.Component {
         })
     }
 
+    /*-----------------------------------*/
+    /*-----------------------------------*/
+    // CRUD MENU
+    /*-----------------------------------*/
+    /*-----------------------------------*/
 
-    // Получение списка меню
+    // READ MENU
     getMenu() {
         let headers = this.getHeadears()
         axios
@@ -124,7 +161,7 @@ class App extends React.Component {
         .then(response => {
             let menu_list = response.data
             this.setState({
-              'menu': menu_list
+                'menu': menu_list
             })
         })
         .catch( error =>{ 
@@ -133,44 +170,66 @@ class App extends React.Component {
         })
     }
 
-  // Создание нового элемента меню
-  addMenu(name, img) {
-    let headers = this.getHeadears()
-    axios
-    .post(`${backend_addr}/menu/`, this.iconsFormData(name, img), {headers})
-    .then(response => {
-      this.getMenu()
-      console.log(response)
-    })
-    .catch( error =>{ 
-      // Очищаем данные, если аутентификация не прошла
-        this.NotAuthError(error)
-        console.log(error)
-    })
-}
+    // CREATE MENU
+    addMenu(name, img) {
+        let headers = this.getHeadears()
+        axios
+        .post(`${backend_addr}/menu/`, this.iconsFormData(name, img), {headers})
+        .then(response => {
+            this.getMenu()
+        })
+        .catch( error =>{ 
+            // Очищаем данные, если аутентификация не прошла
+            this.NotAuthError(error)
+            console.log(error)
+        })
+    }
 
-editMenu(id, name, img) {
-      let headers = this.getHeadears()
-      axios
-      .patch(`${backend_addr}/menu/`, this.iconsFormData(name, img), {headers})
-      .then(response => {
-        this.getMenu()
-        console.log(response)
-      })
-      .catch( error =>{ 
-        // Очищаем данные, если аутентификация не прошла
-          this.NotAuthError(error)
-          console.log(error)
-      })
-  }
-
-    //Получение списка разделов
-    getSections(id) {
-
-      let current_menu = this.state.menu.find(obj => obj.id === id)
-          this.setState({
-            'current_menu': current_menu
+    // UPDATE MENU
+    editMenu(id, name, img) {
+          let headers = this.getHeadears()
+          axios
+          .patch(`${backend_addr}/menu/${id}/`, this.iconsFormData(name, img), {headers})
+          .then(response => {
+              this.getMenu()
+              console.log(response)
           })
+          .catch( error =>{ 
+              // Очищаем данные, если аутентификация не прошла
+              this.NotAuthError(error)
+              console.log(error)
+          })
+    }
+
+    //DELETE MENU
+    deleteMenu(id) {
+        let headers = this.getHeadears()
+        axios
+        .delete(`${backend_addr}/menu/${id}/`, {headers})
+        .then(response => {
+            this.getMenu()
+            console.log(response)
+        })
+        .catch( error =>{ 
+            // Очищаем данные, если аутентификация не прошла
+            this.NotAuthError(error)
+            console.log(error)
+        })
+    }
+
+
+    /*-----------------------------------*/
+    /*-----------------------------------*/
+    // CRUD SECTIONS
+    /*-----------------------------------*/
+    /*-----------------------------------*/
+
+    //CREATE SECTIONS
+    getSections(id) {
+        let current_menu = this.state.menu.find(obj => obj.id === id)
+        this.setState({
+            'current_menu': current_menu
+        })
         // Если не выбран элемент меню или выбран отличный текущего, то выводим новый список разделов
         if (this.state.current_menu.length === 0 || this.state.current_menu.id !== id) {
             let headers = this.getHeadears()
@@ -179,98 +238,80 @@ editMenu(id, name, img) {
             .then(response => {
                 let sections = response.data
                 this.setState({
-                  'sections': sections
+                    'sections': sections
                 })
             })
             .catch( error => {
-              // Очищаем данные, если аутентификация не прошла
-              this.NotAuthError(error)
+                // Очищаем данные, если аутентификация не прошла
+                this.NotAuthError(error)
             }) 
         } 
         // Убираем убираем всю правую часть при повтрном нажатии
         else {
-          this.setState({
-            'current_menu': [],
-            'sections': [],
-            'current_section': [],
-            'subsections': [],
-            'current_subsection': [],
-            'article': [],
-            'files': [],
-        })
-      }
-  }
+            this.setState({
+                'current_menu': [],
+                'sections': [],
+                'current_section': [],
+                'subsections': [],
+                'current_subsection': [],
+                'article': [],
+                'files': [],
+            })
+        }
+    }
 
-  // Составление  тела запроса при отправки FormData c иконками
-  iconsFormData (name, img) {
-      name = name.trim()
-      let body = {}
-   
-        body = new FormData();
-        body.append('name', name);
-        if (img) {
-            body.append('img', img);          
-        } 
-      return body
-  }
 
-  //Отображение и скрытие формы редактирования и создания
-  onFormDisplay(obj) {
-    this.setState ({
-      'hidden_modal': !this.state.hidden_modal,
-      'current_target': obj
-    })
-  }   
-
-    // Рендер главного меню
-    // В element передаем значение стэйтов и функции
-    // для возможности работы с ними из компонентов
+    /*-----------------------------------*/
+    /*-----------------------------------*/
+    // RENDER ГЛАВНОГО ПРИЛОЖЕНИЯ
+    /*-----------------------------------*/
+    /*-----------------------------------*/
     render () {
-      if (this.isAuth()) {
-          return (
-            <div className="MainPage bkg_blur">
-            <header>
-                <img className="Logo" src={Logo} alt='logo'></img>
-                <div className='logoutBtn' onClick={() => this.logOut()} >
-                    { this.isAuth() ? <p>Выход</p> : '' }
+        if (this.isAuth()) {
+            return (
+                <div className="MainPage bkg_blur">
+                <header>
+                    <img className="Logo" src={Logo} alt='logo'></img>
+                    <div className='logoutBtn' onClick={() => this.logOut()} >
+                        { this.isAuth() ? <p>Выход</p> : '' }
+                    </div>
+                </header>
+                <BrowserRouter>
+                <Routes>
+                    <Route exact path='/' element= 
+                        {this.isAuth() ? 
+                            <MenuList menu_list={this.state.menu} getSections = {(id) => this.getSections(id)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : 
+                            <LoginForm getAuthToken={(username, password) => this.getAuthToken(username, password)} />
+                        } 
+                    />
+                    <Route exact path='/main' element= {<MenuList menu_list={this.state.menu} />} />
+                    <Route path='*' element = {<NotFound />} />
+                </Routes>
+                    <>
+                        <Sections sections={this.state.sections}/> 
+                    </>
+                    <>
+                        {this.state.hidden_modal ? '' :
+                            <div className="modal">
+                                {this.state.current_target === 'menuAdd' ? <CreateMenu addMenu = {(name, img) => this.addMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
+                                {this.state.current_target === 'menuEdit' ? <EditMenu addMenu = {(name, img) => this.editMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
+                            </div>
+                        } 
+                    </>   
+                </BrowserRouter>
                 </div>
-            </header>
-            <BrowserRouter>
-              <Routes>
-                  <Route exact path='/' element= 
-                    {this.isAuth() ? 
-                      <MenuList menu_list={this.state.menu} getSections = {(id) => this.getSections(id)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : 
-                      <LoginForm getAuthToken={(username, password) => this.getAuthToken(username, password)} />
-                    } 
-                  />
-
-                  <Route exact path='/main' element= {<MenuList menu_list={this.state.menu} />} />
-                  <Route path='*' element = {<NotFound />} />
-              </Routes>
-                  <>
-                     <Sections sections={this.state.sections}/> 
-                  </>
-                  <>
-                      {this.state.hidden_modal ? '' :
-                        <div className="modal">
-                             {this.state.current_target === 'menuAdd' ? <CreateMenu addMenu = {(name, img) => this.addMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
-                             {this.state.current_target === 'menuEdit' ? <EditMenu addMenu = {(name, img) => this.editMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
-                        </div>
-                      } 
-                  </>   
-            </BrowserRouter>
-
-            </div>
-          )
-      } else {
-        return (
-          <BrowserRouter>
-              <Routes>
-                <Route exact path='/' element= <LoginForm getAuthToken={(username, password) => this.getAuthToken(username, password)} />/>
-              </Routes>
-          </BrowserRouter>
-        )
-      }
+            )
+        } else {
+            return (
+              <BrowserRouter>
+                  <Routes>
+                      <Route exact path='/' element= <LoginForm getAuthToken={(username, password) => this.getAuthToken(username, password)} />/>
+                  </Routes>
+              </BrowserRouter>
+            )
+        }
     }
 }
+
+
 export default App;

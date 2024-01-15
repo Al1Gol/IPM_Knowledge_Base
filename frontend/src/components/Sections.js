@@ -1,5 +1,12 @@
 import React from 'react'
 
+
+/*-----------------------------------*/
+/*-----------------------------------*/
+// RENDER ЭЛЕМЕНТА SECTION
+// ВЛОЖЕН В РЕНДЕР СПИСКА SECTIONS
+/*-----------------------------------*/
+/*-----------------------------------*/
 const SectionItem = ({section}) => {
     return (
         <div>
@@ -9,15 +16,19 @@ const SectionItem = ({section}) => {
     )
 }
 
-// временная заглушка на onClick
+/*-----------------------------------*/
+/*-----------------------------------*/
+// RENDER СПИСКА SECTIONS
+/*-----------------------------------*/
+/*-----------------------------------*/
 const Sections = ({ sections }) => {
     return (
         <div>
             {sections.map((section) => <SectionItem section={section} />)}
             <button onClick = {() => sections}> <img src='' alt='+'></img>Добавить раздел </button>
-            <hr></hr>
         </div>
     )
 }
+
 
 export default Sections;

@@ -1,6 +1,10 @@
 import React from 'react';
 
-
+/***********************************************************************************************/
+/***********************************************************************************************/
+//КОМПОНЕНТ РЕДАКТИРОВАНИЯ MENU
+/***********************************************************************************************/
+/***********************************************************************************************/
 class EditMenu extends React.Component {
     constructor(props) {
         super(props)
@@ -10,32 +14,36 @@ class EditMenu extends React.Component {
         }   
     }   
 
-//Присваивает параметру value значение из параметра name
-//позволяет передавать содержимое поля в value
-handleChange(event) {
-    this.setState({ 
-        [event.target.name]: event.target.value
-    })
-}
+    // ОБРАБОТЧИК ПОЛЯ input
+    // ПЕРЕДАЧА СОДЕРЖИМОГО input ПОЛЯ В props
+    handleChange(event) {
+        this.setState({ 
+            [event.target.name]: event.target.value
+        })
+    }
 
-// Переопределяем событие по нажатию на кнопку отправки формы
-handleSubmit(event) {
-    this.props.addMenu(this.state.menu_name, this.state.img)
-    this.props.onFormDisplay()
-    event.preventDefault() // запрещает стандартную обработку события
-}
-
-
-
-// Перехватываем загруженный файл
-onFileChange(event) {
-    // Обновляем стейт
-    this.setState({'img': event.target.files[0] });
-};
+    // ОБРАБОТЧИК КНОПКИ submit
+    handleSubmit(event) {
+        this.props.addMenu(this.state.menu_name, this.state.img)
+        this.props.onFormDisplay()
+        event.preventDefault() // запрещает стандартную обработку события
+    }
 
 
-    // Рендер формы
-    // логину и паролю присваиваем value равное стэйту, в этом случае значение поля будет передаваться в сам стэйт и подтягиваться из него
+
+    // ОБРАБОТЧИК ЗАГРУЗКИ ФАЙЛА
+    // ПЕРЕХВАТЫВАЕТ ОБЪЕКТ ФАЙЛА И ПОМЕЩАЕТ В props
+    onFileChange(event) {
+        // Обновляем стейт
+        this.setState({'img': event.target.files[0] });
+    };
+
+
+    /*-----------------------------------*/
+    /*-----------------------------------*/
+    // RENDER МОДАЛЬНОГО ОКНА С ФОРМОЙ РЕДАКТИРОВАНИЯ ЭЛЕМЕНТА MENU
+    /*-----------------------------------*/
+    /*-----------------------------------*/
     render () {
         return (
             <form className ="modalForm" onSubmit={(event) => this.handleSubmit(event) }>
