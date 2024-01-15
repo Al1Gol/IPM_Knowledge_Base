@@ -49,7 +49,7 @@ class EditMenu extends React.Component {
             <form className ="modalForm" onSubmit={(event) => this.handleSubmit(event) }>
                 <div className='editHeader'>
                     <h3>Редактирование пункта меню</h3>
-                    <button className='deleteBtn'>Удалить</button>
+                    <button className='deleteBtn' >Удалить</button>
                 </div>
                 <p>Название</p>
                 <input type="text" required className="nameInput" placeholder="Наименование пункта" name="menu_name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>

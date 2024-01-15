@@ -112,14 +112,23 @@ class App extends React.Component {
         return body
     }
   
-      //Отображение и скрытие формы редактирования и создания
-      onFormDisplay(obj) {
-          this.setState ({
-              'hidden_modal': !this.state.hidden_modal,
-              'current_target': obj
-          })
-      }
+    //Отображение и скрытие формы редактирования и создания
+    onFormDisplay(obj) {
+        this.setState ({
+            'hidden_modal': !this.state.hidden_modal,
+            'current_target': obj
+        })
+    }
 
+
+    //Получение текущего 
+    getCurentEditId(id, obj) {
+        this.setState ({
+                'current_menu': this.state.menu.find(el_menu =>  el_menu.id === id)
+        },  this.onFormDisplay(obj))
+    }
+
+    
 
 
 /***********************************************************************************************/
@@ -206,6 +215,9 @@ class App extends React.Component {
         .delete(`${backend_addr}/menu/${id}/`, {headers})
         .then(response => {
             this.getMenu()
+            this.setState({
+                'current_menu': []
+            })
             console.log(response)
         })
         .catch( error =>{ 
@@ -278,7 +290,7 @@ class App extends React.Component {
                 <Routes>
                     <Route exact path='/' element= 
                         {this.isAuth() ? 
-                            <MenuList menu_list={this.state.menu} getSections = {(id) => this.getSections(id)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : 
+                            <MenuList menu_list={this.state.menu} getSections = {(id) => this.getSections(id)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} /> : 
                             <LoginForm getAuthToken={(username, password) => this.getAuthToken(username, password)} />
                         } 
                     />
@@ -292,7 +304,7 @@ class App extends React.Component {
                         {this.state.hidden_modal ? '' :
                             <div className="modal">
                                 {this.state.current_target === 'menuAdd' ? <CreateMenu addMenu = {(name, img) => this.addMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
-                                {this.state.current_target === 'menuEdit' ? <EditMenu addMenu = {(name, img) => this.editMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
+                                {this.state.current_target === 'menuEdit' ? <EditMenu addMenu = {(name, img) => this.editMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_menu={this.state.current_menu}/> : ''}
                             </div>
                         } 
                     </>   
