@@ -35,12 +35,10 @@ class App extends React.Component {
             'current_menu': [], //Текущее меню
             'sections': [],  //Разделы
             'current_section': [], //Текущий раздел
-            'subsections': [], // Подразделы
-            'current_subsection': [], //Текущие подразделы
             'article': [], //Статья
             'files': [], //Файлы статьи 
             'hidden_modal' : true, //Оторажение модального окна создания меню
-            'current_target': '' // ID текущей кнопки по открытию модального окна
+            'current_target': '' // ID текущей кнопки по открытию модального окна, для отрисовки необходимой формы
         }
     }
 

@@ -48,8 +48,10 @@ class CreateMenu extends React.Component {
     render () {
             return (
                 <form className ="modalForm" onSubmit={(event) => this.handleSubmit(event) }>
-                    <h3>Создание пункта меню</h3>
-                    <p>Название</p>
+                    <div className='editHeader'>
+                        <h3>Создание пункта меню</h3>
+                    </div>
+                        <p>Название</p>
                     <input type="text" required className="nameInput" placeholder="Наименование пункта" name="menu_name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
                     <p>Добавить иконку</p>
                     <input id="file"className ="createIcon" type="file" title=" " onChange={(event) => this.onFileChange(event)}/> <br/>
