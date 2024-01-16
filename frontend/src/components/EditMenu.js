@@ -5,11 +5,11 @@ import React from 'react';
 //КОМПОНЕНТ РЕДАКТИРОВАНИЯ MENU
 /***********************************************************************************************/
 /***********************************************************************************************/
-class EditMenu extends React.Component {
+class EditMenuForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            'menu_name' : "", //Имя
+            'name' : this.props.current_menu.name, //Имя
             'img': null, //Иконка
         }   
     }   
@@ -19,14 +19,14 @@ class EditMenu extends React.Component {
     handleChange(event) {
         this.setState({ 
             [event.target.name]: event.target.value
-        })
+        },console.log(event.target.name + event.target.value + 'аааауч' + this.state.name + this.state.img ))
     }
 
     // ОБРАБОТЧИК КНОПКИ submit
     handleSubmit(event) {
-        this.props.addMenu(this.state.menu_name, this.state.img)
-        this.props.onFormDisplay()
         event.preventDefault() // запрещает стандартную обработку события
+        this.props.editMenu(this.state.name, this.state.img)
+        this.props.onFormDisplay()
     }
 
 
@@ -52,7 +52,7 @@ class EditMenu extends React.Component {
                         <h3>Редактирование пункта меню</h3>
                     </div>
                     <p>Название</p>
-                    <input type="text" required className="nameInput" placeholder="Наименование пункта" name="menu_name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
+                    <input type="text" required className="nameInput" placeholder="Наименование пункта" name="name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
                     <p>Добавить/Изменить иконку</p>
                     <input id="file"className ="createIcon" type="file" title=" " onChange={(event) => this.onFileChange(event)}/> <br/>
                     <div className="confirmGroup">
@@ -66,4 +66,4 @@ class EditMenu extends React.Component {
     }
 }
 
-export default EditMenu;
+export default EditMenuForm;

@@ -6,7 +6,7 @@ import MenuList from './components/Menu';
 import Sections from './components/Sections';
 import LoginForm from './components/LoginForm';
 import CreateMenu from './components/CreateMenu';
-import EditMenu from './components/EditMenu';
+import EditMenuForm from './components/EditMenu';
 import Logo from './img/icons/LogoMain.png'
 
 
@@ -121,7 +121,7 @@ class App extends React.Component {
     }
 
 
-    //Получение текущего 
+    //Получение текущего ID Menu
     getCurentEditId(id, obj) {
         this.setState ({
                 'current_menu': this.state.menu.find(el_menu =>  el_menu.id === id)
@@ -196,13 +196,15 @@ class App extends React.Component {
     }
 
     // UPDATE MENU
-    editMenu(id, name, img) {
+    editMenu(name, img) {
           let headers = this.getHeadears()
           axios
-          .patch(`${backend_addr}/menu/${id}/`, this.iconsFormData(name, img), {headers})
+          .patch(`${backend_addr}/menu/${this.state.current_menu.id}/`, this.iconsFormData(name, img), {headers})
           .then(response => {
-              this.getMenu()
-              console.log(response)
+              this.setState({
+                'current_menu': [],
+                'hidden_modal': !this.state.hidden_modal,
+            }, this.getMenu())
           })
           .catch( error =>{ 
               // Очищаем данные, если аутентификация не прошла
@@ -217,12 +219,10 @@ class App extends React.Component {
         axios
         .delete(`${backend_addr}/menu/${this.state.current_menu.id}/`, {headers})
         .then(response => {
-            this.getMenu()
             this.setState({
                 'current_menu': [],
                 'hidden_modal': !this.state.hidden_modal,
-            })
-            console.log(response)
+            }, this.getMenu())
         })
         .catch( error =>{ 
             // Очищаем данные, если аутентификация не прошла
@@ -230,7 +230,6 @@ class App extends React.Component {
             console.log(error)
         })
     }
-
 
     /*-----------------------------------*/
     /*-----------------------------------*/
@@ -308,7 +307,7 @@ class App extends React.Component {
                         {this.state.hidden_modal ? '' :
                             <div className="modal">
                                 {this.state.current_target === 'menuAdd' ? <CreateMenu addMenu = {(name, img) => this.addMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
-                                {this.state.current_target === 'menuEdit' ? <EditMenu addMenu = {(name, img) => this.editMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_menu={this.state.current_menu} deleteMenu={() => this.deleteMenu()} /> : ''}
+                                {this.state.current_target === 'menuEdit' ? <EditMenuForm editMenu = {(name, img) => this.editMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_menu={this.state.current_menu} deleteMenu={() => this.deleteMenu()} /> : ''}
                             </div>
                         } 
                     </>   
