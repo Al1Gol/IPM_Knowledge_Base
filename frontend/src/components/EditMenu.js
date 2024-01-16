@@ -46,9 +46,8 @@ class EditMenu extends React.Component {
     /*-----------------------------------*/
     render () {
         return (
-            <div>
-                <button className='deleteBtn' onClick={this.props.deleteMenu}>Удалить</button>
-                <form className ="modalForm" onSubmit={(event) => this.handleSubmit(event) }>
+            <div className='modalForm'>
+                <form className ="" onSubmit={(event) => this.handleSubmit(event) }>
                     <div className='editHeader'>
                         <h3>Редактирование пункта меню</h3>
                     </div>
@@ -61,6 +60,7 @@ class EditMenu extends React.Component {
                         <input className="confirmBtn" type="submit" value="Сохранить" />
                     </div>
                 </form>
+                <button className='deleteBtn' onClick={this.props.deleteMenu}>Удалить</button>
             </div>
         )
     }
