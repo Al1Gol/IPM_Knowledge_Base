@@ -298,7 +298,6 @@ class App extends React.Component {
                             <LoginForm getAuthToken={(username, password) => this.getAuthToken(username, password)} />
                         } 
                     />
-                    <Route exact path='/main' element= {<MenuList menu_list={this.state.menu} />} />
                     <Route path='*' element = {<NotFound />} />
                 </Routes>
                     <>
