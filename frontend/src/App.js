@@ -205,6 +205,7 @@ class App extends React.Component {
                 'current_menu': [],
                 'hidden_modal': !this.state.hidden_modal,
             }, this.getMenu())
+            console.log(this.state.hidden_modal)
           })
           .catch( error =>{ 
               // Очищаем данные, если аутентификация не прошла

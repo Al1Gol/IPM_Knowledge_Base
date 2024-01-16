@@ -19,14 +19,13 @@ class EditMenuForm extends React.Component {
     handleChange(event) {
         this.setState({ 
             [event.target.name]: event.target.value
-        },console.log(event.target.name + event.target.value + 'аааауч' + this.state.name + this.state.img ))
+        })
     }
 
     // ОБРАБОТЧИК КНОПКИ submit
     handleSubmit(event) {
         event.preventDefault() // запрещает стандартную обработку события
         this.props.editMenu(this.state.name, this.state.img)
-        this.props.onFormDisplay()
     }
 
 
