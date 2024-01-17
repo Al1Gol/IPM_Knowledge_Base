@@ -8,9 +8,9 @@ from mainapp.models import (  # SrvReleases, PlcReleases, ReleaseChanges
 )
 
 # Register your models here.
+admin.site.register(Users)
 """
 # admin.site.register(Roles)
-admin.site.register(Users)
 admin.site.register(Departments)
 admin.site.register(Menu)
 admin.site.register(Sections)

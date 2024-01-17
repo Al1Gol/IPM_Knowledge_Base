@@ -33,6 +33,8 @@ class RequestLogMiddleware:
         if "/api/" in str(request.get_full_path()) and "form-data" in str(
             request.headers
         ):
+            print("Логирование POST запросов")
+            print(request.POST)
             req_body = parser.parse(request.POST.urlencode())
             log_data["request_body"] = req_body
         elif "/api/" in str(request.get_full_path()) and "application/json" in str(
