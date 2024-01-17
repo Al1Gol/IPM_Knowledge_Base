@@ -44,11 +44,7 @@ class MenuViewSet(
         return Response(serializer.data)
 
     def perform_create(self, serializer):
-        if "password" in self.request.data:
-            self.request.data["password"] = self.request.user.depart_id
-            serializer.save()
-        else:
-            serializer.save()
+        serializer.save(depart_id=self.request.user.depart_id)
 
 
 class SectionsViewSet(
