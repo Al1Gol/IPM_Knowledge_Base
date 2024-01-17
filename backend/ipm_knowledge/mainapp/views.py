@@ -15,7 +15,7 @@ from rest_framework import mixins
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, mixins
 
-from ipm_knowledge.permissions import ModerateCreateAndUpdateOrAdminOrAuthReadOnly
+from ipm_knowledge.permissions import ModerateAndAdminCreateUpdateDeleteOrAuthReadOnly
 
 # LOG = logging.getLogger('django.request')
 
@@ -30,7 +30,7 @@ class MenuViewSet(
 ):
     serializer_class = MenuSerializer
     queryset = Menu.objects.all()
-    permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
+    permission_classes = [ModerateAndAdminCreateUpdateDeleteOrAuthReadOnly]
 
     def list(self, request, *args, **kwargs):
         queryset = Menu.objects.all().filter(depart_id=request.user.depart_id)
@@ -43,6 +43,13 @@ class MenuViewSet(
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
 
+    def perform_create(self, serializer):
+        if "password" in self.request.data:
+            self.request.data["password"] = self.request.user.depart_id
+            serializer.save()
+        else:
+            serializer.save()
+
 
 class SectionsViewSet(
     GenericViewSet,
@@ -54,7 +61,7 @@ class SectionsViewSet(
 ):
     serializer_class = SectionsSerializer
     queryset = Sections.objects.all()
-    permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
+    permission_classes = [ModerateAndAdminCreateUpdateDeleteOrAuthReadOnly]
     filterset_class = SectionsFilter
 
     def perform_create(self, serializer):
@@ -76,7 +83,7 @@ class ArticleViewSet(
 ):
     serializer_class = ArticlesSerializer
     queryset = Articles.objects.all()
-    permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
+    permission_classes = [ModerateAndAdminCreateUpdateDeleteOrAuthReadOnly]
     filterset_class = ArticlesFilter
 
     # Валидация количества родителей и выставление отметки is_article для родителя
@@ -120,7 +127,7 @@ class FilesViewSet(
     serializer_class = FilesSerializer
     queryset = Files.objects.all()
     filterset_class = FilesFilter
-    permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
+    permission_classes = [ModerateAndAdminCreateUpdateDeleteOrAuthReadOnly]
 
 
 class ImagesViewSet(
@@ -133,4 +140,4 @@ class ImagesViewSet(
 ):
     serializer_class = ImagesSerializer
     queryset = Images.objects.all()
-    permission_classes = [ModerateCreateAndUpdateOrAdminOrAuthReadOnly]
+    permission_classes = [ModerateAndAdminCreateUpdateDeleteOrAuthReadOnly]

@@ -6,7 +6,7 @@ from rest_framework.serializers import ModelSerializer
 class MenuSerializer(ModelSerializer):
     class Meta:
         model = Menu
-        fields = ["id", "name", "img", "is_article"]
+        fields = (["id", "name", "img", "is_article", "depart_id"],)
 
     def create(self, validated_data):
         return Menu.objects.create(**validated_data)
