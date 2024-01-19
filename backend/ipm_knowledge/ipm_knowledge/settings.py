@@ -138,6 +138,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 REST_FRAMEWORK = {
+    "DATETIME_FORMAT": "%d.%m.%Y %H:%M:%S",
     "DEFAULT_RENDERER_CLASSES": [
         "rest_framework.renderers.JSONRenderer",
         "rest_framework.renderers.BrowsableAPIRenderer",
@@ -170,7 +171,7 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
