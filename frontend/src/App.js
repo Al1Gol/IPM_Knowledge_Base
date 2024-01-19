@@ -290,6 +290,7 @@ class App extends React.Component {
                         { this.isAuth() ? <p>Выход</p> : '' }
                     </div>
                 </header>
+                <div className='content'>
                 <BrowserRouter>
                 <Routes>
                     <Route exact path='/' element= 
@@ -312,6 +313,7 @@ class App extends React.Component {
                         } 
                     </>   
                 </BrowserRouter>
+                </div>
                 </div>
             )
         } else {

@@ -9,7 +9,7 @@ import React from 'react'
 /*-----------------------------------*/
 const SectionItem = ({section}) => {
     return (
-        <div>
+        <div className='sectionBtn'>
             <button> <img src={section.img ? section.img : ''} alt=''></img> {section.name} </button>
             <button>edit</button>
         </div>
@@ -23,9 +23,9 @@ const SectionItem = ({section}) => {
 /*-----------------------------------*/
 const Sections = ({ sections }) => {
     return (
-        <div>
+        <div className='sectionsBlock'>
             {sections.map((section) => <SectionItem section={section} />)}
-            <button onClick = {() => sections}> <img src='' alt='+'></img>Добавить раздел </button>
+            <div className='sectionBtn' onClick = {() => sections}> <img src='' alt='+'></img>Добавить раздел </div>
         </div>
     )
 }
