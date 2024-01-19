@@ -23,7 +23,7 @@ class DepartmentsViewSet(
     mixins.RetrieveModelMixin,
 ):
     serializer_class = DepartmentsSerializer
-    queryset = Departments.objects.all()
+    queryset = Departments.objects.all().order_by("created_at")
     permission_classes = [AdminUserOrAuthReadOnly]
 
 
@@ -36,7 +36,7 @@ class UsersViewSet(
     mixins.RetrieveModelMixin,
 ):
     serializer_class = UsersSerializer
-    queryset = Users.objects.all()
+    queryset = Users.objects.all().order_by("created_at")
     permission_classes = [AdminUserOrAuthReadOnly]
 
     def perform_create(self, serializer):

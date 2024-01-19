@@ -29,11 +29,15 @@ class MenuViewSet(
     mixins.RetrieveModelMixin,
 ):
     serializer_class = MenuSerializer
-    queryset = Menu.objects.all()
+    queryset = Menu.objects.all().order_by("created_at")
     permission_classes = [ModerateAndAdminCreateUpdateDeleteOrAuthReadOnly]
 
     def list(self, request, *args, **kwargs):
-        queryset = Menu.objects.all().filter(depart_id=request.user.depart_id)
+        queryset = (
+            Menu.objects.all()
+            .filter(depart_id=request.user.depart_id)
+            .order_by("created_at")
+        )
 
         page = self.paginate_queryset(queryset)
         if page is not None:
@@ -56,7 +60,7 @@ class SectionsViewSet(
     mixins.RetrieveModelMixin,
 ):
     serializer_class = SectionsSerializer
-    queryset = Sections.objects.all()
+    queryset = Sections.objects.all().order_by("created_at")
     permission_classes = [ModerateAndAdminCreateUpdateDeleteOrAuthReadOnly]
     filterset_class = SectionsFilter
 
@@ -78,7 +82,7 @@ class ArticleViewSet(
     mixins.RetrieveModelMixin,
 ):
     serializer_class = ArticlesSerializer
-    queryset = Articles.objects.all()
+    queryset = Articles.objects.all().order_by("created_at")
     permission_classes = [ModerateAndAdminCreateUpdateDeleteOrAuthReadOnly]
     filterset_class = ArticlesFilter
 
@@ -121,7 +125,7 @@ class FilesViewSet(
     mixins.RetrieveModelMixin,
 ):
     serializer_class = FilesSerializer
-    queryset = Files.objects.all()
+    queryset = Files.objects.all().order_by("created_at")
     filterset_class = FilesFilter
     permission_classes = [ModerateAndAdminCreateUpdateDeleteOrAuthReadOnly]
 
