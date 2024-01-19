@@ -13,7 +13,7 @@ class Menu(models.Model):
         validators=[validate_file_extension],
         upload_to="icons/menu/",
         max_length=100,
-        default=datetime.date.today(),
+        blank=True,
         null=True,
     )
     depart_id = models.ForeignKey(
@@ -23,8 +23,8 @@ class Menu(models.Model):
         default=1,
     )
     is_article = models.BooleanField(verbose_name="видимость", default=False)
-    created_at = models.DateTimeField(verbose_name="дата создания")
-    updated_at = models.DateTimeField(verbose_name="дата обновления")
+    created_at = models.DateTimeField(verbose_name="дата создания", auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name="дата обновления", auto_now=True)
 
     def __str__(self):
         return self.name
@@ -40,12 +40,12 @@ class Sections(models.Model):
         upload_to="icons/sections/",
         validators=[validate_file_extension],
         max_length=100,
-        default=datetime.date.today(),
+        blank=True,
         null=True,
     )
     is_article = models.BooleanField(verbose_name="видимость", default=False)
-    created_at = models.DateTimeField(verbose_name="дата создания")
-    updated_at = models.DateTimeField(verbose_name="дата обновления")
+    created_at = models.DateTimeField(verbose_name="дата создания", auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name="дата обновления", auto_now=True)
 
     def __str__(self):
         return self.name
@@ -56,21 +56,21 @@ class Articles(models.Model):
         "Menu",
         verbose_name="ID Меню",
         on_delete=models.PROTECT,
-        default=datetime.date.today(),
+        blank=True,
         null=True,
     )
     section_id = models.ForeignKey(
         "Sections",
         verbose_name="ID Раздела",
         on_delete=models.PROTECT,
-        default=datetime.date.today(),
+        blank=True,
         null=True,
     )
     name = models.CharField(verbose_name="Наименование статьи", max_length=200)
     text = models.TextField(verbose_name="Описание", max_length=40000)
     is_article = models.BooleanField(verbose_name="видимость", default=False)
-    created_at = models.DateTimeField(verbose_name="дата создания")
-    updated_at = models.DateTimeField(verbose_name="дата обновления")
+    created_at = models.DateTimeField(verbose_name="дата создания", auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name="дата обновления", auto_now=True)
 
     def __str__(self):
         return self.text
@@ -83,8 +83,8 @@ class Files(models.Model):
     name = models.CharField(verbose_name="название файла", max_length=200)
     file = models.FileField(upload_to="files/", verbose_name="файлы")
     is_article = models.BooleanField(verbose_name="видимость", default=False)
-    created_at = models.DateTimeField(verbose_name="дата создания")
-    updated_at = models.DateTimeField(verbose_name="дата обновления")
+    created_at = models.DateTimeField(verbose_name="дата создания", auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name="дата обновления", auto_now=True)
 
     def __str__(self):
         return self.name
