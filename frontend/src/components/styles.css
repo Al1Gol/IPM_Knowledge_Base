@@ -68,6 +68,11 @@ html, body {
 
 .LogoLogin{
   margin-top: 50px;
+  -moz-user-select: none; 
+  -webkit-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none;
+  pointer-events: none;
 }
 
 .LoginForm {
@@ -176,7 +181,7 @@ header{
   font-size: 16px;
   width: 240px;
   height: 88px;
-  margin: 30px 70px 0px 50px;
+  margin: 30px 40px 0px 50px;
   padding: 5px;
   background: #355E8B;
   color: #ffffff;
@@ -204,6 +209,7 @@ header{
 }
 
 .editBtn{
+  user-select: none;
   position: absolute;
   top: 5px;
   left: 272px;
@@ -237,7 +243,8 @@ header{
     box-sizing: border-box;
     background: #79A0CC;
     margin-top: 30px;
-    width: 400px;
+    width: 35vh;
+    min-width: 50vh;
     user-select: none;
 }
 
@@ -246,16 +253,29 @@ header{
   flex-direction: row;
   align-items: center;
   height: 15px;
-  padding: 14px 25px;
+  padding: 14px 10px;
   font-size: 16px;
   line-height: 15.31px;
 }
 
-.sectionBtn>img{
+.sectionBtn>div{
   height: 22px;
+  width: 22px;
+  margin-right: 5px;
+}
+
+
+.sectionBtn>div>img{
+  height: 22px;
+  width: 22px;
   margin-right: 10px;
 }
 
+.iconSection{
+  width: 22px;
+  height: 22px;
+  margin-right: 10px;
+}
 /*
 -----------------------------------------------------------------------------
 -----------------------------------------------------------------------------
