@@ -8,6 +8,7 @@ import CreateMenu from './components/CreateMenu';
 import EditMenuForm from './components/EditMenu';
 import Sections from './components/Sections';
 import CreateSections from './components/CreateSection';
+import EditSection from './components/EditSection'; 
 import Logo from './img/icons/LogoMain.png'
 
 
@@ -122,9 +123,16 @@ class App extends React.Component {
 
     //Получение текущего ID Menu
     getCurentEditId(id, obj) {
-        this.setState ({
+        if (obj == 'menuEdit'){
+            this.setState ({
                 'current_menu': this.state.menu.find(el_menu =>  el_menu.id === id)
-        },  this.onFormDisplay(obj))
+            },  this.onFormDisplay(obj))
+        } 
+        if(obj == 'sectionEdit') {
+            this.setState ({
+                'current_section': this.state.sections.find(el_section =>  el_section.id === id)
+            },  this.onFormDisplay(obj))
+        }
     }
 
     
@@ -204,7 +212,6 @@ class App extends React.Component {
                 'current_menu': [],
                 'hidden_modal': !this.state.hidden_modal,
             }, this.getMenu())
-            console.log(this.state.hidden_modal)
           })
           .catch( error =>{ 
               // Очищаем данные, если аутентификация не прошла
@@ -280,7 +287,6 @@ class App extends React.Component {
         axios
         .post(`${backend_addr}/sections/`, body, {headers})
         .then(response => {
-            console.log('this.state.current_menu.id' + this.state.current_menu.id)
             this.getSections(this.state.current_menu.id)
         })
         .catch( error =>{ 
@@ -290,6 +296,41 @@ class App extends React.Component {
         })
     }
 
+    // EDIT SECTION
+    editSection(name, img) {
+        let headers = this.getHeadears()
+        let body = this.iconsFormData(name, img)
+        body.append('menu_id', this.state.current_menu.id)
+        axios
+        .post(`${backend_addr}/sections/`, body, {headers})
+        .then(response => {
+            this.getSections(this.state.current_menu.id)
+        })
+        .catch( error =>{ 
+            // Очищаем данные, если аутентификация не прошла
+            this.NotAuthError(error)
+            console.log(error)
+        })
+    }
+
+    //DELETE SECTION
+    deleteSection() {
+        let headers = this.getHeadears()
+        axios
+        .delete(`${backend_addr}/sections/${this.state.current_section.id}/`, {headers})
+        .then(response => {
+            this.setState({
+                'current_section': [],
+                'hidden_modal': !this.state.hidden_modal,
+            }, this.getMenu())
+        })
+        .catch( error =>{ 
+            // Очищаем данные, если аутентификация не прошла
+            this.NotAuthError(error)
+            console.log(error)
+        })
+    }
+    
 
     /*-----------------------------------*/
     /*-----------------------------------*/
@@ -319,7 +360,7 @@ class App extends React.Component {
                 </Routes>
                     <>
                         {!this.state.sections ? '' : 
-                        <Sections sections={this.state.sections} onFormDisplay = {(target) => this.onFormDisplay(target)}/> 
+                        <Sections sections={this.state.sections} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} /> 
                         }
                     </>
                     <>
@@ -328,6 +369,7 @@ class App extends React.Component {
                                 {this.state.current_target === 'menuAdd' ? <CreateMenu addMenu = {(name, img) => this.addMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
                                 {this.state.current_target === 'menuEdit' ? <EditMenuForm editMenu = {(name, img) => this.editMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_menu={this.state.current_menu} deleteMenu={() => this.deleteMenu()} /> : ''}
                                 {this.state.current_target === 'sectionAdd' ? <CreateSections addSection = {(name, img) => this.addSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_section={this.state.current_section} /> : ''}
+                                {this.state.current_target === 'sectionEdit' ? <EditSection editSection = {(name, img) => this.editSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_section={this.state.current_section} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteSection = {() => this.deleteSection()} /> : ''}
                             </div>
                         } 
                     </>   

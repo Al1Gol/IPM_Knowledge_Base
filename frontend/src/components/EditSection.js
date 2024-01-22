@@ -1,17 +1,16 @@
 import React from 'react';
 
-
 /***********************************************************************************************/
 /***********************************************************************************************/
-//КОМПОНЕНТ СОЗДАНИЯ SECTIONS
+//КОМПОНЕНТ РЕДАКТИРОВАНИЯ SECTION
 /***********************************************************************************************/
 /***********************************************************************************************/
-class CreateSections extends React.Component {
+class EditSectionForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            "section_name" : "", //Имя
-            "img": null, //Иконка
+            'name' : this.props.current_section.name, //Имя
+            'img': null, //Иконка
         }   
     }   
 
@@ -25,9 +24,8 @@ class CreateSections extends React.Component {
 
     // ОБРАБОТЧИК КНОПКИ submit
     handleSubmit(event) {
-        this.props.addSection(this.state.section_name, this.state.img)
-        this.props.onFormDisplay()
         event.preventDefault() // запрещает стандартную обработку события
+        this.props.editSection(this.state.name, this.state.img)
     }
 
 
@@ -42,27 +40,29 @@ class CreateSections extends React.Component {
 
     /*-----------------------------------*/
     /*-----------------------------------*/
-    // RENDER МОДАЛЬНОГО ОКНА С ФОРМОЙ СОЗДАНИЯ ЭЛЕМЕНТА SECTIONS
+    // RENDER МОДАЛЬНОГО ОКНА С ФОРМОЙ РЕДАКТИРОВАНИЯ ЭЛЕМЕНТА MENU
     /*-----------------------------------*/
     /*-----------------------------------*/
     render () {
-            return (
-                <form className ="modalForm" onSubmit={(event) => this.handleSubmit(event) }>
+        return (
+            <div className='modalForm'>
+                <form className ="" onSubmit={(event) => this.handleSubmit(event) }>
                     <div className='editHeader'>
-                        <h3>Создание нового раздела</h3>
+                        <h3>Редактирование раздела</h3>
                     </div>
-                        <p>Название</p>
-                    <input type="text" required className="nameInput" placeholder="Наименование раздела" name="section_name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
-                    <p>Добавить иконку</p>
+                    <p>Название</p>
+                    <input type="text" required className="nameInput" placeholder="Наименование раздела" name="name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
+                    <p>Добавить/Изменить иконку</p>
                     <input id="file"className ="createIcon" type="file" title=" " onChange={(event) => this.onFileChange(event)}/> <br/>
                     <div className="confirmGroup">
                         <input className="confirmBtn" type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/>
                         <input className="confirmBtn" type="submit" value="Сохранить" />
                     </div>
                 </form>
-            )
+                <button className='deleteBtn' onClick={this.props.deleteSection}>Удалить</button>
+            </div>
+        )
     }
 }
 
-
-export default CreateSections;
+export default EditSectionForm;

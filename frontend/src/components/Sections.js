@@ -9,7 +9,7 @@ import editIcon from '../img/icons/edit_sub.png'
 // ВЛОЖЕН В РЕНДЕР СПИСКА SECTIONS
 /*-----------------------------------*/
 /*-----------------------------------*/
-const SectionItem = ({section}) => {
+const SectionItem = ({section, getCurentEditId}) => {
     return (
         <div className='sectionItem'>
             <div className='sectionBtn'>
@@ -17,7 +17,7 @@ const SectionItem = ({section}) => {
                     {section.img ? <img src= {section.img} alt=''></img>  : ''}
                 </div>
                 <p>{section.name}</p>
-                <img className='iconSection' src={editIcon}></img>
+                <img id='sectionEdit' className='iconSection' src={editIcon} onClick = {(event) => getCurentEditId(section.id, event.currentTarget.getAttribute("id"))}></img>
             </div>
         </div>
     )
@@ -28,10 +28,10 @@ const SectionItem = ({section}) => {
 // RENDER СПИСКА SECTIONS
 /*-----------------------------------*/
 /*-----------------------------------*/
-const Sections = ({ sections, onFormDisplay }) => {
+const Sections = ({ sections, onFormDisplay, getCurentEditId }) => {
     return (
         <div className='sectionsBlock'>
-            {sections.map((section) => <SectionItem section={section} />)}
+            {sections.map((section) => <SectionItem section={section} getCurentEditId={getCurentEditId} />)}
             <div id="sectionAdd" className='sectionBtn' onClick = {(event) => onFormDisplay(event.currentTarget.getAttribute("id"))}> 
                 <div>
                     <img src={add_img} alt='+'></img>
