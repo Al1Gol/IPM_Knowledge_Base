@@ -233,16 +233,27 @@ header{
 РАЗДЕЛЫ
 -----------------------------------------------------------------------------*/
 .sectionsBlock{
+    align-self: start;
+    box-sizing: border-box;
     background: #79A0CC;
     margin-top: 30px;
     width: 400px;
+    user-select: none;
 }
 
 .sectionBtn{
-  height: 49px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 15px;
   padding: 14px 25px;
   font-size: 16px;
   line-height: 15.31px;
+}
+
+.sectionBtn>img{
+  height: 22px;
+  margin-right: 10px;
 }
 
 /*
@@ -326,6 +337,8 @@ header{
   display: flex;
   justify-content: space-between;
 }
+
+
 
 /*
 -----------------------------------------------------------------------------

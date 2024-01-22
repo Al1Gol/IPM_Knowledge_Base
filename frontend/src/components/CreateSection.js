@@ -3,14 +3,14 @@ import React from 'react';
 
 /***********************************************************************************************/
 /***********************************************************************************************/
-//КОМПОНЕНТ СОЗДАНИЯ MENU
+//КОМПОНЕНТ СОЗДАНИЯ SECTIONS
 /***********************************************************************************************/
 /***********************************************************************************************/
-class CreateMenu extends React.Component {
+class CreateSections extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            "menu_name" : "", //Имя
+            "section_name" : "", //Имя
             "img": null, //Иконка
         }   
     }   
@@ -25,7 +25,9 @@ class CreateMenu extends React.Component {
 
     // ОБРАБОТЧИК КНОПКИ submit
     handleSubmit(event) {
-        this.props.addMenu(this.state.menu_name, this.state.img)
+        console.log("section_name " + this.state.section_name)
+        console.log("img " + this.state.img)
+        this.props.addSection(this.state.section_name, this.state.img)
         this.props.onFormDisplay()
         event.preventDefault() // запрещает стандартную обработку события
     }
@@ -42,17 +44,17 @@ class CreateMenu extends React.Component {
 
     /*-----------------------------------*/
     /*-----------------------------------*/
-    // RENDER МОДАЛЬНОГО ОКНА С ФОРМОЙ СОЗДАНИЯ ЭЛЕМЕНТА MENU
+    // RENDER МОДАЛЬНОГО ОКНА С ФОРМОЙ СОЗДАНИЯ ЭЛЕМЕНТА SECTIONS
     /*-----------------------------------*/
     /*-----------------------------------*/
     render () {
             return (
                 <form className ="modalForm" onSubmit={(event) => this.handleSubmit(event) }>
                     <div className='editHeader'>
-                        <h3>Создание пункта меню</h3>
+                        <h3>Создание нового раздела</h3>
                     </div>
                         <p>Название</p>
-                    <input type="text" required className="nameInput" placeholder="Наименование пункта" name="menu_name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
+                    <input type="text" required className="nameInput" placeholder="Наименование раздела" name="section_name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
                     <p>Добавить иконку</p>
                     <input id="file"className ="createIcon" type="file" title=" " onChange={(event) => this.onFileChange(event)}/> <br/>
                     <div className="confirmGroup">
@@ -65,4 +67,4 @@ class CreateMenu extends React.Component {
 }
 
 
-export default CreateMenu;
+export default CreateSections;

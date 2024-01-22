@@ -2,11 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import {BrowserRouter, Route, Routes, useLocation,} from 'react-router-dom'
 
-import MenuList from './components/Menu';
-import Sections from './components/Sections';
 import LoginForm from './components/LoginForm';
+import MenuList from './components/Menu';
 import CreateMenu from './components/CreateMenu';
 import EditMenuForm from './components/EditMenu';
+import Sections from './components/Sections';
+import CreateSections from './components/CreateSection';
 import Logo from './img/icons/LogoMain.png'
 
 
@@ -33,7 +34,7 @@ class App extends React.Component {
             'refresh_token': [], // Токен обновления
             'menu': [], // Список меню
             'current_menu': [], //Текущее меню
-            'sections': [],  //Разделы
+            'sections': null,  //Разделы
             'current_section': [], //Текущий раздел
             'article': [], //Статья
             'files': [], //Файлы статьи 
@@ -72,8 +73,6 @@ class App extends React.Component {
               'menu': [],
               'current_menu': [],
               'sections': [],
-              'current_section': [],
-              'current_subsection': [],
               'article': [],
               'files': []
             })
@@ -264,14 +263,31 @@ class App extends React.Component {
         else {
             this.setState({
                 'current_menu': [],
-                'sections': [],
+                'sections': null,
                 'current_section': [],
-                'subsections': [],
-                'current_subsection': [],
                 'article': [],
                 'files': [],
             })
         }
+    }
+
+
+    // CREATE SECTION
+    addSection(name, img) {
+        let headers = this.getHeadears()
+        let body = this.iconsFormData(name, img)
+        body.append('menu_id', this.state.current_menu.id)
+        axios
+        .post(`${backend_addr}/sections/`, body, {headers})
+        .then(response => {
+            console.log('this.state.current_menu.id' + this.state.current_menu.id)
+            this.getSections(this.state.current_menu.id)
+        })
+        .catch( error =>{ 
+            // Очищаем данные, если аутентификация не прошла
+            this.NotAuthError(error)
+            console.log(error)
+        })
     }
 
 
@@ -302,13 +318,16 @@ class App extends React.Component {
                     <Route path='*' element = {<NotFound />} />
                 </Routes>
                     <>
-                        <Sections sections={this.state.sections}/> 
+                        {!this.state.sections ? '' : 
+                        <Sections sections={this.state.sections} onFormDisplay = {(target) => this.onFormDisplay(target)}/> 
+                        }
                     </>
                     <>
                         {this.state.hidden_modal ? '' :
                             <div className="modal">
                                 {this.state.current_target === 'menuAdd' ? <CreateMenu addMenu = {(name, img) => this.addMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
                                 {this.state.current_target === 'menuEdit' ? <EditMenuForm editMenu = {(name, img) => this.editMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_menu={this.state.current_menu} deleteMenu={() => this.deleteMenu()} /> : ''}
+                                {this.state.current_target === 'sectionAdd' ? <CreateSections addSection = {(name, img) => this.addSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_section={this.state.current_section} /> : ''}
                             </div>
                         } 
                     </>   

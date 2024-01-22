@@ -1,4 +1,5 @@
 import React from 'react'
+import add_img from '../img/icons/add_section.svg'
 
 
 /*-----------------------------------*/
@@ -21,11 +22,13 @@ const SectionItem = ({section}) => {
 // RENDER СПИСКА SECTIONS
 /*-----------------------------------*/
 /*-----------------------------------*/
-const Sections = ({ sections }) => {
+const Sections = ({ sections, onFormDisplay }) => {
     return (
         <div className='sectionsBlock'>
             {sections.map((section) => <SectionItem section={section} />)}
-            <div className='sectionBtn' onClick = {() => sections}> <img src='' alt='+'></img>Добавить раздел </div>
+            <div id="sectionAdd" className='sectionBtn' onClick = {(event) => onFormDisplay(event.currentTarget.getAttribute("id"))}> 
+                <img src={add_img} alt='+'></img>
+                <p>Добавить раздел</p></div>
         </div>
     )
 }
