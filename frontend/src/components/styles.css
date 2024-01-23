@@ -417,10 +417,13 @@ header{
 .sectionBtn:hover{
   backdrop-filter: blur(4px);
   background-image: linear-gradient(
-    to bottom, 
-    rgba(0, 0, 0, 0.25) 0%,
-    #79A0CC 20%
+    to top, 
+    rgba(0, 0, 0, 0.20) 0%,
+    #79A0CC 50%,
+    rgba(0, 0, 0, 0.20) 80%
     );
+    border-top: solid 1px;
+    border-bottom: solid 1px;
 }
 /*
 -----------------------------------------------------------------------------
