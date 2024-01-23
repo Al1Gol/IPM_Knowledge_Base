@@ -121,14 +121,14 @@ class App extends React.Component {
     }
 
 
-    //Получение текущего ID Menu
+    //Получение текущего ID Menu/Раздела для формирования модального окна
     getCurentEditId(id, obj) {
-        if (obj == 'menuEdit'){
+        if (obj === 'menuEdit'){
             this.setState ({
                 'current_menu': this.state.menu.find(el_menu =>  el_menu.id === id)
             },  this.onFormDisplay(obj))
         } 
-        if(obj == 'sectionEdit') {
+        if(obj === 'sectionEdit') {
             this.setState ({
                 'current_section': this.state.sections.find(el_section =>  el_section.id === id)
             },  this.onFormDisplay(obj))
@@ -245,13 +245,14 @@ class App extends React.Component {
     /*-----------------------------------*/
 
     //CREATE SECTIONS
-    getSections(id) {
+    getSections(id, update=false) {
         let current_menu = this.state.menu.find(obj => obj.id === id)
         this.setState({
             'current_menu': current_menu
         })
         // Если не выбран элемент меню или выбран отличный текущего, то выводим новый список разделов
-        if (this.state.current_menu.length === 0 || this.state.current_menu.id !== id) {
+        if (this.state.current_menu.length === 0 || this.state.current_menu.id !== id || update) {
+
             let headers = this.getHeadears()
             axios
             .get(`${backend_addr}/sections/?menu_id=${id}`, {headers})
@@ -287,7 +288,7 @@ class App extends React.Component {
         axios
         .post(`${backend_addr}/sections/`, body, {headers})
         .then(response => {
-            this.getSections(this.state.current_menu.id)
+            this.getSections(this.state.current_menu.id, true)
         })
         .catch( error =>{ 
             // Очищаем данные, если аутентификация не прошла
@@ -302,9 +303,12 @@ class App extends React.Component {
         let body = this.iconsFormData(name, img)
         body.append('menu_id', this.state.current_menu.id)
         axios
-        .post(`${backend_addr}/sections/`, body, {headers})
+        .patch(`${backend_addr}/sections/${this.state.current_section.id}/`, body, {headers})
         .then(response => {
-            this.getSections(this.state.current_menu.id)
+            this.setState({
+                'current_section': [],
+                'hidden_modal': !this.state.hidden_modal,
+            }, this.getSections(this.state.current_menu.id, true))
         })
         .catch( error =>{ 
             // Очищаем данные, если аутентификация не прошла
@@ -322,7 +326,7 @@ class App extends React.Component {
             this.setState({
                 'current_section': [],
                 'hidden_modal': !this.state.hidden_modal,
-            }, this.getMenu())
+            }, this.getSections(this.state.current_menu.id, true))
         })
         .catch( error =>{ 
             // Очищаем данные, если аутентификация не прошла
@@ -381,7 +385,7 @@ class App extends React.Component {
             return (
               <BrowserRouter>
                   <Routes>
-                      <Route exact path='/' element= <LoginForm getAuthToken={(username, password) => this.getAuthToken(username, password)} />/>
+                      <Route exact path='/' element = <LoginForm getAuthToken={(username, password) => this.getAuthToken(username, password)} />/>
                   </Routes>
               </BrowserRouter>
             )
