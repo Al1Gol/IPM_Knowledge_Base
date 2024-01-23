@@ -9,10 +9,10 @@ import EditImg from '../img/icons/edit.svg'
 // ВЛОЖЕН В РЕНДЕР СПИСКА MENU
 /*-----------------------------------*/
 /*-----------------------------------*/
-const MenuItem = ({menu, getSections, getCurentEditId}) => {
+const MenuItem = ({menu, getSections, getCurentEditId, current_menu}) => {
     return (
-        <div className="menuItem">
-            <div className='menuBtn' onClick = {() => getSections(menu.id)}> 
+        <div className='menuItem'>
+            <div className={ (current_menu.id == menu.id) ? 'menuBtn isActive' : 'menuBtn'} onClick = {() => getSections(menu.id)}> 
                 <div>
                     {menu.img ? <img src= {menu.img}  className="menuIcon" alt=''></img>: ''}
                 </div>
@@ -28,10 +28,10 @@ const MenuItem = ({menu, getSections, getCurentEditId}) => {
 // RENDER СПИСКА MENU
 /*-----------------------------------*/
 /*-----------------------------------*/
-const MenuList = ({ menu_list, getSections, onFormDisplay, getCurentEditId}) => {
+const MenuList = ({ menu_list, current_menu, getSections, onFormDisplay, getCurentEditId}) => {
     return (
         <div>
-            {menu_list.map((el_menu) => <MenuItem menu={el_menu} getSections={getSections} getCurentEditId={getCurentEditId}/>)}
+            {menu_list.map((el_menu) => <MenuItem menu={el_menu} getSections={getSections} getCurentEditId={getCurentEditId} current_menu={current_menu}/>)}
             <div id="menuAdd" className={'menuBtn'}  onClick = {(event) => onFormDisplay(event.currentTarget.getAttribute("id"))}>
                 <img src='' alt='' ></img>
                 <p>Добавить меню </p>

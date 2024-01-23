@@ -356,7 +356,7 @@ class App extends React.Component {
                 <Routes>
                     <Route exact path='/' element= 
                         {this.isAuth() ? 
-                            <MenuList menu_list={this.state.menu} getSections = {(id) => this.getSections(id)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} /> : 
+                            <MenuList menu_list={this.state.menu} current_menu={this.state.current_menu} getSections = {(id) => this.getSections(id)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} /> : 
                             <LoginForm getAuthToken={(username, password) => this.getAuthToken(username, password)} />
                         } 
                     />
