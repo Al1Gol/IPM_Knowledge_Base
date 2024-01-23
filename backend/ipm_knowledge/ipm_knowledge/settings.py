@@ -68,8 +68,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://192.168.10.140:5554",
     "http://192.168.10.172:8000",
     "http://192.168.10.172:3000",
-    "http://192.168.10.222:8000",
-    "http://192.168.10.222:3000",
+    "http://192.168.10.210:8000",
+    "http://192.168.10.210:3000",
     "http://localhost:3000",
     "http://localhost:8000",
     "http://127.0.0.1:3000",
@@ -138,7 +138,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 REST_FRAMEWORK = {
-    "DATETIME_FORMAT": "%d.%m.%Y %H:%M:%S",
+    "DATETIME_FORMAT": "%d.%m.%Yg %H:%M:%S",
     "DEFAULT_RENDERER_CLASSES": [
         "rest_framework.renderers.JSONRenderer",
         "rest_framework.renderers.BrowsableAPIRenderer",

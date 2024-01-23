@@ -67,7 +67,7 @@ class Articles(models.Model):
         null=True,
     )
     name = models.CharField(verbose_name="Наименование статьи", max_length=200)
-    text = models.TextField(verbose_name="Описание", max_length=40000)
+    text = models.TextField(verbose_name="Описание", max_length=100000)
     is_article = models.BooleanField(verbose_name="видимость", default=False)
     created_at = models.DateTimeField(verbose_name="дата создания", auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name="дата обновления", auto_now=True)

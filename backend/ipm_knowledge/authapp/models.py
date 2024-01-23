@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
+# Необходимо, чтобы имелась 1 запись с id = 1 для подвязки к администратору
 class Departments(models.Model):
     name = models.CharField(
         verbose_name="наименование отдела", max_length=50, unique=True
@@ -15,7 +16,6 @@ class Departments(models.Model):
         return f"{self.name}"
 
 
-# Create your models here.
 class Users(AbstractUser):
     depart_id = models.ForeignKey(
         "Departments",
