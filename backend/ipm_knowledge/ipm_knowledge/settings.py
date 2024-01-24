@@ -138,7 +138,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 REST_FRAMEWORK = {
-    "DATETIME_FORMAT": "%d.%m.%Yg %H:%M:%S",
+    "DATETIME_FORMAT": "%d.%m.%Y %H:%M:%S",
     "DEFAULT_RENDERER_CLASSES": [
         "rest_framework.renderers.JSONRenderer",
         "rest_framework.renderers.BrowsableAPIRenderer",
