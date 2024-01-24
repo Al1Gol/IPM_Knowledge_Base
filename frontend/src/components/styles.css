@@ -286,6 +286,52 @@ header{
   right: 10px;
 }
 
+/*-----------------------------------------------------------------------------
+СТАТЬИ
+-----------------------------------------------------------------------------*/
+
+.articlesBlock{
+  align-self: start;
+  box-sizing: border-box;
+  background: #79A0CC;
+  margin-top: 30px;
+  width: 35vh;
+  min-width: 50vh;
+  user-select: none;
+}
+
+.articleBtn{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 15px;
+  padding: 14px 10px;
+  font-size: 16px;
+  line-height: 15.31px;
+}
+
+.articleBtn>div{
+height: 22px;
+width: 22px;
+margin-right: 5px;
+}
+
+
+.articleBtn>div>img{
+height: 22px;
+width: 22px;
+margin-right: 10px;
+}
+
+.iconArticle{
+position: absolute;
+width: 22px;
+height: 22px;
+margin-right: 10px;
+right: 10px;
+}
+
 
 /*
 -----------------------------------------------------------------------------

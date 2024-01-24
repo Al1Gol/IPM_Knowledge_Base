@@ -9,10 +9,10 @@ import editIcon from '../img/icons/edit_sub.png'
 // ВЛОЖЕН В РЕНДЕР СПИСКА SECTIONS
 /*-----------------------------------*/
 /*-----------------------------------*/
-const SectionItem = ({section, getCurentEditId}) => {
+const SectionItem = ({section, current_section, getCurentEditId}) => {
     return (
         <div className='sectionItem'>
-            <div className='sectionBtn'>
+            <div className={ (current_section.id == section.id) ? 'sectionBtn isActive' : 'sectionBtn'}>
                 <div>
                     {section.img ? <img src= {section.img} alt=''></img>  : ''}
                 </div>
@@ -28,13 +28,13 @@ const SectionItem = ({section, getCurentEditId}) => {
 // RENDER СПИСКА SECTIONS
 /*-----------------------------------*/
 /*-----------------------------------*/
-const Sections = ({ sections, onFormDisplay, getCurentEditId }) => {
+const Sections = ({ sections, current_section, onFormDisplay, getCurentEditId }) => {
     return (
         <div className='sectionsBlock'>
-            {sections.map((section) => <SectionItem section={section} getCurentEditId={getCurentEditId} />)}
+            {sections.map((section) => <SectionItem section={section} current_section={current_section} getCurentEditId={getCurentEditId} />)}
             <div id="sectionAdd" className='sectionBtn' onClick = {(event) => onFormDisplay(event.currentTarget.getAttribute("id"))}> 
                 <div>
-                    <img src={add_img} alt='+'></img>
+                    <img src={add_img} alt=''></img>
                 </div>
                 <p>Добавить раздел</p></div>
         </div>

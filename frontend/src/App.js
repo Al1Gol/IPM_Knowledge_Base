@@ -9,6 +9,8 @@ import EditMenuForm from './components/EditMenu';
 import Sections from './components/Sections';
 import CreateSections from './components/CreateSection';
 import EditSection from './components/EditSection'; 
+import Articles from './components/Artticles';
+import CreateArticle from './components/CreateArticle';
 import Logo from './img/icons/LogoMain.png'
 
 
@@ -37,7 +39,8 @@ class App extends React.Component {
             'current_menu': [], //Текущее меню
             'sections': null,  //Разделы
             'current_section': [], //Текущий раздел
-            'article': [], //Статья
+            'articles': [], //Статьи
+            'current_article': [], //Текущий раздел
             'files': [], //Файлы статьи 
             'hidden_modal' : true, //Оторажение модального окна создания меню
             'current_target': '' // ID текущей кнопки по открытию модального окна, для отрисовки необходимой формы
@@ -74,7 +77,7 @@ class App extends React.Component {
               'menu': [],
               'current_menu': [],
               'sections': [],
-              'article': [],
+              'articles': [],
               'files': []
             })
         }
@@ -131,6 +134,11 @@ class App extends React.Component {
         if(obj === 'sectionEdit') {
             this.setState ({
                 'current_section': this.state.sections.find(el_section =>  el_section.id === id)
+            },  this.onFormDisplay(obj))
+        }
+        if(obj === 'articleEdit') {
+            this.setState ({
+                'current_article': this.state.articles.find(el_article =>  el_article.id === id)
             },  this.onFormDisplay(obj))
         }
     }
@@ -250,7 +258,7 @@ class App extends React.Component {
         this.setState({
             'current_menu': current_menu
         })
-        // Если не выбран элемент меню или выбран отличный текущего, то выводим новый список разделов
+        // Если не выбран элемент меню или выбран отличный текущего или происходит CUD через модалку, то выводим новый список разделов
         if (this.state.current_menu.length === 0 || this.state.current_menu.id !== id || update) {
 
             let headers = this.getHeadears()
@@ -273,7 +281,7 @@ class App extends React.Component {
                 'current_menu': [],
                 'sections': null,
                 'current_section': [],
-                'article': [],
+                'articles': [],
                 'files': [],
             })
         }
@@ -334,6 +342,67 @@ class App extends React.Component {
             console.log(error)
         })
     }
+
+    /*-----------------------------------*/
+    /*-----------------------------------*/
+    // CRUD ARTICLES
+    /*-----------------------------------*/
+    /*-----------------------------------*/
+
+    //READ ARTICLES
+    getArticles(id, update=false) {
+        let current_section = this.state.section.find(obj => obj.id === id)
+        this.setState({
+            'current_section': current_section
+        })
+        // Если не выбран элемент меню или выбран отличный текущего или происходит CUD через модалку, то выводим новый список разделов
+        if (this.state.current_section.length === 0 || this.state.current_section.id !== id || update) {
+
+            let headers = this.getHeadears()
+            axios
+            .get(`${backend_addr}/articles/?section_id=${id}`, {headers})
+            .then(response => {
+                let articles = response.data
+                this.setState({
+                    'articles': articles
+                })
+            })
+            .catch( error => {
+                // Очищаем данные, если аутентификация не прошла
+                this.NotAuthError(error)
+            }) 
+        } 
+        // Убираем убираем всю правую часть при повтрном нажатии
+        else {
+            this.setState({
+                'current_menu': [],
+                'sections': null,
+                'current_section': [],
+                'articles': [],
+                'files': [],
+            })
+        }
+    }
+
+    // CREATE SECTION
+    addArticle(name, text) {
+        let headers = this.getHeadears()
+        let body = {
+            "name": name,
+            "text": text
+        }
+        body.append('section_id', this.state.current_menu.id)
+        axios
+        .post(`${backend_addr}/articles/`, body, {headers})
+        .then(response => {
+            this.getArticles(this.state.current_section.id, true)
+        })
+        .catch( error =>{ 
+            // Очищаем данные, если аутентификация не прошла
+            this.NotAuthError(error)
+            console.log(error)
+        })
+    }
     
 
     /*-----------------------------------*/
@@ -345,40 +414,46 @@ class App extends React.Component {
         if (this.isAuth()) {
             return (
                 <div className="MainPage bkg_blur">
-                <header>
-                    <img className="Logo" src={Logo} alt='logo'></img>
-                    <div className='logoutBtn' onClick={() => this.logOut()} >
-                        { this.isAuth() ? <p>Выход</p> : '' }
+                    <header>
+                        <img className="Logo" src={Logo} alt='logo'></img>
+                        <div className='logoutBtn' onClick={() => this.logOut()} >
+                            { this.isAuth() ? <p>Выход</p> : '' }
+                        </div>
+                    </header>
+                    <div className='content'>
+                    <BrowserRouter>
+                    <Routes>
+                        <Route exact path='/' element= 
+                            {this.isAuth() ? 
+                                <MenuList menu_list={this.state.menu} current_menu={this.state.current_menu} getSections = {(id) => this.getSections(id)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} /> : 
+                                <LoginForm getAuthToken={(username, password) => this.getAuthToken(username, password)} />
+                            } 
+                        />
+                        <Route path='*' element = {<NotFound />} />
+                    </Routes>
+                        <>
+                            {!this.state.sections ? '' : 
+                            <Sections sections={this.state.sections} current_section={this.state.current_section} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} /> 
+                            }
+                        </>
+                        <>
+                            {!this.state.articles ? '' : 
+                            <Articles articles={this.state.articles} current_article={this.state.current_article} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} /> 
+                            }
+                        </>
+                        <>
+                            {this.state.hidden_modal ? '' :
+                                <div className="modal">
+                                    {this.state.current_target === 'menuAdd' ? <CreateMenu addMenu = {(name, img) => this.addMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
+                                    {this.state.current_target === 'menuEdit' ? <EditMenuForm editMenu = {(name, img) => this.editMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_menu={this.state.current_menu} deleteMenu={() => this.deleteMenu()} /> : ''}
+                                    {this.state.current_target === 'sectionAdd' ? <CreateSections addSection = {(name, img) => this.addSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_section={this.state.current_section} /> : ''}
+                                    {this.state.current_target === 'sectionEdit' ? <EditSection editSection = {(name, img) => this.editSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_section={this.state.current_section} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteSection = {() => this.deleteSection()} /> : ''}
+                                    {this.state.current_target === 'articleAdd' ? <CreateArticle addArticle = {(name, text) => this.addArticle(name, text)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_article={this.state.current_article} /> : ''}
+                                </div>
+                            } 
+                        </>   
+                    </BrowserRouter>
                     </div>
-                </header>
-                <div className='content'>
-                <BrowserRouter>
-                <Routes>
-                    <Route exact path='/' element= 
-                        {this.isAuth() ? 
-                            <MenuList menu_list={this.state.menu} current_menu={this.state.current_menu} getSections = {(id) => this.getSections(id)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} /> : 
-                            <LoginForm getAuthToken={(username, password) => this.getAuthToken(username, password)} />
-                        } 
-                    />
-                    <Route path='*' element = {<NotFound />} />
-                </Routes>
-                    <>
-                        {!this.state.sections ? '' : 
-                        <Sections sections={this.state.sections} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} /> 
-                        }
-                    </>
-                    <>
-                        {this.state.hidden_modal ? '' :
-                            <div className="modal">
-                                {this.state.current_target === 'menuAdd' ? <CreateMenu addMenu = {(name, img) => this.addMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
-                                {this.state.current_target === 'menuEdit' ? <EditMenuForm editMenu = {(name, img) => this.editMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_menu={this.state.current_menu} deleteMenu={() => this.deleteMenu()} /> : ''}
-                                {this.state.current_target === 'sectionAdd' ? <CreateSections addSection = {(name, img) => this.addSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_section={this.state.current_section} /> : ''}
-                                {this.state.current_target === 'sectionEdit' ? <EditSection editSection = {(name, img) => this.editSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_section={this.state.current_section} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteSection = {() => this.deleteSection()} /> : ''}
-                            </div>
-                        } 
-                    </>   
-                </BrowserRouter>
-                </div>
                 </div>
             )
         } else {
