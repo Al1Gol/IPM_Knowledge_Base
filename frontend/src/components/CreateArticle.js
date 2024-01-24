@@ -11,12 +11,12 @@ class CreateArticle extends React.Component {
         super(props)
         this.state = {
             "article_name" : "", //Имя
-            "text": null, //Иконка
+            "text": "", //Иконка
         }   
     }   
 
-    // ОБРАБОТЧИК ПОЛЯ input
-    // ПЕРЕДАЧА СОДЕРЖИМОГО input ПОЛЯ В props
+    // ОБРАБОТЧИК ПОЛЕЙ input
+    // ПЕРЕДАЧА СОДЕРЖИМОГО input ПОЛЕЙ В props
     handleChange(event) {
         this.setState({ 
             [event.target.name]: event.target.value
@@ -25,7 +25,7 @@ class CreateArticle extends React.Component {
 
     // ОБРАБОТЧИК КНОПКИ submit
     handleSubmit(event) {
-        this.props.addSection(this.state.article_name, this.state.text)
+        this.props.addArticle(this.state.article_name, this.state.text)
         this.props.onFormDisplay()
         event.preventDefault() // запрещает стандартную обработку события
     }
@@ -44,7 +44,7 @@ class CreateArticle extends React.Component {
                         <p>Название</p>
                     <input type="text" required className="nameInput" placeholder="Наименование раздела" name="article_name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
                     <p>Текст статьи</p>
-                    <input id="text"className ="createIcon" type="text" name='' onChange={(event) => this.onFileChange(event)}/> <br/>
+                    <input id="text"className ="createIcon" type="text" name="text" onChange={(event) => this.handleChange(event)}/> <br/>
                     <div className="confirmGroup">
                         <input className="confirmBtn" type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/>
                         <input className="confirmBtn" type="submit" value="Сохранить" />

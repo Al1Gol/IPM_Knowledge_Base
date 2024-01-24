@@ -9,10 +9,10 @@ import editIcon from '../img/icons/edit_sub.png'
 // ВЛОЖЕН В РЕНДЕР СПИСКА SECTIONS
 /*-----------------------------------*/
 /*-----------------------------------*/
-const SectionItem = ({section, current_section, getCurentEditId}) => {
+const SectionItem = ({section, current_section, getCurentEditId, getArticles}) => {
     return (
         <div className='sectionItem'>
-            <div className={ (current_section.id == section.id) ? 'sectionBtn isActive' : 'sectionBtn'}>
+            <div className={ (current_section.id == section.id) ? 'sectionBtn isActive' : 'sectionBtn'} onClick={() => getArticles(section.id)}>
                 <div>
                     {section.img ? <img src= {section.img} alt=''></img>  : ''}
                 </div>
@@ -28,10 +28,10 @@ const SectionItem = ({section, current_section, getCurentEditId}) => {
 // RENDER СПИСКА SECTIONS
 /*-----------------------------------*/
 /*-----------------------------------*/
-const Sections = ({ sections, current_section, onFormDisplay, getCurentEditId }) => {
+const Sections = ({ sections, current_section, onFormDisplay, getCurentEditId, getArticles }) => {
     return (
         <div className='sectionsBlock'>
-            {sections.map((section) => <SectionItem section={section} current_section={current_section} getCurentEditId={getCurentEditId} />)}
+            {sections.map((section) => <SectionItem section={section} current_section={current_section} getCurentEditId={getCurentEditId} getArticles={getArticles} />)}
             <div id="sectionAdd" className='sectionBtn' onClick = {(event) => onFormDisplay(event.currentTarget.getAttribute("id"))}> 
                 <div>
                     <img src={add_img} alt=''></img>

@@ -37,7 +37,7 @@ class App extends React.Component {
             'refresh_token': [], // Токен обновления
             'menu': [], // Список меню
             'current_menu': [], //Текущее меню
-            'sections': null,  //Разделы
+            'sections': [],  //Разделы
             'current_section': [], //Текущий раздел
             'articles': [], //Статьи
             'current_article': [], //Текущий раздел
@@ -126,6 +126,7 @@ class App extends React.Component {
 
     //Получение текущего ID Menu/Раздела для формирования модального окна
     getCurentEditId(id, obj) {
+        console.log(obj)
         if (obj === 'menuEdit'){
             this.setState ({
                 'current_menu': this.state.menu.find(el_menu =>  el_menu.id === id)
@@ -279,7 +280,7 @@ class App extends React.Component {
         else {
             this.setState({
                 'current_menu': [],
-                'sections': null,
+                'sections': [],
                 'current_section': [],
                 'articles': [],
                 'files': [],
@@ -351,7 +352,7 @@ class App extends React.Component {
 
     //READ ARTICLES
     getArticles(id, update=false) {
-        let current_section = this.state.section.find(obj => obj.id === id)
+        let current_section = this.state.sections.find(obj => obj.id === id)
         this.setState({
             'current_section': current_section
         })
@@ -375,8 +376,6 @@ class App extends React.Component {
         // Убираем убираем всю правую часть при повтрном нажатии
         else {
             this.setState({
-                'current_menu': [],
-                'sections': null,
                 'current_section': [],
                 'articles': [],
                 'files': [],
@@ -386,12 +385,13 @@ class App extends React.Component {
 
     // CREATE SECTION
     addArticle(name, text) {
+        console.log('this.state.current_section.id ' + this.state.current_section)
         let headers = this.getHeadears()
         let body = {
             "name": name,
             "text": text
         }
-        body.append('section_id', this.state.current_menu.id)
+        body.append('section_id', this.state.current_section.id)
         axios
         .post(`${backend_addr}/articles/`, body, {headers})
         .then(response => {
@@ -432,12 +432,12 @@ class App extends React.Component {
                         <Route path='*' element = {<NotFound />} />
                     </Routes>
                         <>
-                            {!this.state.sections ? '' : 
-                            <Sections sections={this.state.sections} current_section={this.state.current_section} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} /> 
+                            {this.state.current_menu.length == 0 ? '' : 
+                            <Sections sections={this.state.sections} current_section={this.state.current_section} getArticles = {(id) => this.getArticles(id)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} /> 
                             }
                         </>
                         <>
-                            {!this.state.articles ? '' : 
+                            {this.state.current_section.length == 0 ? '' : 
                             <Articles articles={this.state.articles} current_article={this.state.current_article} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} /> 
                             }
                         </>
