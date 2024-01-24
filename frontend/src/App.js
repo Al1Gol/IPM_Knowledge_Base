@@ -268,7 +268,8 @@ class App extends React.Component {
             .then(response => {
                 let sections = response.data
                 this.setState({
-                    'sections': sections
+                    'sections': sections,
+                    'current_section': [],
                 })
             })
             .catch( error => {
@@ -366,7 +367,7 @@ class App extends React.Component {
                 let articles = response.data
                 this.setState({
                     'articles': articles
-                })
+                }, console.log(this.state.current_section))
             })
             .catch( error => {
                 // Очищаем данные, если аутентификация не прошла
@@ -385,23 +386,22 @@ class App extends React.Component {
 
     // CREATE SECTION
     addArticle(name, text) {
-        console.log('this.state.current_section.id ' + this.state.current_section)
-        let headers = this.getHeadears()
-        let body = {
-            "name": name,
-            "text": text
-        }
-        body.append('section_id', this.state.current_section.id)
-        axios
-        .post(`${backend_addr}/articles/`, body, {headers})
-        .then(response => {
-            this.getArticles(this.state.current_section.id, true)
-        })
-        .catch( error =>{ 
-            // Очищаем данные, если аутентификация не прошла
-            this.NotAuthError(error)
-            console.log(error)
-        })
+            let headers = this.getHeadears()
+            let body = {
+                "section_id": this.state.current_section.id,
+                "name": name,
+                "text": text
+            }
+            axios
+            .post(`${backend_addr}/articles/`, body, {headers})
+            .then(response => {
+                this.getArticles(this.state.current_section.id, true)
+            })
+            .catch( error =>{ 
+                // Очищаем данные, если аутентификация не прошла
+                this.NotAuthError(error)
+                console.log(error)
+            })
     }
     
 
@@ -432,12 +432,12 @@ class App extends React.Component {
                         <Route path='*' element = {<NotFound />} />
                     </Routes>
                         <>
-                            {this.state.current_menu.length == 0 ? '' : 
+                            {this.state.current_menu.length === 0 ? '' : 
                             <Sections sections={this.state.sections} current_section={this.state.current_section} getArticles = {(id) => this.getArticles(id)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} /> 
                             }
                         </>
                         <>
-                            {this.state.current_section.length == 0 ? '' : 
+                            {this.state.current_section.length === 0 ? '' : 
                             <Articles articles={this.state.articles} current_article={this.state.current_article} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} /> 
                             }
                         </>
