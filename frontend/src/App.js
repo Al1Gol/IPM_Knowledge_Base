@@ -9,8 +9,11 @@ import EditMenuForm from './components/EditMenu';
 import Sections from './components/Sections';
 import CreateSections from './components/CreateSection';
 import EditSection from './components/EditSection'; 
-import Articles from './components/Artticles';
+import Articles from './components/Articles';
 import CreateArticle from './components/CreateArticle';
+import EditArticle from './components/EditArticle';
+import CurrentArticle from './components/CurrentArticle';
+
 import Logo from './img/icons/LogoMain.png'
 
 
@@ -144,6 +147,12 @@ class App extends React.Component {
         }
     }
 
+    // Отображение текста статьи
+    showArticle(id) {
+        this.setState ({
+            'current_article': this.state.articles.find(el_article =>  el_article.id === id)
+        })
+    }
     
 
 
@@ -357,7 +366,7 @@ class App extends React.Component {
         this.setState({
             'current_section': current_section
         })
-        // Если не выбран элемент меню или выбран отличный текущего или происходит CUD через модалку, то выводим новый список разделов
+        // Если не выбран элемент раздела или выбран отличный текущего или происходит CUD через модалку, то выводим новый список статей
         if (this.state.current_section.length === 0 || this.state.current_section.id !== id || update) {
 
             let headers = this.getHeadears()
@@ -366,8 +375,9 @@ class App extends React.Component {
             .then(response => {
                 let articles = response.data
                 this.setState({
-                    'articles': articles
-                }, console.log(this.state.current_section))
+                    'articles': articles, 
+                    'current_article': []
+                })
             })
             .catch( error => {
                 // Очищаем данные, если аутентификация не прошла
@@ -379,12 +389,13 @@ class App extends React.Component {
             this.setState({
                 'current_section': [],
                 'articles': [],
+                'current_article': [],
                 'files': [],
             })
         }
     }
 
-    // CREATE SECTION
+    // CREATE ARTICLE
     addArticle(name, text) {
             let headers = this.getHeadears()
             let body = {
@@ -402,6 +413,47 @@ class App extends React.Component {
                 this.NotAuthError(error)
                 console.log(error)
             })
+    }
+
+    // EDIT ARTICLE
+    editArticle(name, text) {
+        let headers = this.getHeadears()
+        let body = {
+            "section_id": this.state.current_section.id,
+            "name": name,
+            "text": text
+        }
+        axios
+        .patch(`${backend_addr}/articles/${this.state.current_article.id}/`, body, {headers})
+        .then(response => {
+            this.setState({
+                'current_article': [],
+                'hidden_modal': !this.state.hidden_modal,
+            }, this.getArticles(this.state.current_section.id, true))
+        })
+        .catch( error =>{ 
+            // Очищаем данные, если аутентификация не прошла
+            this.NotAuthError(error)
+            console.log(error)
+        })
+    }
+
+    //DELETE ARTICLE
+    deleteArticle() {
+        let headers = this.getHeadears()
+        axios
+        .delete(`${backend_addr}/articles/${this.state.current_article.id}/`, {headers})
+        .then(response => {
+            this.setState({
+                'current_article': [],
+                'hidden_modal': !this.state.hidden_modal,
+            }, this.getArticles(this.state.current_section.id, true))
+        })
+        .catch( error =>{ 
+            // Очищаем данные, если аутентификация не прошла
+            this.NotAuthError(error)
+            console.log(error)
+        })
     }
     
 
@@ -438,17 +490,23 @@ class App extends React.Component {
                         </>
                         <>
                             {this.state.current_section.length === 0 ? '' : 
-                            <Articles articles={this.state.articles} current_article={this.state.current_article} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} /> 
+                            <Articles articles={this.state.articles} current_article={this.state.current_article} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} showArticle={(id) => this.showArticle(id)} /> 
+                            }
+                        </>
+                        <>
+                            {this.state.current_section.length === 0 ? '' : 
+                                <CurrentArticle current_article={this.state.current_article} /> 
                             }
                         </>
                         <>
                             {this.state.hidden_modal ? '' :
                                 <div className="modal">
                                     {this.state.current_target === 'menuAdd' ? <CreateMenu addMenu = {(name, img) => this.addMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
-                                    {this.state.current_target === 'menuEdit' ? <EditMenuForm editMenu = {(name, img) => this.editMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_menu={this.state.current_menu} deleteMenu={() => this.deleteMenu()} /> : ''}
-                                    {this.state.current_target === 'sectionAdd' ? <CreateSections addSection = {(name, img) => this.addSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_section={this.state.current_section} /> : ''}
-                                    {this.state.current_target === 'sectionEdit' ? <EditSection editSection = {(name, img) => this.editSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_section={this.state.current_section} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteSection = {() => this.deleteSection()} /> : ''}
-                                    {this.state.current_target === 'articleAdd' ? <CreateArticle addArticle = {(name, text) => this.addArticle(name, text)} onFormDisplay = {(target) => this.onFormDisplay(target)} current_article={this.state.current_article} /> : ''}
+                                    {this.state.current_target === 'menuEdit' ? <EditMenuForm current_menu={this.state.current_menu} editMenu = {(name, img) => this.editMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} deleteMenu={() => this.deleteMenu()} /> : ''}
+                                    {this.state.current_target === 'sectionAdd' ? <CreateSections current_section={this.state.current_section} addSection = {(name, img) => this.addSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
+                                    {this.state.current_target === 'sectionEdit' ? <EditSection current_section={this.state.current_section} editSection = {(name, img) => this.editSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteSection = {() => this.deleteSection()} /> : ''}
+                                    {this.state.current_target === 'articleAdd' ? <CreateArticle current_article={this.state.current_article} addArticle = {(name, text) => this.addArticle(name, text)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
+                                    {this.state.current_target === 'articleEdit' ? <EditArticle current_article={this.state.current_article} editArticle = {(name, text) => this.editArticle(name, text)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteArticle = {() => this.deleteArticle()} /> : ''}
                                 </div>
                             } 
                         </>   

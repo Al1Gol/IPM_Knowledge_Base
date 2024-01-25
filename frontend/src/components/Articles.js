@@ -9,10 +9,10 @@ import editIcon from '../img/icons/edit_sub.png'
 // ВЛОЖЕН В РЕНДЕР СПИСКА ARTICLES
 /*-----------------------------------*/
 /*-----------------------------------*/
-const ArticleItem = ({article, current_article, getCurentEditId}) => {
+const ArticleItem = ({article, current_article, getCurentEditId, showArticle}) => {
     return (
         <div className='sectionItem'>
-            <div className={ (current_article.id == article.id) ? 'articleBtn isActive' : 'articleBtn'}>
+            <div className={ (current_article.id == article.id) ? 'articleBtn isActive' : 'articleBtn'}  onClick={() => showArticle(article.id)}>
                 <div>
                     {article.img ? <img src= {article.img} alt=''></img>  : ''}
                 </div>
@@ -28,10 +28,10 @@ const ArticleItem = ({article, current_article, getCurentEditId}) => {
 // RENDER СПИСКА ARTICLES
 /*-----------------------------------*/
 /*-----------------------------------*/
-const Articles = ({ articles, current_article, onFormDisplay, getCurentEditId }) => {
+const Articles = ({ articles, current_article, onFormDisplay, getCurentEditId, showArticle }) => {
     return (
         <div className='articlesBlock'>
-            {articles.map((article) => <ArticleItem article={article} current_article={current_article} getCurentEditId={getCurentEditId} />)}
+            {articles.map((article) => <ArticleItem article={article} current_article={current_article} getCurentEditId={getCurentEditId} showArticle={showArticle} />)}
             <div id="articleAdd" className='articleBtn' onClick = {(event) => onFormDisplay(event.currentTarget.getAttribute("id"))}> 
                 <div>
                     <img src={add_img} alt=''></img>
