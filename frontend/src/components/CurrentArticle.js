@@ -10,7 +10,8 @@ import add_img from '../img/icons/add_section.svg'
 const CurrentArticle = ({current_article }) => {
     return (
         <div className='showArticleBlock'>
-            {current_article.text}
+            <h3 className='articleHeader'>{current_article.name}</h3>
+            <p>{current_article.text}</p>
         </div>
     )
 }

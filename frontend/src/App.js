@@ -494,7 +494,7 @@ class App extends React.Component {
                             }
                         </>
                         <>
-                            {this.state.current_section.length === 0 ? '' : 
+                            {this.state.current_article.length === 0 ? '' : 
                                 <CurrentArticle current_article={this.state.current_article} /> 
                             }
                         </>

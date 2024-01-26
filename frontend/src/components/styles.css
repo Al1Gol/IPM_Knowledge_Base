@@ -32,6 +32,13 @@ p{
 
 html, body {
   overflow: auto;
+  background-color: #F0F9FF;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:contain;
+  min-height: 100%;
+  height: 100%;
 }
 
 .ql, .quill {
@@ -139,13 +146,7 @@ html, body {
 */
 
 .MainPage{
-  background-color: #F0F9FF;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size:cover;
-  width: 100%;
-  height: 100vh;
+
 }
 
 header{
@@ -181,7 +182,7 @@ header{
   font-size: 16px;
   width: 240px;
   height: 88px;
-  margin: 30px 40px 0px 50px;
+  margin: 30px 20px 0px 30px;
   padding: 5px;
   background: #355E8B;
   color: #ffffff;
@@ -190,8 +191,12 @@ header{
 
 .isActive{
   backdrop-filter: blur(4px);
-  transform: translateY(5px);
+  transform: translateY(2px);
   box-shadow: inset 0px 0px 15px 10px rgba(0, 0, 0, 0.5);
+}
+
+.isActiveEdit{
+  transform: translateY(2px);
 }
 
 .menuBtn>div{
@@ -205,7 +210,13 @@ header{
   text-align: center;
   align-self: center;
   margin: auto;
+  overflow:hidden;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
+
+
 
 .menuIcon{
   padding-top: 5px;
@@ -218,7 +229,7 @@ header{
   user-select: none;
   position: absolute;
   top: 5px;
-  left: 272px;
+  right: 25px;
   height: 24px;
   align-self: flex-start;
 }
@@ -278,6 +289,13 @@ header{
   margin-right: 10px;
 }
 
+.sectionBtn>p{
+  overflow:hidden;
+  width: 70%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .iconSection{
   position: absolute;
   width: 22px;
@@ -317,6 +335,12 @@ width: 22px;
 margin-right: 5px;
 }
 
+.articleBtn>p{
+  overflow:hidden;
+  width: 70%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
 .articleBtn>div>img{
 height: 22px;
@@ -338,6 +362,12 @@ right: 10px;
 
 .showArticleBlock {
     background: #D0E5FD;
+    margin: 30px 10px 0px 20px; 
+
+}
+
+.articleHeader{
+  margin: 20px 65px;
 }
 
 /*

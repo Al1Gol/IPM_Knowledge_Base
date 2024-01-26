@@ -12,13 +12,13 @@ import EditImg from '../img/icons/edit.svg'
 const MenuItem = ({menu, getSections, getCurentEditId, current_menu}) => {
     return (
         <div className='menuItem'>
-            <div className={ (current_menu.id == menu.id) ? 'menuBtn isActive' : 'menuBtn'} onClick = {() => getSections(menu.id)}> 
+            <div className={(current_menu.id == menu.id) ? 'menuBtn isActive' : 'menuBtn'} onClick = {() => getSections(menu.id)}> 
                 <div>
                     {menu.img ? <img src= {menu.img}  className="menuIcon" alt=''></img>: ''}
                 </div>
                 <p>{menu.name}</p>
             </div>
-            <img id="menuEdit" src={EditImg} className='editBtn' alt='' onClick = {(event) => getCurentEditId(menu.id, event.currentTarget.getAttribute("id"))}></img>
+            <img id="menuEdit" src={EditImg} className={(current_menu.id == menu.id) ? 'editBtn isActiveEdit' : 'editBtn'} alt='' onClick = {(event) => getCurentEditId(menu.id, event.currentTarget.getAttribute("id"))}></img>
         </div>
     )
 }
