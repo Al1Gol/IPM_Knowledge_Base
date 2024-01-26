@@ -9,8 +9,8 @@ class EditArticle extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            'name' : this.props.current_article.name, //Наименование статьи
-            'text': this.props.current_article.text, //Содержание статьи
+            'name' : this.props.current_edit_article.name, //Наименование статьи
+            'text': this.props.current_edit_article.text, //Содержание статьи
         }   
     }   
 

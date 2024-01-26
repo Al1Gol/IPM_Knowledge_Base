@@ -9,7 +9,7 @@ class EditMenuForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            'name' : this.props.current_menu.name, //Имя
+            'name' : this.props.current_edit_menu.name, //Имя
             'img': null, //Иконка
         }   
     }   

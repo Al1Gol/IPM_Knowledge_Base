@@ -9,7 +9,7 @@ class EditSectionForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            'name' : this.props.current_section.name, //Имя
+            'name' : this.props.current_edit_section.name, //Имя
             'img': null, //Иконка
         }   
     }   

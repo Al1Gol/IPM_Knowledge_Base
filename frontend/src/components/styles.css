@@ -262,6 +262,10 @@ header{
     user-select: none;
 }
 
+.sectionItem{
+  position: relative;
+}
+
 .sectionBtn{
   position: relative;
   display: flex;
@@ -293,12 +297,12 @@ header{
   text-overflow: ellipsis;
 }
 
-.iconSection{
+.editSection{
   position: absolute;
   width: 22px;
   height: 22px;
-  margin-right: 10px;
-  right: 10px;
+  top: 10px;
+  right: 5px;
 }
 
 /*-----------------------------------------------------------------------------
@@ -312,6 +316,10 @@ header{
   width: 35vh;
   min-width: 50vh;
   user-select: none;
+}
+
+.articleItem{
+  position: relative;
 }
 
 .articleBtn{
@@ -344,12 +352,12 @@ width: 22px;
 margin-right: 10px;
 }
 
-.iconArticle{
-position: absolute;
-width: 22px;
-height: 22px;
-margin-right: 10px;
-right: 10px;
+.editArticle{
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 10px;
+  right: 5px;
 }
 
 /*-----------------------------------------------------------------------------

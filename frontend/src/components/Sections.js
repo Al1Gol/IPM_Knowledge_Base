@@ -17,8 +17,8 @@ const SectionItem = ({section, current_section, getCurentEditId, getArticles}) =
                     {section.img ? <img src= {section.img} alt=''></img>  : ''}
                 </div>
                 <p>{section.name}</p>
-                <img id='sectionEdit' className='iconSection' src={editIcon} onClick = {(event) => getCurentEditId(section.id, event.currentTarget.getAttribute("id"))} alt = ""></img>
             </div>
+            <img id='sectionEdit' className='editSection' src={editIcon} onClick = {(event) => getCurentEditId(section.id, event.currentTarget.getAttribute("id"))} alt = ""></img>
         </div>
     )
 }

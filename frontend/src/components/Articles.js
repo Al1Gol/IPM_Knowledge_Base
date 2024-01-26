@@ -11,14 +11,11 @@ import editIcon from '../img/icons/edit_sub.png'
 /*-----------------------------------*/
 const ArticleItem = ({article, current_article, getCurentEditId, showArticle}) => {
     return (
-        <div className='sectionItem'>
-            <div className={ (current_article.id == article.id) ? 'articleBtn isActive' : 'articleBtn'}  onClick={() => showArticle(article.id)}>
-                <div>
-                    {article.img ? <img src= {article.img} alt=''></img>  : ''}
-                </div>
+        <div className='articleItem'>
+            <div className={ (current_article.id == article.id) ? 'articleBtn isActive' : 'articleBtn'}  onClick={() => showArticle(article.id, true)}>
                 <p>{article.name}</p>
-                <img id='articleEdit' className='iconArticle' src={editIcon} onClick = {(event) => getCurentEditId(article.id, event.currentTarget.getAttribute("id"))}></img>
             </div>
+            <img id='articleEdit' className='editArticle' src={editIcon} onClick = {(event) => getCurentEditId(article.id, event.currentTarget.getAttribute("id"))}></img>
         </div>
     )
 }

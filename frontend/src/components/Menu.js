@@ -18,7 +18,7 @@ const MenuItem = ({menu, getSections, getCurentEditId, current_menu}) => {
                 </div>
                 <p>{menu.name}</p>
             </div>
-            <img id="menuEdit" src={EditImg} className={(current_menu.id == menu.id) ? 'editBtn isActiveEdit' : 'editBtn'} alt='' onClick = {(event) => getCurentEditId(menu.id, event.currentTarget.getAttribute("id"))}></img>
+            <img id="menuEdit" src={EditImg} className='editBtn' alt='' onClick = {(event) => getCurentEditId(menu.id, event.currentTarget.getAttribute("id"))}></img>
         </div>
     )
 }
