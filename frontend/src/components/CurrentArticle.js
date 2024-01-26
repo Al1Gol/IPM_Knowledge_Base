@@ -11,7 +11,7 @@ const CurrentArticle = ({current_article }) => {
     return (
         <div className='showArticleBlock'>
             <h3 className='articleHeader'>{current_article.name}</h3>
-            <p>{current_article.text}</p>
+            <p className='textArticle'>{current_article.text}</p>
         </div>
     )
 }
