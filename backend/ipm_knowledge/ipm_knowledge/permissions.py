@@ -8,7 +8,7 @@ class ModerateAndAdminCreateUpdateDeleteOrAuthReadOnly(permissions.BasePermissio
         elif (
             request.user.is_authenticated
             and request.user
-            and request.method in ["PUT", "PUTCH", "CREATE", "DELETE"]
+            and request.method in ["POST", "PUT", "PUTCH", "CREATE", "DELETE"]
             and request.user.is_moderate
         ):
             return True
