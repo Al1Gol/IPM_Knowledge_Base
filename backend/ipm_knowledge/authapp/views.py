@@ -39,22 +39,6 @@ class UsersViewSet(
     queryset = Users.objects.all().order_by("created_at")
     permission_classes = [AdminUserOrAuthReadOnly]
 
-    def perform_create(self, serializer):
-        # Устанавливаем хэширование пароля
-        if "password" in self.request.data:
-            password = make_password(self.request.data["password"])
-            serializer.save(password=password)
-        else:
-            serializer.save()
-
-    def perform_update(self, serializer):
-        # Устанавливаем хэширование пароля
-        if "password" in self.request.data:
-            password = make_password(self.request.data["password"])
-            serializer.save(password=password)
-        else:
-            serializer.save()
-
 
 class ProfileViewSet(
     GenericViewSet,

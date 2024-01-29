@@ -1,10 +1,9 @@
 import datetime
-
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-# Необходимо, чтобы имелась 1 запись с id = 1 для подвязки к администратору
 class Departments(models.Model):
     name = models.CharField(
         verbose_name="наименование отдела", max_length=50, unique=True
@@ -16,6 +15,7 @@ class Departments(models.Model):
         return f"{self.name}"
 
 
+# Create your models here.
 class Users(AbstractUser):
     depart_id = models.ForeignKey(
         "Departments",
@@ -28,7 +28,6 @@ class Users(AbstractUser):
     created_at = models.DateTimeField(verbose_name="дата создания", auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name="дата обновления", auto_now=True)
 
-    def _create_user(self, **extra_fields):
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
+    def save(self, *args, **kwargs):
+        self.password = make_password(self.password)
+        super(Users, self).save(*args, **kwargs)
