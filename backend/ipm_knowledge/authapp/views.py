@@ -40,7 +40,7 @@ class UsersViewSet(
     permission_classes = [AdminUserOrAuthReadOnly]
 
     def perform_create(self, serializer):
-        # Hash password but passwords are not required
+        # Устанавливаем хэширование пароля
         if "password" in self.request.data:
             password = make_password(self.request.data["password"])
             serializer.save(password=password)
@@ -48,7 +48,7 @@ class UsersViewSet(
             serializer.save()
 
     def perform_update(self, serializer):
-        # Hash password but passwords are not required
+        # Устанавливаем хэширование пароля
         if "password" in self.request.data:
             password = make_password(self.request.data["password"])
             serializer.save(password=password)

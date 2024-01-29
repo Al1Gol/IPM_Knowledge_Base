@@ -7,9 +7,11 @@ from mainapp.models import (
     Sections,
 )
 
-# Register your models here.
+# Authapp
 admin.site.register(Users)
 admin.site.register(Departments)
+
+# Mainapp
 admin.site.register(Menu)
 admin.site.register(Sections)
 admin.site.register(Articles)
