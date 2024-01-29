@@ -1,5 +1,5 @@
 import React from 'react'
-import add_img from '../img/icons/add_section.svg'
+import close from '../img/icons/close_article.svg'
 
 
 /*-----------------------------------*/
@@ -7,9 +7,10 @@ import add_img from '../img/icons/add_section.svg'
 // RENDER СОЖЕРЖИМОГО СТАТЬИ
 /*-----------------------------------*/
 /*-----------------------------------*/
-const CurrentArticle = ({current_article }) => {
+const CurrentArticle = ({current_article, closeArticle }) => {
     return (
         <div className='showArticleBlock'>
+            <img className='closeArticle' src={close} alt='' onClick={() => closeArticle()}></img>
             <h3 className='articleHeader'>{current_article.name}</h3>
             <p className='textArticle'>{current_article.text}</p>
         </div>

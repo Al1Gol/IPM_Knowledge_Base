@@ -151,6 +151,11 @@ class App extends React.Component {
         }
     }
 
+    closeArticle(){
+        this.setState({
+            'current_article' : [],
+        })
+    }
 
 /***********************************************************************************************/
 /***********************************************************************************************/
@@ -500,7 +505,7 @@ class App extends React.Component {
                         </>
                         <>
                             {this.state.current_article.length === 0 ? '' : 
-                                <CurrentArticle current_article={this.state.current_article} /> 
+                                <CurrentArticle current_article={this.state.current_article} closeArticle={() => this.closeArticle()}/> 
                             }
                         </>
                         <>

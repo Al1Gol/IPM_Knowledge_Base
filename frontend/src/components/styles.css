@@ -365,6 +365,7 @@ margin-right: 10px;
 -----------------------------------------------------------------------------*/
 
 .showArticleBlock {
+    position: relative;
     background: #D0E5FD;
     margin: 0 10px 0 10px; 
     padding: 10px 20px 20px 20px;
@@ -374,12 +375,18 @@ margin-right: 10px;
 
 .articleHeader{
 
-  margin: 20px auto;
+  margin: 35px auto 30px 0;
   word-break: break-all;
 }
 
 .textArticle{
   word-break: break-all;
+}
+.closeArticle{
+  position: absolute;
+  width: 45px;
+  right: 0px;
+  top: 0px;
 }
 /*
 -----------------------------------------------------------------------------
