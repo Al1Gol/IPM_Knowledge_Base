@@ -27,3 +27,8 @@ class Users(AbstractUser):
     is_moderate = models.BooleanField(verbose_name="Модератор", default=False)
     created_at = models.DateTimeField(verbose_name="дата создания", auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name="дата обновления", auto_now=True)
+
+    def _create_user(self, **extra_fields):
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
