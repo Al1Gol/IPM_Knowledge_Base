@@ -41,13 +41,13 @@ class App extends React.Component {
             'menu': [], // Список меню
             'current_menu': [], //Текущее меню
             'current_edit_menu': [], //Редактирование элемента меню
-            'sections': [],  //Разделы
+            'sections': [],  //Список разделов
             'current_section': [], //Текущий раздел
             'current_edit_section': [], //Редактирование элемента разделов
-            'articles': [], //Статьи
-            'current_article': [],
-            'current_edit_article': [], //Текущий раздел
-            'main_text' : [],
+            'articles': [], //Список статей
+            'current_article': [], //Текущая статья
+            'current_edit_article': [], //Редактирование жлемента статьи
+            'main_text' : [], //Отображение статьи
             'files': [], //Файлы статьи 
             'hidden_modal' : true, //Оторажение модального окна создания меню
             'current_target': '' // ID текущей кнопки по открытию модального окна, для отрисовки необходимой формы
