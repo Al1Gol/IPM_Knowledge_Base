@@ -18,7 +18,7 @@ class Menu(models.Model):
     )
     depart_id = models.ForeignKey(
         "authapp.Departments",
-        verbose_name="Отдел",
+        verbose_name="отдел",
         on_delete=models.PROTECT,
         default=1,
     )
@@ -54,19 +54,19 @@ class Sections(models.Model):
 class Articles(models.Model):
     menu_id = models.ForeignKey(
         "Menu",
-        verbose_name="ID Меню",
+        verbose_name="меню id",
         on_delete=models.PROTECT,
         blank=True,
         null=True,
     )
     section_id = models.ForeignKey(
         "Sections",
-        verbose_name="ID Раздела",
+        verbose_name="раздел id",
         on_delete=models.PROTECT,
         blank=True,
         null=True,
     )
-    name = models.CharField(verbose_name="Наименование статьи", max_length=200)
+    name = models.CharField(verbose_name="наименование статьи", max_length=200)
     text = models.TextField(verbose_name="Описание", max_length=100000)
     is_article = models.BooleanField(verbose_name="видимость", default=False)
     created_at = models.DateTimeField(verbose_name="дата создания", auto_now_add=True)
@@ -78,7 +78,10 @@ class Articles(models.Model):
 
 class Files(models.Model):
     article_id = models.ForeignKey(
-        "Articles", related_name="files", on_delete=models.CASCADE
+        "Articles",
+        verbose_name="статья id",
+        related_name="files",
+        on_delete=models.CASCADE,
     )
     name = models.CharField(verbose_name="название файла", max_length=200)
     file = models.FileField(upload_to="files/", verbose_name="файлы")
