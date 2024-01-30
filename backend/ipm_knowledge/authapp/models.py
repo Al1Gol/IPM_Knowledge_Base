@@ -15,6 +15,11 @@ class Departments(models.Model):
     def __str__(self):
         return f"{self.name}"
 
+    class Meta:
+        verbose_name = "Подразделения"
+        verbose_name_plural = "Подразделения"
+        ordering = ["created_at"]
+
 
 # Create your models here.
 class Users(AbstractUser):
@@ -28,6 +33,11 @@ class Users(AbstractUser):
     is_moderate = models.BooleanField(verbose_name="модератор", default=False)
     created_at = models.DateTimeField(verbose_name="дата создания", auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name="дата обновления", auto_now=True)
+
+    class Meta:
+        verbose_name = "Пользователи"
+        verbose_name_plural = "Пользователи"
+        ordering = ["created_at"]
 
 
 # Данный метод не работает, так как при каждом сохранении хэширует уже хэшированный пароль

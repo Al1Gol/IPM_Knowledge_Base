@@ -7,7 +7,7 @@ from .validators import validate_file_extension
 
 
 class Menu(models.Model):
-    name = models.CharField(verbose_name="элементы меню", max_length=100)
+    name = models.CharField(verbose_name="наименование", max_length=100)
     img = models.FileField(
         verbose_name="иконка",
         validators=[validate_file_extension],
@@ -29,12 +29,17 @@ class Menu(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Меню"
+        verbose_name_plural = "Меню"
+        ordering = ["created_at"]
+
 
 class Sections(models.Model):
     menu_id = models.ForeignKey(
         "Menu", verbose_name="id меню", on_delete=models.CASCADE
     )
-    name = models.CharField(verbose_name="элементы меню", max_length=200)
+    name = models.CharField(verbose_name="раздел", max_length=200)
     img = models.FileField(
         verbose_name="иконка",
         upload_to="icons/sections/",
@@ -50,36 +55,46 @@ class Sections(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Разделы"
+        verbose_name_plural = "Разделы"
+        ordering = ["created_at"]
+
 
 class Articles(models.Model):
     menu_id = models.ForeignKey(
         "Menu",
-        verbose_name="меню id",
+        verbose_name="id меню",
         on_delete=models.PROTECT,
         blank=True,
         null=True,
     )
     section_id = models.ForeignKey(
         "Sections",
-        verbose_name="раздел id",
+        verbose_name="id раздел",
         on_delete=models.PROTECT,
         blank=True,
         null=True,
     )
     name = models.CharField(verbose_name="наименование статьи", max_length=200)
-    text = models.TextField(verbose_name="Описание", max_length=100000)
+    text = models.TextField(verbose_name="текст статьи", max_length=100000)
     is_article = models.BooleanField(verbose_name="видимость", default=False)
     created_at = models.DateTimeField(verbose_name="дата создания", auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name="дата обновления", auto_now=True)
 
     def __str__(self):
-        return self.text
+        return self.name
+
+    class Meta:
+        verbose_name = "Статьи"
+        verbose_name_plural = "Статьи"
+        ordering = ["created_at"]
 
 
 class Files(models.Model):
     article_id = models.ForeignKey(
         "Articles",
-        verbose_name="статья id",
+        verbose_name="id статья",
         related_name="files",
         on_delete=models.CASCADE,
     )
@@ -92,6 +107,11 @@ class Files(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Файлы"
+        verbose_name_plural = "Файлы"
+        ordering = ["created_at"]
+
 
 class Images(models.Model):
     img = models.ImageField(
@@ -100,3 +120,7 @@ class Images(models.Model):
 
     def __str__(self):
         return self.img
+
+    class Meta:
+        verbose_name = "Изображения"
+        verbose_name_plural = "Изображения"

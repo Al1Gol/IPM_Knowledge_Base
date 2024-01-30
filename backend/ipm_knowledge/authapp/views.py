@@ -36,6 +36,7 @@ class UsersViewSet(
     mixins.RetrieveModelMixin,
 ):
     serializer_class = UsersSerializer
+
     queryset = Users.objects.all().order_by("created_at")
     permission_classes = [AdminUserOrAuthReadOnly]
 
