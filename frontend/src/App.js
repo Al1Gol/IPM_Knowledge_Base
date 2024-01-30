@@ -128,7 +128,7 @@ class App extends React.Component {
         this.setState ({
             'hidden_modal': !this.state.hidden_modal,
             'current_target': obj
-        }, console.log(this.state.current_menu))
+        })
     }
 
 
@@ -405,7 +405,7 @@ class App extends React.Component {
                 this.getArticles(this.state.current_section.id, true)
                 this.setState({
                 'current_article': response.data
-                }, console.log(response))
+                })
             })
             .catch( error =>{ 
                 // Очищаем данные, если аутентификация не прошла
@@ -425,8 +425,12 @@ class App extends React.Component {
         axios
         .patch(`${backend_addr}/articles/${this.state.current_edit_article.id}/`, body, {headers})
         .then(response => {
+            if (response.data.id === this.state.current_article.id){
+                this.setState({
+                    'current_article': response.data
+                    })
+            }
             this.setState({
-                'current_article': [],
                 'hidden_modal': !this.state.hidden_modal,
             }, this.getArticles(this.state.current_section.id, true))
         })
