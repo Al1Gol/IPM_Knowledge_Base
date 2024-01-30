@@ -403,6 +403,9 @@ class App extends React.Component {
             .post(`${backend_addr}/articles/`, body, {headers})
             .then(response => {
                 this.getArticles(this.state.current_section.id, true)
+                this.setState({
+                'current_article': response.data
+                }, console.log(response))
             })
             .catch( error =>{ 
                 // Очищаем данные, если аутентификация не прошла
