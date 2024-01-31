@@ -15,14 +15,21 @@ class SectionsAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "menu_id", "created_at", "updated_at")
     list_display_links = ("id", "name", "menu_id", "created_at", "updated_at")
     search_fields = ("name",)
-    list_filter = ("menu_id",)
+    list_filter = (
+        "menu_id__depart_id",
+        "menu_id",
+    )
 
 
 class ArticlesAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "section_id", "created_at", "updated_at")
     list_display_links = ("id", "name", "section_id", "created_at", "updated_at")
     search_fields = ("name", "text")
-    list_filter = ("section_id",)
+    list_filter = (
+        "section_id__menu_id__depart_id",
+        "section_id__menu_id",
+        "section_id",
+    )
 
 
 class FilesAdmin(admin.ModelAdmin):
