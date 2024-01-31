@@ -472,7 +472,53 @@ class App extends React.Component {
             })
         }
     }
-    
+
+    /*-----------------------------------*/
+    /*-----------------------------------*/
+    // CRUD FILES
+    /*-----------------------------------*/
+    /*-----------------------------------*/
+
+    //READ FILES
+    getFiles(id) {
+        let headers = this.getHeadears()
+        axios
+        .get(`${backend_addr}/files/?article_id=${id}`, {headers})
+        .then(response => {
+            let files = response.data
+            this.setState({
+                'files': files
+            })
+        })
+        .catch( error =>{ 
+                // Очищаем данные, если аутентификация не прошла
+                this.NotAuthError(error)
+                console.log(error)
+        })
+    }
+
+    // CREATE FILE
+    addFile(article_id, name, file) {
+            let body = {}
+            body = new FormData();
+            body.append('article_id', article_id);
+            body.append('name', name);
+            body.append('file', file);
+
+            let headers = this.getHeadears()
+            axios
+            .post(`${backend_addr}/files/`, body, {headers})
+            .then(response => {
+                this.getFiles(this.state.current_article.id)
+            })
+            .catch( error =>{ 
+                // Очищаем данные, если аутентификация не прошла
+                this.NotAuthError(error)
+                console.log(error)
+            })
+    }
+
+
 
     /*-----------------------------------*/
     /*-----------------------------------*/
