@@ -100,7 +100,6 @@ class Files(models.Model):
     )
     name = models.CharField(verbose_name="название файла", max_length=200)
     file = models.FileField(upload_to="files/", verbose_name="файлы")
-    is_article = models.BooleanField(verbose_name="видимость", default=False)
     created_at = models.DateTimeField(verbose_name="дата создания", auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name="дата обновления", auto_now=True)
 
