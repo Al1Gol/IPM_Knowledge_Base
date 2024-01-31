@@ -1,40 +1,5 @@
-from authapp.models import Departments, Users
 from django.contrib import admin
 from mainapp.models import Articles, Files, Menu, Sections
-
-
-# Authapp
-class UsersAdmin(admin.ModelAdmin):
-    list_display = (
-        "id",
-        "username",
-        "depart_id",
-        "is_staff",
-        "is_moderate",
-        "created_at",
-        "updated_at",
-    )
-    list_display_links = (
-        "id",
-        "username",
-        "depart_id",
-        "is_staff",
-        "is_moderate",
-        "created_at",
-        "updated_at",
-    )
-    search_fields = ("name",)
-
-
-class DepartmentsAdmin(admin.ModelAdmin):
-    list_display = ("id", "name")
-    list_display_links = ("id", "name")
-    search_fields = ("name",)
-
-
-admin.site.register(Users, UsersAdmin)
-admin.site.register(Departments, DepartmentsAdmin)
-
 
 # Mainapp
 
@@ -71,3 +36,8 @@ admin.site.register(Menu, MenuAdmin)
 admin.site.register(Sections, SectionsAdmin)
 admin.site.register(Articles, ArticlesAdmin)
 admin.site.register(Files, FilesAdmin)
+
+
+# Заголовки
+admin.site.site_title = "IPM Wiki"
+admin.site.site_header = "IPM Wiki"
