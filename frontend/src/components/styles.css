@@ -322,7 +322,7 @@ header{
   position: relative;
 }
 
-.articleBtn{
+.article-btn{
   position: relative;
   display: flex;
   flex-direction: row;
@@ -333,26 +333,26 @@ header{
   line-height: 15.31px;
 }
 
-.articleBtn>div{
+.article-btn>div{
 height: 22px;
 width: 22px;
 margin-right: 5px;
 }
 
-.articleBtn>p{
+.article-btn>p{
   overflow:hidden;
   width: 70%;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.articleBtn>div>img{
+.article-btn>div>img{
 height: 22px;
 width: 22px;
 margin-right: 10px;
 }
 
-.editArticle{
+.edit-article{
   position: absolute;
   width: 22px;
   height: 22px;
