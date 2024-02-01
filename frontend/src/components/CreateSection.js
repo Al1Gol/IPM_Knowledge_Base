@@ -47,17 +47,15 @@ class CreateSections extends React.Component {
     /*-----------------------------------*/
     render () {
             return (
-                <form className ="modalForm" onSubmit={(event) => this.handleSubmit(event) }>
-                    <div className='editHeader'>
-                        <h3>Создание нового раздела</h3>
-                    </div>
-                        <p>Название</p>
-                    <input type="text" required className="nameInput" placeholder="Наименование раздела" name="section_name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
-                    <p>Добавить иконку</p>
+                <form className ="modal-form" onSubmit={(event) => this.handleSubmit(event) }>
+                    <h3 className='modal-header'>Создание нового раздела</h3>
+                    <p className='sign'>Название</p>
+                    <input type="text" required className="modal-input" placeholder="Наименование раздела" name="section_name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
+                    <p className='sign'>Добавить иконку</p>
                     <input id="file"className ="createIcon" type="file" title=" " onChange={(event) => this.onFileChange(event)}/> <br/>
-                    <div className="confirmGroup">
-                        <input className="confirmBtn" type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/>
-                        <input className="confirmBtn" type="submit" value="Сохранить" />
+                    <div className="confirm-group">
+                        <input className="confirm-btn" type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/>
+                        <input className="confirm-btn" type="submit" value="Сохранить" />
                     </div>
                 </form>
             )

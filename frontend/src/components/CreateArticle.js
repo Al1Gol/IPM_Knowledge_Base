@@ -1,5 +1,5 @@
 import React from 'react';
-
+import uploadImg from '../img/icons/upload.png'
 
 /***********************************************************************************************/
 /***********************************************************************************************/
@@ -12,6 +12,7 @@ class CreateArticle extends React.Component {
         this.state = {
             "article_name" : "", //Имя
             "text": "", //Иконка
+            "files": []
         }   
     }   
 
@@ -37,17 +38,21 @@ class CreateArticle extends React.Component {
     /*-----------------------------------*/
     render () {
             return (
-                <form className ="modalForm" onSubmit={(event) => this.handleSubmit(event) }>
-                    <div className='editHeader'>
-                        <h3>Создание новой статьи</h3>
+                <form className ="modal-form" onSubmit={(event) => this.handleSubmit(event) }>
+                    <h3 className='modal-header'>Создание статьи</h3>
+                    <p className='sign'>Название</p>
+                    <input type="text" required className="modal-input" placeholder="Наименование раздела" name="article_name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
+                    <p className='sign'>Текст статьи</p>
+                    <input id="text"className ="modal-input" type="text"  placeholder="Содержимое статьи" name="text" onChange={(event) => this.handleChange(event)}/> <br/>
+                    <div className="app">
+                        <div className="file-upload">
+                            <img className='icon-upload' src={uploadImg} alt="upload" />
+                            <input type="file" />
+                        </div>
                     </div>
-                        <p>Название</p>
-                    <input type="text" required className="nameInput" placeholder="Наименование раздела" name="article_name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
-                    <p>Текст статьи</p>
-                    <input id="text"className ="createIcon" type="text" name="text" onChange={(event) => this.handleChange(event)}/> <br/>
-                    <div className="confirmGroup">
-                        <input className="confirmBtn" type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/>
-                        <input className="confirmBtn" type="submit" value="Сохранить" />
+                    <div className="confirm-group">
+                        <input className="confirm-btn" type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/>
+                        <input className="confirm-btn" type="submit" value="Сохранить" />
                     </div>
                 </form>
             )

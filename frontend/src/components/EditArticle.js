@@ -36,21 +36,19 @@ class EditArticle extends React.Component {
     /*-----------------------------------*/
     render () {
         return (
-            <div className='modalForm'>
+            <div className='modal-form'>
                 <form className ="" onSubmit={(event) => this.handleSubmit(event) }>
-                    <div className='editHeader'>
-                        <h3>Редактирование статьи</h3>
-                    </div>
-                    <p>Название</p>
-                    <input type="text" required className="nameInput" placeholder="Наименование статьи" name="name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
-                    <p>Содержимое статьи</p>
-                    <input id="text"className ="createIcon" type="text" name="text" value={this.state.text} onChange={(event) => this.handleChange(event)}/> <br/>
-                    <div className="confirmGroup">
-                        <input className="confirmBtn" type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/>
-                        <input className="confirmBtn" type="submit" value="Сохранить" />
+                    <h3 className='modal-header'>Редактирование статьи</h3>
+                    <p className='sign'>Название</p>
+                    <input type="text" required className="modal-input" placeholder="Наименование статьи" name="name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
+                    <p className='sign'>Содержимое статьи</p>
+                    <input id="text"className ="modal-input" type="text" placeholder="Содержимое статьи" name="text" value={this.state.text} onChange={(event) => this.handleChange(event)}/> <br/>
+                    <div className="confirm-group">
+                        <input className="confirm-btn" type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/>
+                        <input className="confirm-btn" type="submit" value="Сохранить" />
                     </div>
                 </form>
-                <button className='deleteBtn' onClick={this.props.deleteArticle}>Удалить</button>
+                <button className='delete-btn' onClick={this.props.deleteArticle}>Удалить</button>
             </div>
         )
     }

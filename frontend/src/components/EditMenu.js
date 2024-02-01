@@ -45,21 +45,19 @@ class EditMenuForm extends React.Component {
     /*-----------------------------------*/
     render () {
         return (
-            <div className='modalForm'>
+            <div className='modal-form'>
                 <form className ="" onSubmit={(event) => this.handleSubmit(event) }>
-                    <div className='editHeader'>
-                        <h3>Редактирование пункта меню</h3>
-                    </div>
-                    <p>Название</p>
-                    <input type="text" required className="nameInput" placeholder="Наименование пункта" name="name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
-                    <p>Добавить/Изменить иконку</p>
+                    <h3 className='modal-header'>Редактирование пункта меню</h3>
+                    <p className='sign'>Название</p>
+                    <input type="text" required className="modal-input" placeholder="Наименование пункта" name="name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
+                    <p className='sign'>Добавить/Изменить иконку</p>
                     <input id="file"className ="createIcon" type="file" title=" " onChange={(event) => this.onFileChange(event)}/> <br/>
-                    <div className="confirmGroup">
-                        <input className="confirmBtn" type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/>
-                        <input className="confirmBtn" type="submit" value="Сохранить" />
+                    <div className="confirm-group">
+                        <input className="confirm-btn" type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/>
+                        <input className="confirm-btn" type="submit" value="Сохранить" />
                     </div>
                 </form>
-                <button className='deleteBtn' onClick={this.props.deleteMenu}>Удалить</button>
+                <button className='delete-btn' onClick={this.props.deleteMenu}>Удалить</button>
             </div>
         )
     }

@@ -374,7 +374,6 @@ margin-right: 10px;
 }
 
 .articleHeader{
-
   margin: 35px auto 30px 0;
   word-break: break-all;
 }
@@ -406,12 +405,12 @@ margin-right: 10px;
   transform: translate(-50%, -50%);
 }
 
-.modalForm {
+.modal-form {
   position: fixed;
   background-color: #FFFFFF;
   border-radius: 5px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 15px 16px 26px 12px;
+  padding: 25px 26px 26px 22px;
   z-index: 9999;
   margin: auto;
   width: 1058px;
@@ -420,36 +419,33 @@ margin-right: 10px;
   transform: translate(-50%, -50%);
 }
 
-.editHeader>h3{
-  margin: 0 0 35px 0;
+.modal-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 0 20px 0;
   font-size: 30px;
   font-weight: normal 
 }
 
-.modalForm>p{
-  font-size: 16px;
-  margin-bottom: 12px;
+.sign{
+  font-size: 17px;
+  margin-bottom: 1px;
 }
 
-.editHeader{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.nameInput{
+.modal-input{
   border: 1px solid #777676;
-  margin-bottom: 37px;
+  margin-bottom: 20px;
   border-radius: 5px;
   height: 45px;
   width: 1029px;
   font-size: 16px;
 }
 
-.deleteBtn{
+.delete-btn{
   position:absolute;
-  right: 15px;
-  top: 15px;
+  right: 25px;
+  top: 35px;
   border: 0px;
   width: 150px;
   font-size: 20px;
@@ -458,18 +454,50 @@ margin-right: 10px;
   padding: 11px 11px 9px 10px;
 }
 
-.confirmBtn{
+.confirm-btn{
   background: #79A0CC;
   padding: 14px;
   border: 0;
   font-size: 20px;
 }
 
-.confirmGroup{
+.confirm-group{
   display: flex;
   justify-content: space-between;
 }
 
+
+/* Загрузчик файлов */
+
+.app {
+  display: flex;
+  justify-content: left;
+  margin-bottom: 20px;
+}
+
+.file-upload {
+  border: 3px solid rgb(210, 227, 244);
+  border-radius: 15px;
+  padding: 7px;
+  box-shadow: 0px 0px 5px rgb(210, 227, 244);
+  position: relative;
+  cursor: pointer;
+}
+
+.file-upload input {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.icon-upload{
+  width: 35px;
+}
 
 
 /*
@@ -480,7 +508,7 @@ margin-right: 10px;
 -----------------------------------------------------------------------------
 */
 
-.deleteBtn:hover{
+.delete-btn:hover{
   backdrop-filter: blur(4px);
   background-image: linear-gradient(
     to bottom, 
@@ -489,7 +517,7 @@ margin-right: 10px;
     );
 }
 
-.confirmBtn:hover{
+.confirm-btn:hover{
   background-image: linear-gradient(
     to bottom, 
     rgba(0, 0, 0, 0.25) 0%,
