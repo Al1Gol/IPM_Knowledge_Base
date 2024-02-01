@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_filters",
     "corsheaders",
+    "debug_toolbar",
     "authapp",
     "mainapp",
 ]
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     # request logger
     "ipm_knowledge.middleware.request_log.RequestLogMiddleware",
     "corsheaders.middleware.CorsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 DJANGO_LOG_LEVEL = DEBUG
@@ -230,3 +232,7 @@ for el in LOG_FILES:
         "delay": True,
         "encoding": "utf-8",
     }
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
