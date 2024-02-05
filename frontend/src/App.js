@@ -395,26 +395,27 @@ class App extends React.Component {
     }
 
     // CREATE ARTICLE
-    addArticle(name, text) {
-            let headers = this.getHeadears()
-            let body = {
-                "section_id": this.state.current_section.id,
-                "name": name,
-                "text": text
-            }
-            axios
-            .post(`${backend_addr}/articles/`, body, {headers})
-            .then(response => {
-                this.getArticles(this.state.current_section.id, true)
-                this.setState({
-                'current_article': response.data
-                })
-            })
-            .catch( error =>{ 
-                // Очищаем данные, если аутентификация не прошла
-                this.NotAuthError(error)
-                console.log(error)
-            })
+    addArticle(name, text, files) {
+        console.log('files')
+        console.log(files)
+        let headers = this.getHeadears()
+        let body = {
+            "section_id": this.state.current_section.id,
+            "name": name,
+            "text": text
+        }
+        axios
+        .post(`${backend_addr}/articles/`, body, {headers})
+        .then(response => {
+            this.getArticles(this.state.current_section.id, true)
+            this.setState({
+            'current_article': response.data
+            }, this.addFiles(response.data.id, files))
+        })
+        .catch( error =>{ 
+            // Очищаем данные, если аутентификация не прошла
+            console.log(error)
+        })
     }
 
     // EDIT ARTICLE
@@ -500,27 +501,27 @@ class App extends React.Component {
         })
     }
 
-    // CREATE FILE
-    addFile(article_id, name, file) {
-            let body = {}
-            body = new FormData();
-            body.append('article_id', article_id);
-            body.append('name', name);
-            body.append('file', file);
-
-            let headers = this.getHeadears()
-            axios
-            .post(`${backend_addr}/files/`, body, {headers})
-            .then(response => {
-                this.getFiles(this.state.current_article.id)
-            })
-            .catch( error =>{ 
-                // Очищаем данные, если аутентификация не прошла
-                this.NotAuthError(error)
-                console.log(error)
-            })
+    // CREATE FILES
+    addFiles(article_id, files) {
+        let headers = this.getHeadears()
+        if (files) {
+            for( let file in files) {
+                let body = new FormData();
+                body.append('article_id', article_id);
+                body.append('name', file.name);
+                body.append('file', file);
+                axios
+                .post(`${backend_addr}/files/`, body, {headers})
+                .then(response => {
+                })
+                .catch( error =>{ 
+                    // Очищаем данные, если аутентификация не прошла
+                    console.log(error)
+                })
+            }
+        }
     }
-
+    
 
 
     /*-----------------------------------*/
@@ -571,7 +572,7 @@ class App extends React.Component {
                                     {this.state.current_target === 'menuEdit' ? <EditMenuForm current_edit_menu={this.state.current_edit_menu} editMenu = {(name, img) => this.editMenu(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} deleteMenu={() => this.deleteMenu()} /> : ''}
                                     {this.state.current_target === 'sectionAdd' ? <CreateSections current_section={this.state.current_section} addSection = {(name, img) => this.addSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
                                     {this.state.current_target === 'sectionEdit' ? <EditSection current_edit_section={this.state.current_edit_section} editSection = {(name, img) => this.editSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteSection = {() => this.deleteSection()} onCanselClick={(obj) => this.onCanselClick(obj)} /> : ''}
-                                    {this.state.current_target === 'articleAdd' ? <CreateArticle current_article={this.state.current_article} addArticle = {(name, text) => this.addArticle(name, text)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
+                                    {this.state.current_target === 'articleAdd' ? <CreateArticle current_article={this.state.current_article} addArticle = {(name, text, files) => this.addArticle(name, text, files)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
                                     {this.state.current_target === 'articleEdit' ? <EditArticle current_edit_article={this.state.current_edit_article} editArticle = {(name, text) => this.editArticle(name, text)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteArticle = {() => this.deleteArticle()} /> : ''}
                                 </div>
                             } 

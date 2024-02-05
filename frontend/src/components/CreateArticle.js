@@ -1,5 +1,6 @@
 import React from 'react';
 import uploadImg from '../img/icons/upload.png'
+import FilesList from './Files'
 
 /***********************************************************************************************/
 /***********************************************************************************************/
@@ -24,9 +25,13 @@ class CreateArticle extends React.Component {
         })
     }
 
+     uploadData(event) {
+        this.setState({'files': [...this.state.files, event.target.files[0]] });
+     }
+
     // ОБРАБОТЧИК КНОПКИ submit
     handleSubmit(event) {
-        this.props.addArticle(this.state.article_name, this.state.text)
+        this.props.addArticle(this.state.article_name, this.state.text, this.state.files)
         this.props.onFormDisplay()
         event.preventDefault() // запрещает стандартную обработку события
     }
@@ -44,7 +49,8 @@ class CreateArticle extends React.Component {
                     <input type="text" required className="modal-input" placeholder="Наименование раздела" name="article_name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
                     <p className='sign'>Текст статьи</p>
                     <input id="text"className ="modal-input" type="text"  placeholder="Содержимое статьи" name="text" onChange={(event) => this.handleChange(event)}/> <br/>
-                    <div className="app">
+                    <FilesList  files={this.state.files} />
+                    <div className="app" onChange={(event) => this.uploadData(event)}>
                         <div className="file-upload">
                             <img className='icon-upload' src={uploadImg} alt="upload" />
                             <input type="file" />
