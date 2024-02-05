@@ -200,7 +200,8 @@ class App extends React.Component {
                 'menu': menu_list,
                 'current_menu': [],
                 'sections': [],
-                'current_section': []
+                'current_section': [],
+                'articles': []
             })
         })
         .catch( error =>{ 
@@ -282,6 +283,8 @@ class App extends React.Component {
                 let sections = response.data
                 this.setState({
                     'sections': sections,
+                    'current_section': [],
+                    'articles': [],
                 })
             })
             .catch( error => {
