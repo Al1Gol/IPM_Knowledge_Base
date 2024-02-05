@@ -9,10 +9,10 @@ import close from '../img/icons/close_article.svg'
 /*-----------------------------------*/
 const CurrentArticle = ({current_article, closeArticle }) => {
     return (
-        <div className='showArticleBlock'>
-            <img className='closeArticle' src={close} alt='' onClick={() => closeArticle()}></img>
+        <div className='show-article-block'>
+            <img className='close-article' src={close} alt='' onClick={() => closeArticle()}></img>
             <h3 className='articleHeader'>{current_article.name}</h3>
-            <p className='textArticle'>{current_article.text}</p>
+            <p className='text-article'>{current_article.text}</p>
         </div>
     )
 }

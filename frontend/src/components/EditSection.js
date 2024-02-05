@@ -51,7 +51,7 @@ class EditSectionForm extends React.Component {
                     <p className='sign'>Название</p>
                     <input type="text" required className="modal-input" placeholder="Наименование раздела" name="name" value={this.state.name} onChange={(event) => this.handleChange(event)} /><br/>
                     <p className='sign'>Добавить/Изменить иконку</p>
-                    <input id="file"className ="createIcon" type="file" title=" " onChange={(event) => this.onFileChange(event)}/> <br/>
+                    <input id="file"className ="create-icon" type="file" title=" " onChange={(event) => this.onFileChange(event)}/> <br/>
                     <div className="confirm-group">
                         <input className="confirm-btn" type="button" value="Отменить" onClick = {() => this.props.onFormDisplay()}/>
                         <input className="confirm-btn" type="submit" value="Сохранить" />

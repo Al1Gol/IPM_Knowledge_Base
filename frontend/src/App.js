@@ -528,10 +528,10 @@ class App extends React.Component {
     render () {
         if (this.isAuth()) {
             return (
-                <div className="MainPage bkg_blur">
+                <div className="bkg_blur">
                     <header>
-                        <img className="Logo" src={Logo} alt='logo'></img>
-                        <div className='logoutBtn' onClick={() => this.logOut()} >
+                        <img className="logo" src={Logo} alt='logo'></img>
+                        <div className='logout-btn' onClick={() => this.logOut()} >
                             { this.isAuth() ? <p>Выход</p> : '' }
                         </div>
                     </header>

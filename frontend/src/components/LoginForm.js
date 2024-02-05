@@ -41,13 +41,13 @@ class LoginForm extends React.Component {
     /*-----------------------------------*/
     render () {
         return (
-            <div className='LoginPage'>
-                <img className="LogoLogin" src={Logo} alt='logo'></img>
-                <form className='LoginForm' onSubmit={(event) => this.handleSubmit(event) }>
+            <div className='login-page'>
+                <img className="logo-login" src={Logo} alt='logo'></img>
+                <form className='login-form' onSubmit={(event) => this.handleSubmit(event) }>
                     <p>Авторизация</p>
-                    <input className="loginInput" type="text" name="login" placeholder="Логин" value={this.state.login}  onChange={(event) => this.handleChange(event)} /> 
-                    <input className="loginInput" type="password" name="password" placeholder="Пароль" value={this.state.password}  onChange={(event) => this.handleChange(event)} />
-                    <input className="loginBtn" type="submit" value="Вход" />
+                    <input className="login-input" type="text" name="login" placeholder="Логин" value={this.state.login}  onChange={(event) => this.handleChange(event)} /> 
+                    <input className="login-input" type="password" name="password" placeholder="Пароль" value={this.state.password}  onChange={(event) => this.handleChange(event)} />
+                    <input className="login-btn" type="submit" value="Вход" />
                 </form>
             </div>
         )

@@ -61,7 +61,7 @@ html, body {
 -----------------------------------------------------------------------------
 */
 
-.LoginPage {
+.login-page {
   background-image: url('../img/bgLoginPage.png');
   background-repeat: no-repeat;
   background-position: center;
@@ -73,7 +73,7 @@ html, body {
   align-items: center;
 }
 
-.LogoLogin{
+.logo-login{
   margin-top: 50px;
   -moz-user-select: none; 
   -webkit-user-select: none; 
@@ -82,7 +82,7 @@ html, body {
   pointer-events: none;
 }
 
-.LoginForm {
+.login-form {
   margin-top: 180px;
   display: flex;
   flex-direction: column;
@@ -92,27 +92,27 @@ html, body {
   padding: 40px 60px 45px 60px;
 }
 
-.LoginForm>p {
+.login-form>p {
   font: 'Gotham Pro';
   margin-bottom: 58px;
   font-size: 20px;
   line-height: 19px;
 }
 
-.LoginForm>input {
+.login-form>input {
   width: 257px;
   height: 45px;
   border: 0cap;
   background-color: #DDF0FC;
 }
 
-.loginInput{
+.login-input{
   margin-bottom: 36px;
   border-radius: 5px;
   padding-left: 15px;
 }
 
-.logoutBtn{
+.logout-btn{
   position: relative;
   background-color: #355E8B;
   color: #ffffff;
@@ -123,14 +123,14 @@ html, body {
   user-select: none;
 }
 
-.logoutBtn>p{
+.logout-btn>p{
   position: absolute;               
   top: 50%;                        
   transform: translate(0, -50%);
   width: 100%;
 }
 
-.loginBtn{
+.login-btn{
   margin-top: 24px;
   background-color: #4A7BAB !important;
   border-radius: 5px;
@@ -145,17 +145,13 @@ html, body {
 -----------------------------------------------------------------------------
 */
 
-.MainPage{
-
-}
-
 header{
   display: flex;
   justify-content: space-between;
   padding: 50px;
 }
 
-.Logo{
+.logo{
   -moz-user-select: none; 
   -webkit-user-select: none; 
   -ms-user-select: none; 
@@ -172,11 +168,11 @@ header{
  МЕНЮ 
 -----------------------------------------------------------------------------*/
 
-.menuItem{
+.menu-item{
   position: relative;
 }
 
-.menuBtn{
+.menu-btn{
   display: flex;
   flex-direction: column;
   font-size: 16px;
@@ -189,24 +185,20 @@ header{
   user-select: none;
 }
 
-.isActive{
+.is-active{
   backdrop-filter: blur(4px);
   transform: translateY(2px);
   box-shadow: inset 0px 0px 15px 10px rgba(0, 0, 0, 0.5);
 }
 
-.isActiveEdit{
-  transform: translateY(2px);
-}
-
-.menuBtn>div{
+.menu-btn>div{
   display: flex;
   justify-content: flex-end;
   align-content: center;
   align-items: self-start;
 }
 
-.menuBtn>p{
+.menu-btn>p{
   text-align: center;
   align-self: center;
   margin: auto;
@@ -216,14 +208,14 @@ header{
   text-overflow: ellipsis;
 }
 
-.menuIcon{
+.menu-icon{
   padding-top: 5px;
   align-self: left;
   height: 48px;
   width: 100%;
 }
 
-.editBtn{
+.edit-btn{
   user-select: none;
   position: absolute;
   top: 5px;
@@ -232,14 +224,7 @@ header{
   align-self: flex-start;
 }
 
-.createMenuBtn{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.createIcon{
+.create-icon{
   margin-bottom: 50px;
 }
 
@@ -253,7 +238,7 @@ header{
 /*-----------------------------------------------------------------------------
 РАЗДЕЛЫ
 -----------------------------------------------------------------------------*/
-.sectionsBlock{
+.sections-block{
     align-self: start;
     box-sizing: border-box;
     background: #79A0CC;
@@ -262,11 +247,11 @@ header{
     user-select: none;
 }
 
-.sectionItem{
+.section-item{
   position: relative;
 }
 
-.sectionBtn{
+.section-btn{
   position: relative;
   display: flex;
   flex-direction: row;
@@ -277,27 +262,27 @@ header{
   line-height: 15.31px;
 }
 
-.sectionBtn>div{
+.section-btn>div{
   height: 22px;
   width: 22px;
   margin-right: 5px;
 }
 
 
-.sectionBtn>div>img{
+.section-btn>div>img{
   height: 22px;
   width: 22px;
   margin-right: 10px;
 }
 
-.sectionBtn>p{
+.section-btn>p{
   overflow:hidden;
   width: 70%;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.editSection{
+.edit-section{
   position: absolute;
   width: 22px;
   height: 22px;
@@ -309,7 +294,7 @@ header{
 СТАТЬИ
 -----------------------------------------------------------------------------*/
 
-.articlesBlock{
+.articles-block{
   align-self: start;
   box-sizing: border-box;
   background: #79A0CC;
@@ -318,7 +303,7 @@ header{
   user-select: none;
 }
 
-.articleItem{
+.article-item{
   position: relative;
 }
 
@@ -364,12 +349,13 @@ margin-right: 10px;
 ТЕКУЩАЯ СТАТЬЯ
 -----------------------------------------------------------------------------*/
 
-.showArticleBlock {
+.show-article-block {
     position: relative;
     background: #D0E5FD;
     margin: 0 10px 0 10px; 
     padding: 10px 20px 20px 20px;
     min-width: 300px;
+    width: 100%;
 
 }
 
@@ -378,10 +364,10 @@ margin-right: 10px;
   word-break: break-all;
 }
 
-.textArticle{
+.text-article{
   word-break: break-all;
 }
-.closeArticle{
+.close-article{
   position: absolute;
   width: 45px;
   right: 0px;
@@ -525,7 +511,7 @@ margin-right: 10px;
     );
 }
 
-.logoutBtn:hover{
+.logout-btn:hover{
   backdrop-filter: blur(4px);
   background-image: linear-gradient(
     to bottom, 
@@ -534,7 +520,7 @@ margin-right: 10px;
     );
 }
 
-.menuBtn:hover{
+.menu-btn:hover{
   backdrop-filter: blur(4px);
   background-image: linear-gradient(
     to bottom, 
@@ -543,7 +529,7 @@ margin-right: 10px;
     );
 }
 
-.sectionBtn:hover{
+.section-btn:hover{
   backdrop-filter: blur(4px);
   background-image: linear-gradient(
     to top, 
@@ -555,7 +541,7 @@ margin-right: 10px;
     border-bottom: solid 1px rgba(0, 0, 0, 0.2);
 }
 
-.articleBtn:hover{
+.article-btn:hover{
   backdrop-filter: blur(4px);
   background-image: linear-gradient(
     to top, 
