@@ -396,8 +396,6 @@ class App extends React.Component {
 
     // CREATE ARTICLE
     addArticle(name, text, files) {
-        console.log('files')
-        console.log(files)
         let headers = this.getHeadears()
         let body = {
             "section_id": this.state.current_section.id,
@@ -505,11 +503,11 @@ class App extends React.Component {
     addFiles(article_id, files) {
         let headers = this.getHeadears()
         if (files) {
-            for( let file in files) {
+            for( var i=0; i<files.length; i++) {
                 let body = new FormData();
                 body.append('article_id', article_id);
-                body.append('name', file.name);
-                body.append('file', file);
+                body.append('name', files[i].name);
+                body.append('file', files[i]);
                 axios
                 .post(`${backend_addr}/files/`, body, {headers})
                 .then(response => {
