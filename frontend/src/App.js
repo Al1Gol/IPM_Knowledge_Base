@@ -466,7 +466,7 @@ class App extends React.Component {
         if (read && (this.state.current_article.length === 0 || this.state.current_article.id !== id)) {
             this.setState ({
                 'current_article': this.state.articles.find(el_article =>  el_article.id === id)
-            })
+            }, this.getFiles(id))
         }
         else {
             this.setState ({
@@ -560,7 +560,7 @@ class App extends React.Component {
                         </>
                         <>
                             {this.state.current_article.length === 0 ? '' : 
-                                <CurrentArticle current_article={this.state.current_article} closeArticle={() => this.closeArticle()}/> 
+                                <CurrentArticle current_article={this.state.current_article} files = {this.state.files} closeArticle={() => this.closeArticle()}/> 
                             }
                         </>
                         <>
