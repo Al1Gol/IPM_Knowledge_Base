@@ -12,7 +12,7 @@ class EditArticle extends React.Component {
         this.state = {
             'name' : this.props.current_edit_article.name, //Наименование статьи
             'text': this.props.current_edit_article.text, //Содержание статьи
-            'files': this.props.current_edit_files
+            'files': this.props.current_edit_files //
         }   
     }   
 

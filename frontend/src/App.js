@@ -146,11 +146,11 @@ class App extends React.Component {
             },  this.onFormDisplay(obj))
         }
         if(obj === 'articleEdit') {
-            let article_id = this.state.articles.find(el_article =>  el_article.id === id)
+            let article = this.state.articles.find(el_article =>  el_article.id === id)
             this.setState ({
-                'current_edit_article': article_id
+                'current_edit_article': article
             },  this.onFormDisplay(obj))
-            this.getFiles(article_id, true)
+            this.getFiles(article.id, true)
         }
     }
 
@@ -588,7 +588,7 @@ class App extends React.Component {
                                     {this.state.current_target === 'sectionAdd' ? <CreateSections current_section={this.state.current_section} addSection = {(name, img) => this.addSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
                                     {this.state.current_target === 'sectionEdit' ? <EditSection current_edit_section={this.state.current_edit_section} editSection = {(name, img) => this.editSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteSection = {() => this.deleteSection()} onCanselClick={(obj) => this.onCanselClick(obj)} /> : ''}
                                     {this.state.current_target === 'articleAdd' ? <CreateArticle current_article={this.state.current_article} addArticle = {(name, text, files) => this.addArticle(name, text, files)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
-                                    {this.state.current_target === 'articleEdit' ? <EditArticle current_edit_article={this.state.current_edit_article} editArticle = {(name, text) => this.editArticle(name, text)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteArticle = {() => this.deleteArticle()} /> : ''}
+                                    {this.state.current_target === 'articleEdit' ? <EditArticle current_edit_article={this.state.current_edit_article} current_edit_files={this.state.current_edit_files} editArticle = {(name, text) => this.editArticle(name, text)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteArticle = {() => this.deleteArticle()} /> : ''}
                                 </div>
                             } 
                         </>   
