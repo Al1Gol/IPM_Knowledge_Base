@@ -46,9 +46,10 @@ class App extends React.Component {
             'current_edit_section': [], //Редактирование элемента разделов
             'articles': [], //Список статей
             'current_article': [], //Текущая статья
-            'current_edit_article': [], //Редактирование жлемента статьи
+            'current_edit_article': [], //Редактирование элемента статьи
             'main_text' : [], //Отображение статьи
             'files': [], //Файлы статьи 
+            'current_edit_files': [], //Редактирование списка файлов статьи
             'hidden_modal' : true, //Оторажение модального окна создания меню
             'current_target': '' // ID текущей кнопки по открытию модального окна, для отрисовки необходимой формы
         }
@@ -145,9 +146,11 @@ class App extends React.Component {
             },  this.onFormDisplay(obj))
         }
         if(obj === 'articleEdit') {
+            let article_id = this.state.articles.find(el_article =>  el_article.id === id)
             this.setState ({
-                'current_edit_article': this.state.articles.find(el_article =>  el_article.id === id)
+                'current_edit_article': article_id
             },  this.onFormDisplay(obj))
+            this.getFiles(article_id, true)
         }
     }
 
@@ -482,21 +485,35 @@ class App extends React.Component {
     /*-----------------------------------*/
 
     //READ FILES
-    getFiles(id) {
+    getFiles(id, update=false) {
         let headers = this.getHeadears()
-        axios
-        .get(`${backend_addr}/files/?article_id=${id}`, {headers})
-        .then(response => {
-            let files = response.data
-            this.setState({
-                'files': files
+        if (update) {
+            axios
+            .get(`${backend_addr}/files/?article_id=${id}`, {headers})
+            .then(response => {
+                this.setState({
+                    'current_edit_files': response.data
+                })
             })
-        })
-        .catch( error =>{ 
-                // Очищаем данные, если аутентификация не прошла
-                this.NotAuthError(error)
-                console.log(error)
-        })
+            .catch( error =>{ 
+                    // Очищаем данные, если аутентификация не прошла
+                    this.NotAuthError(error)
+                    console.log(error)
+            }) 
+        } else {
+            axios
+            .get(`${backend_addr}/files/?article_id=${id}`, {headers})
+            .then(response => {
+                this.setState({
+                    'files': response.data
+                })
+            })
+            .catch( error =>{ 
+                    // Очищаем данные, если аутентификация не прошла
+                    this.NotAuthError(error)
+                    console.log(error)
+            })
+        }
     }
 
     // CREATE FILES
