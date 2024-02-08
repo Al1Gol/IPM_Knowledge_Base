@@ -149,7 +149,7 @@ class App extends React.Component {
             let article = this.state.articles.find(el_article =>  el_article.id === id)
             this.setState ({
                 'current_edit_article': article
-            },  this.onFormDisplay(obj))
+            }, this.getFiles(id, true, obj))
         }
     }
 
@@ -484,7 +484,7 @@ class App extends React.Component {
     /*-----------------------------------*/
 
     //READ FILES
-    getFiles(id, update=false) {
+    getFiles(id, update=false, obj=null) {
         let headers = this.getHeadears()
         if (update) {
             console.log('Выбран update')
@@ -493,7 +493,7 @@ class App extends React.Component {
             .then(response => {
                 this.setState({
                     'current_edit_files': response.data
-                })
+                }, this.onFormDisplay(obj))
             })
             .catch( error =>{ 
                     // Очищаем данные, если аутентификация не прошла
