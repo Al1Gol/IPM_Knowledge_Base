@@ -149,13 +149,14 @@ class App extends React.Component {
             let article = this.state.articles.find(el_article =>  el_article.id === id)
             this.setState ({
                 'current_edit_article': article
-            }, this.getFiles(id, true, obj))
+            }, this.getFiles(id, true, obj))  
         }
     }
 
     closeArticle(){
         this.setState({
             'current_article' : [],
+            'files': []
         })
     }
 
@@ -389,9 +390,14 @@ class App extends React.Component {
         // Убираем убираем всю правую часть при повтрном нажатии
         else {
             this.setState({
-                'current_section': [],
-                'articles': [],
-                'files': [],
+                'current_section': [], //Текущий раздел
+                'current_edit_section': [], //Редактирование элемента разделов
+                'articles': [], //Список статей
+                'current_edit_article': [], //Редактирование элемента статьи
+                'main_text' : [], //Отображение статьи
+                'current_edit_files': [], //Редактирование списка файлов статьи
+                'hidden_modal' : true, //Оторажение модального окна создания меню
+                'current_target': '' // ID текущей кнопки по открытию модального окна, для отрисовки необходимой формы
             })
         }
     }
@@ -419,7 +425,7 @@ class App extends React.Component {
     }
 
     // EDIT ARTICLE
-    editArticle(name, text, del_files=[], add_files=[]) {
+    editArticle(name, text) {
         let headers = this.getHeadears()
         let body = {
             "section_id": this.state.current_section.id,
@@ -472,7 +478,13 @@ class App extends React.Component {
         }
         else {
             this.setState ({
-                'current_article': []
+                'current_article': [], //Текущая статья
+                'current_edit_article': [], //Редактирование элемента статьи
+                'main_text' : [], //Отображение статьи
+                'files': [], //Файлы статьи 
+                'current_edit_files': [], //Редактирование списка файлов статьи
+                'hidden_modal' : true, //Оторажение модального окна создания меню
+                'current_target': '' // ID текущей кнопки по открытию модального окна, для отрисовки необходимой формы
             })
         }
     }
@@ -492,9 +504,8 @@ class App extends React.Component {
             axios
             .get(`${backend_addr}/files/?article_id=${id}`, {headers})
             .then(response => {
-                this.setState({
-                    'current_edit_files': response.data
-                }, this.onFormDisplay(obj))
+                this.onFormDisplay(obj)
+                
             })
             .catch( error =>{ 
                     // Очищаем данные, если аутентификация не прошла
@@ -582,6 +593,24 @@ class App extends React.Component {
             }
         }
     }
+
+    redactedFiles(article_id, new_files, updated_files, deleted_files) {
+        if (new_files){
+            this.addFiles(article_id, new_files)
+        }
+        if (updated_files){
+            console.log('updated_files ' + updated_files)
+        }
+        if (deleted_files){
+            console.log('deleted_files ' + deleted_files)
+        }
+        if (this.state.current_article) {
+            this.getArticles(this.state.current_section.id, true)
+        }
+        this.setState({
+            'hidden_modal': !this.state.hidden_modal,
+        }, this.getFiles(article_id, true))
+    }
     
 
 
@@ -634,7 +663,7 @@ class App extends React.Component {
                                     {this.state.current_target === 'sectionAdd' ? <CreateSections current_section={this.state.current_section} addSection = {(name, img) => this.addSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
                                     {this.state.current_target === 'sectionEdit' ? <EditSection current_edit_section={this.state.current_edit_section} editSection = {(name, img) => this.editSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteSection = {() => this.deleteSection()} onCanselClick={(obj) => this.onCanselClick(obj)} /> : ''}
                                     {this.state.current_target === 'articleAdd' ? <CreateArticle current_article={this.state.current_article} addArticle = {(name, text, files) => this.addArticle(name, text, files)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
-                                    {this.state.current_target === 'articleEdit' ? <EditArticle current_edit_article={this.state.current_edit_article} current_edit_files={this.state.current_edit_files} editArticle = {(name, text) => this.editArticle(name, text)} addFiles={(article_id, files) => this.addFiles(article_id, files)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteArticle = {() => this.deleteArticle()} /> : ''}
+                                    {this.state.current_target === 'articleEdit' ? <EditArticle current_edit_article={this.state.current_edit_article} current_edit_files={this.state.current_edit_files} editArticle = {(name, text) => this.editArticle(name, text)} redactedFiles={(article_id, new_files, updated_files, deleted_files) => this.redactedFiles(article_id, new_files, updated_files, deleted_files)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteArticle = {() => this.deleteArticle()} /> : ''}
                                 </div>
                             } 
                         </>   

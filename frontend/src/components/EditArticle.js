@@ -14,7 +14,9 @@ class EditArticle extends React.Component {
             'name' : this.props.current_edit_article.name, //Наименование статьи
             'text': this.props.current_edit_article.text, //Содержание статьи
             'current_files': this.props.current_edit_files, //Список загружаемых файлов
-            'new_files': [] //Список новых файлов
+            'new_files': [], //Список новых файлов
+            'edited_files': [], //Список отредактированных файлов
+            'deleted_files': [] //Список удаленных файлов
         }   
     }   
 
@@ -35,7 +37,7 @@ class EditArticle extends React.Component {
     handleSubmit(event) {
         event.preventDefault() // запрещает стандартную обработку события
         this.props.editArticle(this.state.name, this.state.text)
-        this.props.addFiles(this.props.current_edit_article.id, this.state.new_files)
+        this.props.redactedFiles(this.props.current_edit_article.id, this.state.new_files, this.state.edited_files, this.state.deleted_files)
     }
 
 
