@@ -419,7 +419,7 @@ class App extends React.Component {
     }
 
     // EDIT ARTICLE
-    editArticle(name, text) {
+    editArticle(name, text, del_files=[], add_files=[]) {
         let headers = this.getHeadears()
         let body = {
             "section_id": this.state.current_section.id,
@@ -542,6 +542,46 @@ class App extends React.Component {
             }
         }
     }
+
+    // CREATE FILES
+    addFiles(article_id, files) {
+        let headers = this.getHeadears()
+        if (files) {
+            for( var i=0; i<files.length; i++) {
+                let body = new FormData();
+                body.append('article_id', article_id);
+                body.append('name', files[i].name);
+                body.append('file', files[i]);
+                axios
+                .post(`${backend_addr}/files/`, body, {headers})
+                .then(response => {
+                })
+                .catch( error =>{ 
+                    // Очищаем данные, если аутентификация не прошла
+                    console.log(error)
+                })
+            }
+        }
+    }
+
+    // CREATE FILES
+    editFiles(id, article_id, files) {
+        let headers = this.getHeadears()
+        if (files) {
+            for( var i=0; i<files.length; i++) {
+                let body = new FormData();
+                body.append('name', files[i].name);
+                axios
+                .post(`${backend_addr}/files/${id}/`, body, {headers})
+                .then(response => {
+                })
+                .catch( error =>{ 
+                    // Очищаем данные, если аутентификация не прошла
+                    console.log(error)
+                })
+            }
+        }
+    }
     
 
 
@@ -594,7 +634,7 @@ class App extends React.Component {
                                     {this.state.current_target === 'sectionAdd' ? <CreateSections current_section={this.state.current_section} addSection = {(name, img) => this.addSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
                                     {this.state.current_target === 'sectionEdit' ? <EditSection current_edit_section={this.state.current_edit_section} editSection = {(name, img) => this.editSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteSection = {() => this.deleteSection()} onCanselClick={(obj) => this.onCanselClick(obj)} /> : ''}
                                     {this.state.current_target === 'articleAdd' ? <CreateArticle current_article={this.state.current_article} addArticle = {(name, text, files) => this.addArticle(name, text, files)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
-                                    {this.state.current_target === 'articleEdit' ? <EditArticle current_edit_article={this.state.current_edit_article} current_edit_files={this.state.current_edit_files} editArticle = {(name, text) => this.editArticle(name, text)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteArticle = {() => this.deleteArticle()} /> : ''}
+                                    {this.state.current_target === 'articleEdit' ? <EditArticle current_edit_article={this.state.current_edit_article} current_edit_files={this.state.current_edit_files} editArticle = {(name, text) => this.editArticle(name, text)} addFiles={(article_id, files) => this.addFiles(article_id, files)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteArticle = {() => this.deleteArticle()} /> : ''}
                                 </div>
                             } 
                         </>   

@@ -8,7 +8,7 @@ import React from 'react'
 /*-----------------------------------*/
 const FileItem = ({file}) => {
     return (
-        <div>
+        <div className='file-item'>
             <p>{file.name}</p>
         </div>
     )
@@ -19,10 +19,11 @@ const FileItem = ({file}) => {
 // RENDER СПИСКА FILES
 /*-----------------------------------*/
 /*-----------------------------------*/
-const FilesList = ({ files }) => {
+const FilesList = ({ files, new_files }) => {
     return (
-        <div>
+        <div className='files-block'>
             {files.map((file) => <FileItem file={file} />)}
+            {new_files.map((file) => <FileItem file={file} />)}
         </div>
     )
 }

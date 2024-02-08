@@ -486,6 +486,14 @@ margin-right: 10px;
   width: 35px;
 }
 
+.files-block {
+  margin-bottom: 15px;
+  font-size: 17px;
+}
+
+.file-item{
+  margin-bottom: 5px;
+}
 
 /*
 -----------------------------------------------------------------------------

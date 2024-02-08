@@ -13,7 +13,7 @@ class CreateArticle extends React.Component {
         this.state = {
             "article_name" : "", //Имя
             "text": "", //Иконка
-            "files": []
+            "files": [] //Список загружаемых файлов
         }   
     }   
 
@@ -25,6 +25,7 @@ class CreateArticle extends React.Component {
         })
     }
 
+    // ПОСЛЕДОВАТЕЛЬНАЯ ЗАГРУЗКА ФАЙЛОВ
      uploadData(event) {
         this.setState({'files': [...this.state.files, event.target.files[0]] });
      }
