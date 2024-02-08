@@ -484,10 +484,11 @@ class App extends React.Component {
     /*-----------------------------------*/
 
     //READ FILES
+    // update - True для отображения при редактировании
+    // obj - объект запрашивающий вывод списка, для отображения модального окна
     getFiles(id, update=false, obj=null) {
         let headers = this.getHeadears()
         if (update) {
-            console.log('Выбран update')
             axios
             .get(`${backend_addr}/files/?article_id=${id}`, {headers})
             .then(response => {
@@ -501,7 +502,6 @@ class App extends React.Component {
                     console.log(error)
             }) 
         } else if (this.state.current_edit_article.length === 0 || this.state.current_edit_article.id !== id) {
-            console.log('Выбран просмотр')
             axios
             .get(`${backend_addr}/files/?article_id=${id}`, {headers})
             .then(response => {
@@ -515,7 +515,6 @@ class App extends React.Component {
                     console.log(error)
             })
         } else {
-            console.log('Выбрана пустота')
             this.setState({
                 'files': [],
                 'current_edit_files': [],
