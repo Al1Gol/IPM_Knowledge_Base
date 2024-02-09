@@ -504,15 +504,17 @@ class App extends React.Component {
             axios
             .get(`${backend_addr}/files/?article_id=${id}`, {headers})
             .then(response => {
-                this.onFormDisplay(obj)
-                
+                this.setState({
+                    'current_edit_files': response.data,
+                    'files': response.data
+                }, this.onFormDisplay(obj))              
             })
             .catch( error =>{ 
                     // Очищаем данные, если аутентификация не прошла
                     this.NotAuthError(error)
                     console.log(error)
             }) 
-        } else if (this.state.current_edit_article.length === 0 || this.state.current_edit_article.id !== id) {
+        } else if (this.state.current_edit_article.length || this.state.current_edit_article.id !== id) {
             axios
             .get(`${backend_addr}/files/?article_id=${id}`, {headers})
             .then(response => {
@@ -545,6 +547,7 @@ class App extends React.Component {
                 axios
                 .post(`${backend_addr}/files/`, body, {headers})
                 .then(response => {
+                    this.getFiles(this.state.current_article.id)
                 })
                 .catch( error =>{ 
                     // Очищаем данные, если аутентификация не прошла
@@ -573,9 +576,12 @@ class App extends React.Component {
         }
     }
 
+
+    // CREATE, UPDATE, DELETE файла при редактировании статьи
     redactedFiles(article_id, new_files, updated_files, deleted_files) {
         if (new_files){
             this.addFiles(article_id, new_files)
+            console.log('files- ' + this.state.files)
         }
         if (updated_files){
             console.log('updated_files ' + updated_files)

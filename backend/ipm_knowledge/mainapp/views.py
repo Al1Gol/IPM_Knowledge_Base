@@ -1,6 +1,8 @@
 from authapp.models import Departments
 from django.conf import settings
 from django.core.exceptions import ValidationError
+from django.db.models import ProtectedError
+from django.http import JsonResponse
 from django.shortcuts import render
 from mainapp.filters import ArticlesFilter, FilesFilter, SectionsFilter
 from mainapp.models import Articles, Files, Images, Menu, Sections
@@ -11,7 +13,7 @@ from mainapp.serializers import (
     MenuSerializer,
     SectionsSerializer,
 )
-from rest_framework import mixins
+from rest_framework import mixins, status
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, mixins
 
@@ -71,6 +73,16 @@ class SectionsViewSet(
                 "Данный родитель уже используется для хранения статьи"
             )
         serializer.save()
+
+    def destroy(self, request, *args, **kwargs):
+        try:
+            instance = self.get_object()
+            self.perform_destroy(instance)
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except:
+            return JsonResponse(
+                {"error": "You can't delete object with includes"}, status=502
+            )
 
 
 class ArticleViewSet(
