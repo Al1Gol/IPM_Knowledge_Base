@@ -425,7 +425,7 @@ class App extends React.Component {
     }
 
     // EDIT ARTICLE
-    editArticle(name, text) {
+    editArticle(name, text, new_files, updated_files, deleted_files) {
         let headers = this.getHeadears()
         let body = {
             "section_id": this.state.current_section.id,
@@ -448,7 +448,8 @@ class App extends React.Component {
             // Очищаем данные, если аутентификация не прошла
             this.NotAuthError(error)
             console.log(error)
-        })
+        }, 
+        ((!new_files.length && !updated_files.length && !deleted_files.length)? '' : this.redactedFiles(this.state.current_edit_article.id, new_files, updated_files, deleted_files)))
     }
 
     //DELETE ARTICLE
@@ -507,7 +508,8 @@ class App extends React.Component {
                 this.setState({
                     'current_edit_files': response.data,
                     'files': response.data
-                }, this.onFormDisplay(obj))              
+                }, this.onFormDisplay(obj)) 
+                console.log('getFiles -' + this.state.files)             
             })
             .catch( error =>{ 
                     // Очищаем данные, если аутентификация не прошла
@@ -520,7 +522,7 @@ class App extends React.Component {
             .then(response => {
                 this.setState({
                     'files': response.data
-                })
+                }, console.log('getFiles notupd -' + this.state.files))
             })
             .catch( error =>{ 
                     // Очищаем данные, если аутентификация не прошла
@@ -547,7 +549,7 @@ class App extends React.Component {
                 axios
                 .post(`${backend_addr}/files/`, body, {headers})
                 .then(response => {
-                    this.getFiles(this.state.current_article.id)
+                    console.log('addFiles -' + this.state.files)
                 })
                 .catch( error =>{ 
                     // Очищаем данные, если аутентификация не прошла
@@ -592,9 +594,6 @@ class App extends React.Component {
         if (this.state.current_article) {
             this.getArticles(this.state.current_section.id, true)
         }
-        this.setState({
-            'hidden_modal': !this.state.hidden_modal,
-        }, this.getFiles(article_id, true))
     }
     
 
@@ -648,7 +647,7 @@ class App extends React.Component {
                                     {this.state.current_target === 'sectionAdd' ? <CreateSections current_section={this.state.current_section} addSection = {(name, img) => this.addSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
                                     {this.state.current_target === 'sectionEdit' ? <EditSection current_edit_section={this.state.current_edit_section} editSection = {(name, img) => this.editSection(name, img)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteSection = {() => this.deleteSection()} onCanselClick={(obj) => this.onCanselClick(obj)} /> : ''}
                                     {this.state.current_target === 'articleAdd' ? <CreateArticle current_article={this.state.current_article} addArticle = {(name, text, files) => this.addArticle(name, text, files)} onFormDisplay = {(target) => this.onFormDisplay(target)} /> : ''}
-                                    {this.state.current_target === 'articleEdit' ? <EditArticle current_edit_article={this.state.current_edit_article} current_edit_files={this.state.current_edit_files} editArticle = {(name, text) => this.editArticle(name, text)} redactedFiles={(article_id, new_files, updated_files, deleted_files) => this.redactedFiles(article_id, new_files, updated_files, deleted_files)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteArticle = {() => this.deleteArticle()} /> : ''}
+                                    {this.state.current_target === 'articleEdit' ? <EditArticle current_edit_article={this.state.current_edit_article} current_edit_files={this.state.current_edit_files} editArticle = {(name, text, new_files, edited_files, deleted_files) => this.editArticle(name, text, new_files, edited_files, deleted_files)} redactedFiles={(article_id, new_files, updated_files, deleted_files) => this.redactedFiles(article_id, new_files, updated_files, deleted_files)} onFormDisplay = {(target) => this.onFormDisplay(target)} getCurentEditId = {(id, obj) => this.getCurentEditId(id, obj)} deleteArticle = {() => this.deleteArticle()} /> : ''}
                                 </div>
                             } 
                         </>   

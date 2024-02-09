@@ -36,8 +36,7 @@ class EditArticle extends React.Component {
     // ОБРАБОТЧИК КНОПКИ submit
     handleSubmit(event) {
         event.preventDefault() // запрещает стандартную обработку события
-        this.props.editArticle(this.state.name, this.state.text)
-        this.props.redactedFiles(this.props.current_edit_article.id, this.state.new_files, this.state.edited_files, this.state.deleted_files)
+        this.props.editArticle(this.state.name, this.state.text, this.state.new_files, this.state.edited_files, this.state.deleted_files)
     }
 
 
