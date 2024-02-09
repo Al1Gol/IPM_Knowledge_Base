@@ -23,7 +23,7 @@ const FilesList = ({ files, new_files }) => {
     return (
         <div className='files-block'>
             {files.map((file) => <FileItem file={file} />)}
-            {new_files.map((file) => <FileItem file={file} />)}
+            {new_files ? new_files.map((file) => <FileItem file={file} />) : '' }
         </div>
     )
 }

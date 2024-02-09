@@ -555,27 +555,6 @@ class App extends React.Component {
     }
 
     // CREATE FILES
-    addFiles(article_id, files) {
-        let headers = this.getHeadears()
-        if (files) {
-            for( var i=0; i<files.length; i++) {
-                let body = new FormData();
-                body.append('article_id', article_id);
-                body.append('name', files[i].name);
-                body.append('file', files[i]);
-                axios
-                .post(`${backend_addr}/files/`, body, {headers})
-                .then(response => {
-                })
-                .catch( error =>{ 
-                    // Очищаем данные, если аутентификация не прошла
-                    console.log(error)
-                })
-            }
-        }
-    }
-
-    // CREATE FILES
     editFiles(id, article_id, files) {
         let headers = this.getHeadears()
         if (files) {
