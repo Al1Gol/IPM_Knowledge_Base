@@ -22,7 +22,7 @@ router.register("sections", SectionsViewSet, basename="sections")
 router.register("articles", ArticleViewSet, basename="articles")
 router.register("files", FilesViewSet, basename="files")
 router.register("images", ImagesViewSet, basename="images")
-router.register("videos", ImagesViewSet, basename="videos")
+router.register("videos", VideosViewSet, basename="videos")
 
 
 urlpatterns = [

@@ -12,6 +12,7 @@ from mainapp.serializers import (
     ImagesSerializer,
     MenuSerializer,
     SectionsSerializer,
+    VideosSerializer,
 )
 from rest_framework import mixins, status
 from rest_framework.response import Response
@@ -163,6 +164,6 @@ class VideosViewSet(
     mixins.UpdateModelMixin,
     mixins.RetrieveModelMixin,
 ):
-    serializer_class = ImagesSerializer
+    serializer_class = VideosSerializer
     queryset = Videos.objects.all()
     permission_classes = [ModerateAndAdminCreateUpdateDeleteOrAuthReadOnly]
