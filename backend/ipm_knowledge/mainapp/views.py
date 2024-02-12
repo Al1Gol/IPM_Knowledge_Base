@@ -5,7 +5,7 @@ from django.db.models import ProtectedError
 from django.http import JsonResponse
 from django.shortcuts import render
 from mainapp.filters import ArticlesFilter, FilesFilter, SectionsFilter
-from mainapp.models import Articles, Files, Images, Menu, Sections
+from mainapp.models import Articles, Files, Images, Menu, Sections, Videos
 from mainapp.serializers import (
     ArticlesSerializer,
     FilesSerializer,
@@ -152,4 +152,17 @@ class ImagesViewSet(
 ):
     serializer_class = ImagesSerializer
     queryset = Images.objects.all()
+    permission_classes = [ModerateAndAdminCreateUpdateDeleteOrAuthReadOnly]
+
+
+class VideosViewSet(
+    GenericViewSet,
+    mixins.CreateModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.ListModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+):
+    serializer_class = ImagesSerializer
+    queryset = Videos.objects.all()
     permission_classes = [ModerateAndAdminCreateUpdateDeleteOrAuthReadOnly]

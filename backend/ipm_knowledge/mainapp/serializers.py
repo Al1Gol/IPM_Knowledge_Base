@@ -1,4 +1,4 @@
-from mainapp.models import Articles, Files, Images, Menu, Sections
+from mainapp.models import Articles, Files, Images, Menu, Sections, Videos
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
@@ -85,3 +85,9 @@ class ImagesSerializer(ModelSerializer):
     class Meta:
         model = Images
         fields = ["img"]
+
+
+class VideosSerializer(ModelSerializer):
+    class Meta:
+        model = Videos
+        fields = ["video"]

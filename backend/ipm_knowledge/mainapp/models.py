@@ -3,7 +3,7 @@ import datetime
 from django.conf import settings
 from django.db import models
 
-from .validators import validate_file_extension
+from .validators import validate_file_extension, validate_video_extension
 
 
 class Menu(models.Model):
@@ -123,3 +123,19 @@ class Images(models.Model):
     class Meta:
         verbose_name = "Изображения"
         verbose_name_plural = "Изображения"
+
+
+class Videos(models.Model):
+    video = models.FileField(
+        verbose_name="видео",
+        upload_to="files/video/",
+        max_length=100,
+        validators=[validate_file_extension],
+    )
+
+    def __str__(self):
+        return self.video
+
+    class Meta:
+        verbose_name = "Видео"
+        verbose_name_plural = "Видео"
