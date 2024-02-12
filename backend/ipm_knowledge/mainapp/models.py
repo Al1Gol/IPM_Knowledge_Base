@@ -3,14 +3,14 @@ import datetime
 from django.conf import settings
 from django.db import models
 
-from .validators import validate_file_extension, validate_video_extension
+from .validators import validate_svg_extension, validate_video_extension
 
 
 class Menu(models.Model):
     name = models.CharField(verbose_name="наименование", max_length=100)
     img = models.FileField(
         verbose_name="иконка",
-        validators=[validate_file_extension],
+        validators=[validate_svg_extension],
         upload_to="icons/menu/",
         max_length=100,
         blank=True,
@@ -43,7 +43,7 @@ class Sections(models.Model):
     img = models.FileField(
         verbose_name="иконка",
         upload_to="icons/sections/",
-        validators=[validate_file_extension],
+        validators=[validate_svg_extension],
         max_length=100,
         blank=True,
         null=True,
@@ -130,7 +130,7 @@ class Videos(models.Model):
         verbose_name="видео",
         upload_to="files/video/",
         max_length=100,
-        validators=[validate_file_extension],
+        validators=[validate_video_extension],
     )
 
     def __str__(self):
