@@ -128,10 +128,13 @@ class App extends React.Component {
     onFormDisplay(obj) {
         this.setState ({
             'hidden_modal': !this.state.hidden_modal,
-            'current_target': obj
-        })
+            'current_target': obj,
+            'current_edit_menu': [],
+            'current_edit_section': [],
+            'current_edit_article': [],
+            'current_edit_files': [],
+        }, this.canselEditObjClear())
     }
-
 
     //Получение текущего ID Menu/Раздела для формирования модального окна
     getCurentEditId(id, obj) {
@@ -416,7 +419,11 @@ class App extends React.Component {
             this.getArticles(this.state.current_section.id, true)
             this.setState({
             'current_article': response.data
-            }, this.addFiles(response.data.id, files))
+            })
+        })
+        .then(response => {
+            console.log('response ' + response)
+            this.addFiles(response.data.id, files)
         })
         .catch( error =>{ 
             // Очищаем данные, если аутентификация не прошла
@@ -442,14 +449,19 @@ class App extends React.Component {
             }
             this.setState({
                 'hidden_modal': !this.state.hidden_modal,
-            }, this.getArticles(this.state.current_section.id, true))
+            })
+        })
+        .then(response => {
+            this.getArticles(this.state.current_section.id, true)
+        })
+        .then(response => {
+            this.redactedFiles(this.state.current_edit_article.id, new_files, updated_files, deleted_files)
         })
         .catch( error =>{ 
             // Очищаем данные, если аутентификация не прошла
             this.NotAuthError(error)
             console.log(error)
-        }, 
-        ((!new_files.length && !updated_files.length && !deleted_files.length)? '' : this.redactedFiles(this.state.current_edit_article.id, new_files, updated_files, deleted_files)))
+        })
     }
 
     //DELETE ARTICLE
@@ -508,8 +520,7 @@ class App extends React.Component {
                 this.setState({
                     'current_edit_files': response.data,
                     'files': response.data
-                }, this.onFormDisplay(obj)) 
-                console.log('getFiles -' + this.state.files)             
+                }, this.onFormDisplay(obj))            
             })
             .catch( error =>{ 
                     // Очищаем данные, если аутентификация не прошла
@@ -522,7 +533,7 @@ class App extends React.Component {
             .then(response => {
                 this.setState({
                     'files': response.data
-                }, console.log('getFiles notupd -' + this.state.files))
+                })
             })
             .catch( error =>{ 
                     // Очищаем данные, если аутентификация не прошла
@@ -537,6 +548,7 @@ class App extends React.Component {
         }
     }
 
+    
     // CREATE FILES
     addFiles(article_id, files) {
         let headers = this.getHeadears()
@@ -548,8 +560,7 @@ class App extends React.Component {
                 body.append('file', files[i]);
                 axios
                 .post(`${backend_addr}/files/`, body, {headers})
-                .then(response => {
-                    console.log('addFiles -' + this.state.files)
+                .then(response => {                      
                 })
                 .catch( error =>{ 
                     // Очищаем данные, если аутентификация не прошла
@@ -595,7 +606,7 @@ class App extends React.Component {
             this.getArticles(this.state.current_section.id, true)
         }
     }
-    
+
 
 
     /*-----------------------------------*/
