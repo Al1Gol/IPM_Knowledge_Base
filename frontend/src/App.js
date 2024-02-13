@@ -126,7 +126,7 @@ class App extends React.Component {
 
     //Отображение и скрытие формы редактирования и создания
     onFormDisplay(obj) {
-        if (obj==undefined){
+        if (obj===undefined){
             this.setState ({
                 'hidden_modal': !this.state.hidden_modal,
                 'current_target': obj,
@@ -535,14 +535,11 @@ class App extends React.Component {
                 this.setState({
                     'current_edit_files': response.data,
                     'files': response.data
-                }, this.onFormDisplay(obj)) 
-                console.log(`${backend_addr}/files/?article_id=${id}`)    
-                console.log(`response - ${response}`)   
+                }, this.onFormDisplay(obj))  
             } else if (this.state.current_edit_article.length || this.state.current_edit_article.id !== id) {
                 this.setState({
                     'files': response.data
-                }, console.log(`response --- ${response.data.name}`))
-                console.log(`${backend_addr}/files/?article_id=${id}`)
+                })
             } else {
                 this.setState({
                     'files': [],
@@ -604,7 +601,6 @@ class App extends React.Component {
     redactedFiles(article_id, new_files, updated_files, deleted_files) {
         if (new_files){
             this.addFiles(article_id, new_files)
-            console.log('files- ' + this.state.files)
         }
         if (updated_files){
             console.log('updated_files ' + updated_files)
