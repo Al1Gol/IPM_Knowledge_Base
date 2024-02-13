@@ -126,15 +126,24 @@ class App extends React.Component {
 
     //Отображение и скрытие формы редактирования и создания
     onFormDisplay(obj) {
-        this.setState ({
-            'hidden_modal': !this.state.hidden_modal,
-            'current_target': obj,
-            'current_edit_menu': [],
-            'current_edit_section': [],
-            'current_edit_article': [],
-            'current_edit_files': [],
-        }, this.canselEditObjClear())
+        if (obj==undefined){
+            this.setState ({
+                'hidden_modal': !this.state.hidden_modal,
+                'current_target': obj,
+                'current_edit_menu': [],
+                'current_edit_section': [],
+                'current_edit_article': [],
+                'current_edit_files': []
+            })
+        } else {
+            this.setState ({
+                'hidden_modal': !this.state.hidden_modal,
+                'current_target': obj,
+            })
+        }
     }
+
+
 
     //Получение текущего ID Menu/Раздела для формирования модального окна
     getCurentEditId(id, obj) {
@@ -418,12 +427,19 @@ class App extends React.Component {
         .then(response => {
             this.getArticles(this.state.current_section.id, true)
             this.setState({
-            'current_article': response.data
-            })
+                'current_article': response.data,
+                })
         })
         .then(response => {
-            console.log('response ' + response)
             this.addFiles(response.data.id, files)
+        })
+        .then(response => {
+            this.setState({
+                'current_edit_menu': [],
+                'current_edit_section': [],
+                'current_edit_article': [],
+                'current_edit_files': []
+                })
         })
         .catch( error =>{ 
             // Очищаем данные, если аутентификация не прошла
@@ -449,6 +465,9 @@ class App extends React.Component {
             }
             this.setState({
                 'hidden_modal': !this.state.hidden_modal,
+                'current_edit_section': [],
+                'current_edit_article': [],
+                'current_edit_files': []
             })
         })
         .then(response => {
@@ -520,7 +539,9 @@ class App extends React.Component {
                 this.setState({
                     'current_edit_files': response.data,
                     'files': response.data
-                }, this.onFormDisplay(obj))            
+                }, this.onFormDisplay(obj)) 
+                console.log(`${backend_addr}/files/?article_id=${id}`)    
+                console.log(`response - ${response}`)           
             })
             .catch( error =>{ 
                     // Очищаем данные, если аутентификация не прошла
@@ -534,6 +555,8 @@ class App extends React.Component {
                 this.setState({
                     'files': response.data
                 })
+                console.log(`${backend_addr}/files/?article_id=${id}`)    
+                console.log(`response --- ${response.data.name}`)    
             })
             .catch( error =>{ 
                     // Очищаем данные, если аутентификация не прошла
