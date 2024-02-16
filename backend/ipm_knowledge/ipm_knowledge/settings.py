@@ -170,11 +170,11 @@ USE_TZ = False
 
 STATIC_URL = "static/"
 
-# In common case STATIC_ROOT can not be in STATICFILES_DIRS
-# if DEBUG:
-#    STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
-# else:
-#    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# Для дебаг режима и прод режима должны отличаться переменные
+if DEBUG:
+    STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
 # Media files
