@@ -1,5 +1,4 @@
 import logging
-
 from authapp.models import Departments, Users
 from authapp.serializers import (
     DepartmentsSerializer,
