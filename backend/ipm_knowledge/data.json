@@ -1,235 +1,212 @@
 [
-{
-  "model": "authapp.departments",
-  "pk": 1,
-  "fields": {
-    "name": "Общее",
-    "is_active": true
+  {
+    "model": "authapp.departments",
+    "pk": 1,
+    "fields": {
+      "name": "Общее"
+    }
+  },
+  {
+    "model": "authapp.departments",
+    "pk": 2,
+    "fields": {
+      "name": "АСУтП"
+    }
+  },
+  {
+    "model": "authapp.departments",
+    "pk": 3,
+    "fields": {
+      "name": "Техподдержка"
+    }
+  },
+  {
+    "model": "authapp.users",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$PTpuzMu2GYeX5HrCHzKnwJ$OlvAtwZOne1O2kcnSY5q2Iz7IzAus9MwbqS5QZ/XWUE=",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "date_joined": "2023-09-12T10:59:12.769Z",
+      "depart_id": 1,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "mainapp.menu",
+    "pk": 1,
+    "fields": {
+      "name": "Основной функционал",
+      "img": "null",
+      "depart_id": 3
+    }
+  },
+  {
+    "model": "mainapp.menu",
+    "pk": 2,
+    "fields": {
+      "name": "Ошибки / Решения",
+      "img": "null",
+      "depart_id": 3
+    }
+  },
+  {
+    "model": "mainapp.menu",
+    "pk": 3,
+    "fields": {
+      "name": "Версии / ChangeLog",
+      "img": "null",
+      "depart_id": 3
+    }
+  },
+  {
+    "model": "mainapp.sections",
+    "pk": 1,
+    "fields": {
+      "menu_id": 1,
+      "name": "Управление производством",
+      "img": "null"
+    }
+  },
+  {
+    "model": "mainapp.sections",
+    "pk": 2,
+    "fields": {
+      "menu_id": 1,
+      "name": "Заказ кодов",
+      "img": "null"
+    }
+  },
+  {
+    "model": "mainapp.sections",
+    "pk": 3,
+    "fields": {
+      "menu_id": 1,
+      "name": "Задание на производство",
+      "img": "null"
+    }
+  },
+  {
+    "model": "mainapp.sections",
+    "pk": 4,
+    "fields": {
+      "menu_id": 1,
+      "name": "Агрегация",
+      "img": "null"
+    }
+  },
+  {
+    "model": "mainapp.sections",
+    "pk": 5,
+    "fields": {
+      "menu_id": 1,
+      "name": "Отбраковка",
+      "img": "null"
+    }
+  },
+  {
+    "model": "mainapp.sections",
+    "pk": 6,
+    "fields": {
+      "menu_id": 1,
+      "name": "Продукция",
+      "img": "null"
+    }
+  },
+  {
+    "model": "mainapp.sections",
+    "pk": 7,
+    "fields": {
+      "menu_id": 1,
+      "name": "Компании",
+      "img": "null"
+    }
+  },
+  {
+    "model": "mainapp.sections",
+    "pk": 8,
+    "fields": {
+      "menu_id": 1,
+      "name": "Производственные линии",
+      "img": "null"
+    }
+  },
+  {
+    "model": "mainapp.sections",
+    "pk": 9,
+    "fields": {
+      "menu_id": 1,
+      "name": "КПЛ",
+      "img": "null"
+    }
+  },
+  {
+    "model": "mainapp.sections",
+    "pk": 10,
+    "fields": {
+      "menu_id": 1,
+      "name": "Обороудование",
+      "img": "null"
+    }
+  },
+  {
+    "model": "mainapp.sections",
+    "pk": 11,
+    "fields": {
+      "menu_id": 1,
+      "name": "Пользователи",
+      "img": "null"
+    }
+  },
+  {
+    "model": "mainapp.sections",
+    "pk": 12,
+    "fields": {
+      "menu_id": 2,
+      "name": "Ошибки, связанные с токеном",
+      "img": "null"
+    }
+  },
+  {
+    "model": "mainapp.sections",
+    "pk": 13,
+    "fields": {
+      "menu_id": 3,
+      "name": "ipm_system",
+      "img": "null"
+    }
+  },
+  {
+    "model": "mainapp.sections",
+    "pk": 14,
+    "fields": {
+      "menu_id": 3,
+      "name": "ipm_system_plc",
+      "img": "null"
+    }
+  },
+  {
+    "model": "mainapp.sections",
+    "pk": 15,
+    "fields": {
+      "menu_id": 3,
+      "name": "IPM Client Terminal",
+      "img": "null"
+    }
+  },
+  {
+    "model": "mainapp.sections",
+    "pk": 16,
+    "fields": {
+      "menu_id": 3,
+      "name": "TCД",
+      "img": "null"
+    }
   }
-},
-{
-  "model": "authapp.departments",
-  "pk": 2,
-  "fields": {
-    "name": "АСУтП",
-    "is_active": true
-  }
-},
-{
-  "model": "authapp.departments",
-  "pk": 3,
-  "fields": {
-    "name": "Техподдержка",
-    "is_active": true
-  }
-},
-{
-  "model": "authapp.users",
-  "pk": 1,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$PTpuzMu2GYeX5HrCHzKnwJ$OlvAtwZOne1O2kcnSY5q2Iz7IzAus9MwbqS5QZ/XWUE=",
-    "last_login": null,
-    "is_superuser": true,
-    "username": "admin",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2023-09-12T10:59:12.769Z",
-    "depart_id": 1,
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "mainapp.menu",
-  "pk": 1,
-  "fields": {
-    "name": "Основной функционал",
-    "img": "null",
-    "depart_id": 3,
-    "is_active": true
-  }
-},
-{
-  "model": "mainapp.menu",
-  "pk": 2,
-  "fields": {
-    "name": "Ошибки / Решения",
-    "img": "null",
-    "depart_id": 3,
-    "is_active": true
-  }
-},
-{
-  "model": "mainapp.menu",
-  "pk": 3,
-  "fields": {
-    "name": "Версии / ChangeLog",
-    "img": "null",
-    "depart_id": 3,
-    "is_active": true
-  }
-},
-{
-  "model": "mainapp.sections",
-  "pk": 1,
-  "fields": {
-    "menu_id": 1,
-    "name": "Управление производством",
-    "img": "null",
-    "is_active": true
-  }
-},
-{
-  "model": "mainapp.sections",
-  "pk": 2,
-  "fields": {
-    "menu_id": 1,
-    "name": "Заказ кодов",
-    "img": "null",
-    "is_active": true
-  }
-},
-{
-  "model": "mainapp.sections",
-  "pk": 3,
-  "fields": {
-    "menu_id": 1,
-    "name": "Задание на производство",
-    "img": "null",
-    "is_active": true
-  }
-},
-{
-  "model": "mainapp.sections",
-  "pk": 4,
-  "fields": {
-    "menu_id": 1,
-    "name": "Агрегация",
-    "img": "null",
-    "is_active": true
-  }
-},
-{
-  "model": "mainapp.sections",
-  "pk": 5,
-  "fields": {
-    "menu_id": 1,
-    "name": "Отбраковка",
-    "img": "null",
-    "is_active": true
-  }
-},
-{
-  "model": "mainapp.sections",
-  "pk": 6,
-  "fields": {
-    "menu_id": 1,
-    "name": "Продукция",
-    "img": "null",
-    "is_active": true
-  }
-},
-{
-  "model": "mainapp.sections",
-  "pk": 7,
-  "fields": {
-    "menu_id": 1,
-    "name": "Компании",
-    "img": "null",
-    "is_active": true
-  }
-},
-{
-  "model": "mainapp.sections",
-  "pk": 8,
-  "fields": {
-    "menu_id": 1,
-    "name": "Производственные линии",
-    "img": "null",
-    "is_active": true
-  }
-},
-{
-  "model": "mainapp.sections",
-  "pk": 9,
-  "fields": {
-    "menu_id": 1,
-    "name": "КПЛ",
-    "img": "null",
-    "is_active": true
-  }
-},
-{
-  "model": "mainapp.sections",
-  "pk": 10,
-  "fields": {
-    "menu_id": 1,
-    "name": "Обороудование",
-    "img": "null",
-    "is_active": true
-  }
-},
-{
-  "model": "mainapp.sections",
-  "pk": 11,
-  "fields": {
-    "menu_id": 1,
-    "name": "Пользователи",
-    "img": "null",
-    "is_active": true
-  }
-},
-{
-  "model": "mainapp.sections",
-  "pk": 12,
-  "fields": {
-    "menu_id": 2,
-    "name": "Ошибки, связанные с токеном",
-    "img": "null",
-    "is_active": true
-  }
-},
-{
-  "model": "mainapp.sections",
-  "pk": 13,
-  "fields": {
-    "menu_id": 3,
-    "name": "ipm_system",
-    "img": "null",
-    "is_active": true
-  }
-},
-{
-  "model": "mainapp.sections",
-  "pk": 14,
-  "fields": {
-    "menu_id": 3,
-    "name": "ipm_system_plc",
-    "img": "null",
-    "is_active": true
-  }
-},
-{
-  "model": "mainapp.sections",
-  "pk": 15,
-  "fields": {
-    "menu_id": 3,
-    "name": "IPM Client Terminal",
-    "img": "null",
-    "is_active": true
-  }
-},
-{
-  "model": "mainapp.sections",
-  "pk": 16,
-  "fields": {
-    "menu_id": 3,
-    "name": "TCД",
-    "img": "null",
-    "is_active": true
-  }
-}
 ]
