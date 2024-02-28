@@ -131,6 +131,7 @@ REST_FRAMEWORK = {
     "DATETIME_FORMAT": "%d.%m.%Y %H:%M:%S",
     "DEFAULT_RENDERER_CLASSES": [
         "rest_framework.renderers.JSONRenderer",
+        #    "rest_framework.renderers.BrowsableAPIRenderer",
     ],
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_PERMISSION_CLASSES": [
@@ -142,13 +143,6 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
     ],
 }
-
-#Подключаем графическое отображение при дебаге
-if DEBUG:
-    REST_FRAMEWORK = [
-        "rest_framework.renderers.JSONRenderer",
-        "rest_framework.renderers.BrowsableAPIRenderer",
-    ]
 
 # Время жизни токенов JWT
 SIMPLE_JWT = {
