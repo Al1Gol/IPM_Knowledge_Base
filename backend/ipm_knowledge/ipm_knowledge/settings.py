@@ -66,8 +66,8 @@ MIDDLEWARE = [
 DJANGO_LOG_LEVEL = DEBUG
 
 CORS_ALLOWED_ORIGINS = [
+    "http://192.168.10.107:3000",
     "http://192.168.10.109:8000",
-    "http://192.168.10.109:5554",
     "http://192.168.10.109:3000",
     "http://192.168.10.238:8000",
     "http://192.168.10.238:5554",
@@ -77,10 +77,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://192.168.10.210:3000",
     "http://192.168.10.222:8000",
     "http://192.168.10.222:3000",
-    "http://localhost:3000",
-    "http://localhost:8000",
-    "http://127.0.0.1:3000",
-    "http://127.0.0.1:8000",
 ]
 
 
@@ -135,7 +131,6 @@ REST_FRAMEWORK = {
     "DATETIME_FORMAT": "%d.%m.%Y %H:%M:%S",
     "DEFAULT_RENDERER_CLASSES": [
         "rest_framework.renderers.JSONRenderer",
-        "rest_framework.renderers.BrowsableAPIRenderer",
     ],
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_PERMISSION_CLASSES": [
@@ -147,6 +142,13 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
     ],
 }
+
+#Подключаем графическое отображение при дебаге
+if DEBUG:
+    REST_FRAMEWORK = [
+        "rest_framework.renderers.JSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
+    ]
 
 # Время жизни токенов JWT
 SIMPLE_JWT = {
