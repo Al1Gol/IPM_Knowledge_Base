@@ -1,0 +1,35 @@
+version: '3.8'
+
+
+services:
+  db:
+    image: postgres:14.5-alpine
+    volumes:
+      - /mnt/1/IPM_data/data/db/pgdata:/var/lib/postgresql/pgdata
+    privileged: true
+    restart: always
+    ports:
+      - '5432:5432'
+
+    environment:
+      POSGRES_DB: 'ipm_knowledge'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
+      PGDATA: '/var/lib/postgresql/pgdata'
+
+  backend:
+    build: ./backend
+    command: bash -c "
+        python manage.py migrate &&
+        gunicorn ipm_knowledge.wsgi -b 0.0.0.0:8000
+      "
+    environment: 
+      DJANGO_SETTINGS_MODULE: ipm_knowledge.settings.production
+    privileged: true
+    restart: always
+    ports: 
+      - '8000:8000'
+    volumes:
+      - ./mnt/1/IPM_data/data/media:/usr/src/backend/media
+    depends_on: 
+      - db
