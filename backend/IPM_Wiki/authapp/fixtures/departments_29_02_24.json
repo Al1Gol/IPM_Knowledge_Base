@@ -1,0 +1,179 @@
+[
+{
+  "model": "authapp.departments",
+  "pk": 1,
+  "fields": {
+    "name": "Техподдержка",
+    "created_at": "2024-01-19T07:39:23.227",
+    "updated_at": "2024-01-19T07:39:23.227"
+  }
+},
+{
+  "model": "authapp.departments",
+  "pk": 2,
+  "fields": {
+    "name": "АСУтП",
+    "created_at": "2024-01-19T07:39:23.227",
+    "updated_at": "2024-01-19T07:39:23.227"
+  }
+},
+{
+  "model": "authapp.departments",
+  "pk": 3,
+  "fields": {
+    "name": "12313",
+    "created_at": "2024-01-19T07:39:23.227",
+    "updated_at": "2024-01-19T07:39:23.227"
+  }
+},
+{
+  "model": "authapp.departments",
+  "pk": 4,
+  "fields": {
+    "name": "test2",
+    "created_at": "2024-01-29T16:38:36.199",
+    "updated_at": "2024-01-29T16:38:36.199"
+  }
+},
+{
+  "model": "authapp.departments",
+  "pk": 5,
+  "fields": {
+    "name": "Пользователь",
+    "created_at": "2024-01-29T16:38:52.106",
+    "updated_at": "2024-01-29T16:38:52.106"
+  }
+},
+{
+  "model": "authapp.users",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$uSlQOghnqMoXtuW4Mgfuoz$C6GLVX9KrZ0JQpILM4nk3WKIl+bsVbW0HD9pBbGSeP4=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "moderator",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-01-12T09:21:05.621",
+    "depart_id": 2,
+    "is_moderate": true,
+    "created_at": "2024-01-19T07:39:23.227",
+    "updated_at": "2024-01-19T07:39:23.227",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authapp.users",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$LLBqIiO5jJGC4o6i50G5sV$JztOaxHpMa8eaDh/dMZWO7M8yYB7g4r2QfaFk2IIa34=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user_tech",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-01-29T16:29:45.004",
+    "depart_id": 1,
+    "is_moderate": false,
+    "created_at": "2024-01-29T16:29:45.006",
+    "updated_at": "2024-01-29T16:29:45.006",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authapp.users",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$JEpSOeJdp9AZvWuNiWWcg6$Zy6GRHcxmbz6CL2qRgbZmnagrqQXQUeAtiheBVh2a1s=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "moder_tech",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-01-29T16:32:25.224",
+    "depart_id": 1,
+    "is_moderate": true,
+    "created_at": "2024-01-29T16:32:25.225",
+    "updated_at": "2024-01-29T16:32:25.225",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authapp.users",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$nVbI9fCRoa4Xx9LuXInDeU$DFyo12Xar+usVNMoh2PRs/AB/xVzYYze9BjjoS4QCBA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "moder",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-01-29T16:39:15.727",
+    "depart_id": 5,
+    "is_moderate": true,
+    "created_at": "2024-01-29T16:39:15.728",
+    "updated_at": "2024-01-29T16:39:15.728",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authapp.users",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$BQybdqdPAANlUpR60agjuz$+j+NHMVv6hd4FRxjpUozH1tAFLKfuwBiJJiLclSrMrw=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-01-29T16:40:26.837",
+    "depart_id": 5,
+    "is_moderate": false,
+    "created_at": "2024-01-29T16:40:26.839",
+    "updated_at": "2024-01-29T16:40:26.839",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authapp.users",
+  "pk": 16,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$a0YG5FQPpAqCUvjXwrrbBp$HAl7v00k2HUg80X56jWBoY6tHzjgfavFHFz2hyFhAFk=",
+    "last_login": "2024-02-12T15:28:41.368",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-01-30T09:44:54.490",
+    "depart_id": 2,
+    "is_moderate": false,
+    "created_at": "2024-01-30T09:44:55.499",
+    "updated_at": "2024-02-07T16:54:00.217",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

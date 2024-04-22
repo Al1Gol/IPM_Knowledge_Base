@@ -25,12 +25,13 @@ services:
       "
     environment:
       DJANGO_SETTINGS_MODULE: ipm_knowledge.settings.production
+    volumes:
+      - /mnt/1/IPM_data/data/media:/app/media
+      - /mnt/1/IPM_data/logs/:/logs
     privileged: true
     restart: always
-    expose: 
-      - '8080'
-    volumes:
-      - ./mnt/1/IPM_data/data/media:/usr/src/backend/media
+    ports:
+      - 8080:8080
     depends_on: 
       - db
   
@@ -38,6 +39,8 @@ services:
     build: ./nginx
     privileged: true
     restart: always
+    volumes:
+      - /mnt/1/IPM_data/data/media:/var/www/media
     ports:
       - 8000:80
     depends_on:
@@ -47,6 +50,8 @@ services:
     build: ./frontend 
     privileged: true
     restart: always
+    volumes:
+      - /mnt/1/IPM_data/data/media:/var/www/media
     ports:
       - 80:80
     depends_on:
